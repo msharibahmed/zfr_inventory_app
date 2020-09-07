@@ -9,20 +9,23 @@ class DepartmentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const Map<String, List> departmentNames = {
-      'Vehicle Dynamics': ['Englsh', 'hnd', 'sanskrt'],
-      'Electronics': ['power system', 'hnd', 'sanskrt'],
-      'Cooling': ['hnd', 'sanskrt'],
-      'Chassis': ['hnd', 'sanskrt'],
-      'Power': ['hnd', 'sanskrt'],
-      'Miscellaneous': ['hnd', 'sanskrt']
+      'Vehicle Dynamics': ['Steering', 'Suspension'],
+      'Power Train': ['Cooling', 'Drive Train', 'Exhaust', 'Intake'],
+      'Brakes': [],
+      'Chassis': [],
+      'Electronics': [],
+      'Miscellaneous': []
     };
+    const subDepartmentNumber=['two','four','zero','zero','zero','zero'];
     return Card(
       color: Colors.blue[50],
       elevation: 10,
       child: ExpansionTile(
+        subtitle: Text('This has '+subDepartmentNumber[index]+ ' Sub Departments') ,
           title: Text(
             departmentNames.keys.toList()[index],
-            style: TextStyle(fontSize: 24),
+            style: TextStyle(fontSize: 25),
+            
           ),
           trailing: Icon(Icons.arrow_drop_down_circle),
           children: [
@@ -30,7 +33,6 @@ class DepartmentCard extends StatelessWidget {
                 elevation: 3,
                 color: Colors.blue[100],
                 child: ListTile(
-                  
                   onTap: () {
                     Navigator.pushNamed(context, ItemListScreen.routeName);
                   },

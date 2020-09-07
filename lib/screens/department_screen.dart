@@ -9,10 +9,10 @@ class DepartmentScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: Text('Departments')),
         body: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(10.0),
           child: ListView.builder(
             itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(bottom:5.0),
               child: DepartmentCard(index),
             ),
             itemCount: 6,

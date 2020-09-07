@@ -8,7 +8,7 @@ class ItemListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final itemData = Provider.of<ItemProvider>(context,listen: false);
+    final itemData = Provider.of<ItemProvider>(context, listen: false);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -16,6 +16,13 @@ class ItemListScreen extends StatelessWidget {
       ),
       appBar: AppBar(
         title: Text('Items'),
+        actions: [
+          Chip(
+              elevation: 10,
+              shadowColor: Colors.amber,
+              backgroundColor: Colors.blue[900],
+              label: Text('\$'+itemData.totalItemCost.toStringAsFixed(2), style: TextStyle(color: Colors.white)))
+        ],
       ),
       body: ListView.builder(
         itemBuilder: (context, index) => ItemCard(index),

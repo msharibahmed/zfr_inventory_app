@@ -16,7 +16,7 @@ class ItemModel {
       @required this.itemName,
       @required this.itemBuyer,
       @required this.itemDate,
-      @required this.itemDescription,
+      this.itemDescription = 'none',
       @required this.itemQuantity,
       @required this.itemVendor,
       @required this.itemCost});
@@ -67,4 +67,13 @@ class ItemProvider with ChangeNotifier {
   ];
 
   List<ItemModel> get items => [..._items];
+
+  double get totalItemCost {
+      var totalCost = 0.0;
+
+    _items.forEach((element) {
+      totalCost += (element.itemCost * element.itemQuantity);
+    });
+    return totalCost;
+  }
 }
