@@ -17,12 +17,27 @@ class SuspensionProvider with ChangeNotifier {
   ];
   List<ItemModel> get items => [..._items];
 
+  void deleteItem(String id) {
+    ItemModel itemToDelete =
+        _items.firstWhere((element) => element.itemId == id);
+    _items.remove(itemToDelete);
+    notifyListeners();
+  }
+
+  void undoDelete(int index,ItemModel deletedItem) {
+    _items.insert(index,deletedItem);
+    notifyListeners();
+  }
+
   double get totalItemCost {
     var totalCost = 0.0;
-
-    _items.forEach((element) {
-      totalCost += (element.itemCost * element.itemQuantity);
-    });
-    return totalCost;
+    if (_items.isEmpty) {
+      return totalCost = 0.0;
+    } else {
+      _items.forEach((element) {
+        totalCost += (element.itemCost * element.itemQuantity);
+      });
+      return totalCost;
+    }
   }
 }

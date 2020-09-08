@@ -10,7 +10,7 @@ class DriveTrainItemListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final itemData = Provider.of<DriveTrainProvider>(context, listen: false);
+    final itemData = Provider.of<DriveTrainProvider>(context, );
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -23,11 +23,11 @@ class DriveTrainItemListScreen extends StatelessWidget {
               elevation: 10,
               shadowColor: Colors.amber,
               backgroundColor: Colors.blue[900],
-              label: Text('\$'+itemData.totalItemCost.toStringAsFixed(2), style: TextStyle(color: Colors.white)))
+              label: Consumer<DriveTrainProvider>(builder: (context,data,_)=>Text('\$'+itemData.totalItemCost.toStringAsFixed(2), style: TextStyle(color: Colors.white)),))
         ],
       ),
       body: ListView.builder(
-        itemBuilder: (context, index) => ItemCard(itemData.items[index]),
+        itemBuilder: (context, index) => ItemCard(itemData.items[index],itemData.deleteItem,itemData.undoDelete,index),
         itemCount: itemData.items.length,
       ),
     );

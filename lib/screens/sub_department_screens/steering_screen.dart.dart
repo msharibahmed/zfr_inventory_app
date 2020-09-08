@@ -9,7 +9,7 @@ class SteeringItemListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final itemData = Provider.of<SteeringProvider>(context, listen: false);
+    final itemData = Provider.of<SteeringProvider>(context, );
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -22,11 +22,11 @@ class SteeringItemListScreen extends StatelessWidget {
               elevation: 10,
               shadowColor: Colors.amber,
               backgroundColor: Colors.blue[900],
-              label: Text('\$'+itemData.totalItemCost.toStringAsFixed(2), style: TextStyle(color: Colors.white)))
+              label: Consumer<SteeringProvider>(builder: (context,data,_)=>Text('\$'+itemData.totalItemCost.toStringAsFixed(2), style: TextStyle(color: Colors.white)),))
         ],
       ),
       body: ListView.builder(
-        itemBuilder: (context, index) => ItemCard(itemData.items[index]),
+        itemBuilder: (context, index) => ItemCard(itemData.items[index],itemData.deleteItem,itemData.undoDelete,index),
         itemCount: itemData.items.length,
       ),
     );
