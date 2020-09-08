@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-
-import '../provider/item.dart';
+import 'package:zfr_inventory_app/models/item_model.dart';
 
 class ItemCard extends StatelessWidget {
-  final int index;
-  ItemCard(this.index);
+  final ItemModel modelData;
+
+  ItemCard(this.modelData);
 
   @override
   Widget build(BuildContext context) {
-    final itemData = Provider.of<ItemProvider>(context, listen: false);
     const Divider divider = Divider();
 
     ListTile _listTile(String message1, String message2) {
@@ -32,7 +30,7 @@ class ItemCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Card(
-        color: Colors.blue[50],
+          color: Colors.blue[50],
           elevation: 10,
           shadowColor: Colors.black,
           child: Padding(
@@ -47,7 +45,7 @@ class ItemCard extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20)),
                       Expanded(
-                        child: Text(itemData.items[index].itemName,
+                        child: Text(modelData.itemName,
                             overflow: TextOverflow.ellipsis,
                             softWrap: false,
                             style: TextStyle(fontSize: 20)),
@@ -55,8 +53,7 @@ class ItemCard extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0),
                         child: Text(
-                            DateFormat('dd MMM')
-                                .format(itemData.items[index].itemDate),
+                            DateFormat('dd MMM').format(modelData.itemDate),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20)),
                       ),
@@ -78,13 +75,13 @@ class ItemCard extends StatelessWidget {
                           elevation: 10.0,
                           shadowColor: Colors.amber,
                           label: Text(
-                              '\$${(itemData.items[index].itemCost * itemData.items[index].itemQuantity).toStringAsFixed(2)}',
+                              '\$${(modelData.itemCost * modelData.itemQuantity).toStringAsFixed(2)}',
                               style: TextStyle(fontSize: 20))),
                       Spacer(),
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0),
                         child: Text(
-                          '  x' + itemData.items[index].itemQuantity.toString(),
+                          '  x' + modelData.itemQuantity.toString(),
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500),
                         ),
@@ -101,12 +98,11 @@ class ItemCard extends StatelessWidget {
                   trailing: Icon(Icons.arrow_drop_down_circle),
                   children: [
                     divider,
-                    _listTile('Buyer: ', itemData.items[index].itemBuyer),
+                    _listTile('Buyer: ', modelData.itemBuyer),
                     divider,
-                    _listTile('Vendor: ', itemData.items[index].itemVendor),
+                    _listTile('Vendor: ', modelData.itemVendor),
                     divider,
-                    _listTile(
-                        'Descripton: ', itemData.items[index].itemDescription)
+                    _listTile('Descripton: ', modelData.itemDescription)
                   ],
                 )
               ],

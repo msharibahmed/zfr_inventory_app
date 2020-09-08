@@ -35,27 +35,25 @@ class DrawerWidget extends StatelessWidget {
           height: 150,
           color: Colors.amber,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 10.0, left: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
+                    borderRadius: BorderRadius.circular(120),
                     child: Container(
                         color: Colors.black,
                         child: Image.asset(
                           'assets/images/boyracer.png',
-                          width: 60,
-                          height: 60,
+                          width: 70,
+                          height: 70,
                         ))),
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 Text('Sharob Ahmed',
                     style: TextStyle(fontWeight: FontWeight.bold)),
-                SizedBox(
-                  height: 5,
-                ),
+                Divider(),
                 Text('msharbahmed@gmal.com',
                     style: TextStyle(fontWeight: FontWeight.bold))
               ],
