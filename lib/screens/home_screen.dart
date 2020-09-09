@@ -1,23 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import '../main_imports.dart';
+import '../widgets/cost_chart%20.dart';
 
 import '../widgets/drawer_widget.dart';
+import '../widgets/department_chart.dart';
 
+class HomeScreen extends StatefulWidget {
+  static const routeName = 'home-screen';
 
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
 
-class HomeScreen extends StatelessWidget {
-    static const routeName = 'home-screen';
+class _HomeScreenState extends State<HomeScreen> {
+  bool button = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(child: DrawerWidget(),),
-      appBar: AppBar(title:Text('ZFR Inventory')),
-      body: Container(
-        height: 500,
-        child: SfCartesianChart()
+      drawer: Drawer(
+        child: DrawerWidget(),
       ),
-      
+      appBar: AppBar(
+        title: Text(
+          'ZFR Inventory',
+        ),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.ac_unit),
+              onPressed: () {
+                setState(() {
+                  button = !button;
+                });
+                print(button);
+              })
+        ],
+      ),
+      body: button ? DepartmentChart() : LineChartSample2(),
     );
   }
 }
+// Column(
+// children: [DepartmentChart(), LineChartSample2()]

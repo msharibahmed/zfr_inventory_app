@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:zfr_inventory_app/models/item_model.dart';
+
+import '../models/item_model.dart';
 
 class ItemCard extends StatelessWidget {
   final ItemModel modelData;

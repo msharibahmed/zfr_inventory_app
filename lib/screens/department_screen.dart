@@ -7,12 +7,15 @@ class DepartmentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Departments')),
+        appBar: AppBar(
+            elevation: 10,
+            shadowColor: Colors.green,
+            title: Text('Departments')),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: ListView.builder(
             itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.only(bottom:5.0),
+              padding: const EdgeInsets.only(bottom: 5.0),
               child: DepartmentCard(index),
             ),
             itemCount: 6,
