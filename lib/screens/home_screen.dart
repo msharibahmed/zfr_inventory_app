@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zfr_inventory_app/widgets/department_progress.dart';
 import '../main_imports.dart';
 import '../widgets/cost_chart%20.dart';
 
@@ -22,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: DrawerWidget(),
       ),
       appBar: AppBar(
+        elevation: 10,
         title: Text(
           'ZFR Inventory',
         ),
@@ -36,9 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
               })
         ],
       ),
-      body: button ? DepartmentChart() : LineChartSample2(),
+      body: Column(
+        children: [
+          button ? DepartmentChart() : LineChartSample2(),
+          DepartmentProgress()
+        ],
+      ),
     );
   }
 }
-// Column(
-// children: [DepartmentChart(), LineChartSample2()]

@@ -32,22 +32,29 @@ class DrawerWidget extends StatelessWidget {
       child: Column(children: [
         Container(
           width: double.infinity,
-          height: 150,
+          height: 200,
           color: Colors.amber,
           child: Padding(
             padding: const EdgeInsets.only(top: 10.0, left: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ClipRRect(
-                    borderRadius: BorderRadius.circular(120),
-                    child: Container(
-                        color: Colors.black,
-                        child: Image.asset(
-                          'assets/images/boyracer.png',
-                          width: 70,
-                          height: 70,
-                        ))),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(120),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                            color: Colors.black,
+                            child: Image.asset(
+                                'assets/images/boyracer.png',
+                                width: 70,
+                                height: 70,
+                              ),
+                            ),
+                      )),
+                ),
                 SizedBox(
                   height: 15,
                 ),
@@ -60,9 +67,21 @@ class DrawerWidget extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(
+          height: 15,
+        ),
         drawerCard('Home', Icons.home, HomeScreen.routeName),
+        SizedBox(
+          height: 15,
+        ),
         drawerCard('Departments', Icons.domain, DepartmentScreen.routeName),
-        drawerCard('Settings', Icons.settings, SettingScreen.routeName)
+        SizedBox(
+          height: 15,
+        ),
+        drawerCard('Settings', Icons.settings, SettingScreen.routeName),
+        SizedBox(
+          height: 15,
+        ),
       ]),
     );
   }

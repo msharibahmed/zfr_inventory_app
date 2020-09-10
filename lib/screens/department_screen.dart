@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zfr_inventory_app/widgets/drawer_widget.dart';
 
 import '../widgets/department_card.dart';
 
@@ -6,7 +7,7 @@ class DepartmentScreen extends StatelessWidget {
   static const routeName = 'department-screen';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(drawer: Drawer(child:DrawerWidget()),
         appBar: AppBar(
             elevation: 10,
             shadowColor: Colors.green,

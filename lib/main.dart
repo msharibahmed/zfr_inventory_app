@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(primarySwatch: Colors.amber,
           accentColor: Colors.deepOrange,
-          textTheme: GoogleFonts.latoTextTheme(
+          textTheme: GoogleFonts.openSansTextTheme(
             Theme.of(context).textTheme,
           ),
         ),

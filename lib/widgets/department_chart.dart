@@ -12,7 +12,7 @@ class _DepartmentChartState extends State<DepartmentChart> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 350,
+      height: 320,
       margin: const EdgeInsets.symmetric(horizontal: 2.0),
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
