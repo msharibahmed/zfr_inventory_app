@@ -98,6 +98,7 @@ class DepartmentProgress extends StatelessWidget {
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
             'Department Progress',
+            style: TextStyle(fontWeight: FontWeight.w600),
           ),
         ),
         Divider(
@@ -112,10 +113,12 @@ class DepartmentProgress extends StatelessWidget {
           ),
           Text(
             'Less than Budget',
+            style: TextStyle(fontWeight: FontWeight.w600),
           ),
           Icon(Icons.brightness_1, color: Colors.red),
           Text(
             'Exceeded Budget',
+            style: TextStyle(fontWeight: FontWeight.w600),
           ),
           FlatButton(
               shape: RoundedRectangleBorder(

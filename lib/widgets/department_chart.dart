@@ -170,9 +170,9 @@ class _DepartmentChartState extends State<DepartmentChart> {
         getTitles: (value) {
           if (value == 0) {
             return '\$' + '100';
-          }  else if (value == 1000) {
+          } else if (value == 1000) {
             return '\$' + '1000';
-          }else if (value == 2000) {
+          } else if (value == 2000) {
             return '\$' + '2000';
           } else if (value ==
               departmentData.reduce(

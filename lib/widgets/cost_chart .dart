@@ -16,38 +16,52 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
+    return Column(
+      children: [
         Container(
-          height: 320,
-          width: double.infinity,
-          decoration: const BoxDecoration(color: Color(0xff232d37)),
-          child: Padding(
-            padding: const EdgeInsets.only(
-                right: 18.0, left: 12.0, top: 24, bottom: 12),
-            child: LineChart(
-              showAvg ? avgData() : mainData(),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 60,
-          height: 34,
-          child: FlatButton(
-            onPressed: () {
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
+            width: double.infinity,
+            color: Color(0xff232d37),
+            padding: EdgeInsets.all(5),
             child: Text(
-              'avg',
-              style: TextStyle(
-                  fontSize: 12,
-                  color:
-                      showAvg ? Colors.white.withOpacity(0.5) : Colors.white),
+              'Total Cost/MonthWise',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+            )),
+        Stack(
+          children: <Widget>[
+            Container(
+              height: 300,
+              width: double.infinity,
+              decoration: const BoxDecoration(color: Color(0xff232d37)),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    right: 18.0, left: 12.0, top: 24, bottom: 12),
+                child: LineChart(
+                  showAvg ? avgData() : mainData(),
+                ),
+              ),
             ),
-          ),
-        ),
+            SizedBox(
+              width: 60,
+              height: 34,
+              child: FlatButton(
+                onPressed: () {
+                  setState(() {
+                    showAvg = !showAvg;
+                  });
+                },
+                child: Text(
+                  'avg',
+                  style: TextStyle(
+                      fontSize: 12,
+                      color: showAvg
+                          ? Colors.white.withOpacity(0.5)
+                          : Colors.white),
+                ),
+              ),
+            ),
+          ],
+        )
       ],
     );
   }

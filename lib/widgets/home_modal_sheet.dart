@@ -10,9 +10,13 @@ class HomeModalSheet extends StatefulWidget {
 int _value = 1;
 
 class _HomeModalSheetState extends State<HomeModalSheet> {
+
   @override
   Widget build(BuildContext context) {
+    TextStyle txtstyle = TextStyle(fontWeight: FontWeight.bold);
+
     return Container(
+        color: Colors.white,
         padding: EdgeInsets.only(
             top: 10,
             left: 10,
@@ -21,23 +25,32 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
+            Card(
+              margin: EdgeInsets.all(5),
+              elevation: 5,
+              shadowColor: Colors.blue,
               child: DropdownButton(
                   value: _value,
                   items: [
                     DropdownMenuItem(
-                      child: Text("Select Department"),
+                      child: Text(" Select Department", style: txtstyle),
                       value: 1,
                     ),
                     DropdownMenuItem(
-                      child: Text("Vehicle Dynamics"),
+                      child: Text(" Vehicle Dynamics", style: txtstyle),
                       value: 2,
                     ),
-                    DropdownMenuItem(child: Text("Power Train"), value: 3),
-                    DropdownMenuItem(child: Text("Brakes"), value: 4),
-                    DropdownMenuItem(child: Text("Chassis"), value: 5),
-                    DropdownMenuItem(child: Text("Electronics"), value: 6),
-                    DropdownMenuItem(child: Text("Miscellaneous"), value: 7),
+                    DropdownMenuItem(
+                        child: Text(" Power Train", style: txtstyle), value: 3),
+                    DropdownMenuItem(
+                        child: Text(" Brakes", style: txtstyle), value: 4),
+                    DropdownMenuItem(
+                        child: Text(" Chassis", style: txtstyle), value: 5),
+                    DropdownMenuItem(
+                        child: Text(" Electronics", style: txtstyle), value: 6),
+                    DropdownMenuItem(
+                        child: Text(" Miscellaneous", style: txtstyle),
+                        value: 7),
                   ],
                   onChanged: (value) {
                     setState(() {
@@ -56,7 +69,7 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
                   ),
                 )),
             Container(
-              alignment: Alignment.centerRight,
+                alignment: Alignment.centerRight,
                 child: FlatButton(
                     color: Colors.blue,
                     onPressed: () {},

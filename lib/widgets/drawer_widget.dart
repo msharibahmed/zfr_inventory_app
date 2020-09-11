@@ -9,6 +9,7 @@ class DrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Card drawerCard(String title, IconData iconData, String screenName) {
       return Card(
+        color: Colors.blue,
         elevation: 5,
         child: ListTile(
           title: Text(
@@ -33,7 +34,7 @@ class DrawerWidget extends StatelessWidget {
         Container(
           width: double.infinity,
           height: 200,
-          color: Colors.amber,
+          color: Colors.amber[700],
           child: Padding(
             padding: const EdgeInsets.only(top: 10.0, left: 10.0),
             child: Column(
@@ -46,13 +47,13 @@ class DrawerWidget extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                            color: Colors.black,
-                            child: Image.asset(
-                                'assets/images/boyracer.png',
-                                width: 70,
-                                height: 70,
-                              ),
-                            ),
+                          color: Colors.black,
+                          child: Image.asset(
+                            'assets/images/boyracer.png',
+                            width: 70,
+                            height: 70,
+                          ),
+                        ),
                       )),
                 ),
                 SizedBox(
@@ -67,21 +68,31 @@ class DrawerWidget extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-          height: 15,
-        ),
-        drawerCard('Home', Icons.home, HomeScreen.routeName),
-        SizedBox(
-          height: 15,
-        ),
-        drawerCard('Departments', Icons.domain, DepartmentScreen.routeName),
-        SizedBox(
-          height: 15,
-        ),
-        drawerCard('Settings', Icons.settings, SettingScreen.routeName),
-        SizedBox(
-          height: 15,
-        ),
+        Expanded(
+          child: Container(
+            color: Color(0xff232d37),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 15,
+                ),
+                drawerCard('Home', Icons.home, HomeScreen.routeName),
+                SizedBox(
+                  height: 15,
+                ),
+                drawerCard(
+                    'Departments', Icons.domain, DepartmentScreen.routeName),
+                SizedBox(
+                  height: 15,
+                ),
+                drawerCard('Settings', Icons.settings, SettingScreen.routeName),
+                SizedBox(
+                  height: 15,
+                ),
+              ],
+            ),
+          ),
+        )
       ]),
     );
   }
