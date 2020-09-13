@@ -11,7 +11,9 @@ class BrakesItemListScreen extends StatelessWidget {
     final itemData = Provider.of<BrakesProvider>(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showBottomSheet(context: context, builder: (_) => ModalSheetItem());
+        },
         child: Icon(Icons.add),
       ),
       appBar: AppBar(

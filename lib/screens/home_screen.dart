@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       drawer: Drawer(
         child: DrawerWidget(),
@@ -38,11 +39,12 @@ class _HomeScreenState extends State<HomeScreen> {
               })
         ],
       ),
-      body: Column(
-        children: [
-          button ? DepartmentChart() : LineChartSample2(),
-          DepartmentProgress()
-        ],
+      body:  Column(
+          children: [
+            button ? DepartmentChart() : LineChartSample2(),
+            DepartmentProgress()
+          ],
+        
       ),
     );
   }

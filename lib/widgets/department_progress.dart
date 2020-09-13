@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zfr_inventory_app/main_imports.dart';
+import 'package:zfr_inventory_app/provider/other/budget.dart';
 
 import 'home_modal_sheet.dart';
 
@@ -17,25 +18,29 @@ class DepartmentProgress extends StatelessWidget {
     final dep5Data = Provider.of<ElectronicsProvider>(context);
     final dep6Data = Provider.of<MiscellaneousProvider>(context);
 
+        final budgetData = Provider.of<BudgetProv>(context);
+
+
+
     double wdth = MediaQuery.of(context).size.width * 1;
 
-    double budget1 = 6000.0;
+    double budget1 = budgetData.budgets.values.toList()[0];
     double totalCost1 = (dep1aData.totalItemCost + dep1bData.totalItemCost);
-    double budget2 = 5000;
+    double budget2 = budgetData.budgets.values.toList()[1];
     double totalCost2 = (dep2aData.totalItemCost +
         dep2bData.totalItemCost +
         dep2cData.totalItemCost +
         dep2dData.totalItemCost);
-    double budget3 = 4000;
+    double budget3 = budgetData.budgets.values.toList()[2];
     double totalCost3 = dep3Data.totalItemCost;
-    double budget4 = 3000;
+    double budget4 = budgetData.budgets.values.toList()[3];
 
     double totalCost4 = dep4Data.totalItemCost;
 
-    double budget5 = 2000;
+    double budget5 = budgetData.budgets.values.toList()[4];
 
     double totalCost5 = dep5Data.totalItemCost;
-    double budget6 = 1000;
+    double budget6 = budgetData.budgets.values.toList()[5];
 
     double totalCost6 = dep6Data.totalItemCost;
     Divider dv = Divider(

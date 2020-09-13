@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:zfr_inventory_app/main_imports.dart';
 
 class DepartmentChart extends StatefulWidget {
   @override
@@ -7,7 +8,46 @@ class DepartmentChart extends StatefulWidget {
 }
 
 class _DepartmentChartState extends State<DepartmentChart> {
-  final List<double> departmentData = [743.5, 454, 1663, 1000.34, 354, 1235.44];
+  bool _boolCheck = true;
+  List<double> departmentData = [];
+  double maxdepValue = 0;
+  double mindepValue = 0;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_boolCheck == true) {
+      final dep1aData = Provider.of<SteeringProvider>(context).totalItemCost;
+      final dep1bData = Provider.of<SuspensionProvider>(context).totalItemCost;
+      final dep2aData = Provider.of<ExhaustProvider>(context).totalItemCost;
+      final dep2bData = Provider.of<CoolingProvider>(context).totalItemCost;
+      final dep2cData = Provider.of<IntakeProvider>(context).totalItemCost;
+      final dep2dData = Provider.of<DriveTrainProvider>(context).totalItemCost;
+      final dep3Data = Provider.of<BrakesProvider>(context).totalItemCost;
+      final dep4Data = Provider.of<ChassisProvider>(context).totalItemCost;
+      final dep5Data = Provider.of<ElectronicsProvider>(context).totalItemCost;
+      final dep6Data =
+          Provider.of<MiscellaneousProvider>(context).totalItemCost;
+      var dep1TotalCost = dep1aData + dep1bData;
+      var dep2TotalCost = dep2aData + dep2bData + dep2cData + dep2dData;
+
+      departmentData = [
+        dep1TotalCost,
+        dep2TotalCost,
+        dep3Data,
+        dep4Data,
+        dep5Data,
+        dep6Data
+      ];
+      maxdepValue = departmentData
+          .reduce((current, next) => current > next ? current : next);
+      mindepValue = departmentData
+          .reduce((current, next) => current < next ? current : next);
+    }
+    _boolCheck = false;
+  }
+
+  // List<double> departmentData = [, 454, 1663, 1000.34, 354, 1235.44];
   int touchedIndex;
   @override
   Widget build(BuildContext context) {
@@ -78,9 +118,7 @@ class _DepartmentChartState extends State<DepartmentChart> {
   BarChartData mainBarData() {
     return BarChartData(
         barTouchData: _buildBarTouchData(),
-        maxY: departmentData
-                .reduce((current, next) => current > next ? current : next) +
-            1000,
+        maxY: maxdepValue + 1000,
         titlesData: _buildAxes(),
         borderData: FlBorderData(show: true, border: Border.all(width: 0.1)),
         barGroups: _buildAllBars());
@@ -171,13 +209,9 @@ class _DepartmentChartState extends State<DepartmentChart> {
           if (value == 0) {
             return '\$' + '100';
           } else if (value == 1000) {
-            return '\$' + '1000';
-          } else if (value == 2000) {
-            return '\$' + '2000';
-          } else if (value ==
-              departmentData.reduce(
-                  (current, next) => current > next ? current : next - 100)) {
-            return '\$${departmentData.reduce((current, next) => current > next ? current : next - 100.toInt())}';
+            return "\$" + "1000";
+          } else if (value == 10000) {
+            return "\$" + "10000";
           } else {
             return '';
           }

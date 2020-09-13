@@ -1,3 +1,5 @@
+import 'package:zfr_inventory_app/provider/other/budget.dart';
+
 import 'main_imports.dart';
 
 void main() {
@@ -27,6 +29,8 @@ class MyApp extends StatelessWidget {
             create: (_) => ChassisProvider()),
         ChangeNotifierProvider<MiscellaneousProvider>(
             create: (_) => MiscellaneousProvider()),
+        ChangeNotifierProvider<BudgetProv>(
+            create: (_) => BudgetProv())
       ],
       child: MaterialApp(
         theme: ThemeData(primarySwatch: Colors.amber,
