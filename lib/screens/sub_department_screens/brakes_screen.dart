@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zfr_inventory_app/screens/add_item_screen.dart';
 
 import '../../provider/departments_provider/brakes.dart';
 import '../../widgets/item_card.dart';
@@ -9,10 +10,12 @@ class BrakesItemListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final itemData = Provider.of<BrakesProvider>(context);
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showBottomSheet(context: context, builder: (_) => ModalSheetItem());
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (ctx) => AddItemScreen(itemData.addItem)));
         },
         child: Icon(Icons.add),
       ),

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../provider/departments_provider/electronics.dart';
 import '../../widgets/item_card.dart';
+import '../add_item_screen.dart';
 
 class ElectronicsItemListScreen extends StatelessWidget {
   static const routeName = 'electronics-item-list-screen';
@@ -13,7 +14,10 @@ class ElectronicsItemListScreen extends StatelessWidget {
     final itemData = Provider.of<ElectronicsProvider>(context,);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (ctx) => AddItemScreen(itemData.addItem)));
+        },
         child: Icon(Icons.add),
       ),
       appBar: AppBar(

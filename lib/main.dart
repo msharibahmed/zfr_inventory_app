@@ -29,11 +29,11 @@ class MyApp extends StatelessWidget {
             create: (_) => ChassisProvider()),
         ChangeNotifierProvider<MiscellaneousProvider>(
             create: (_) => MiscellaneousProvider()),
-        ChangeNotifierProvider<BudgetProv>(
-            create: (_) => BudgetProv())
+        ChangeNotifierProvider<BudgetProv>(create: (_) => BudgetProv())
       ],
       child: MaterialApp(
-        theme: ThemeData(primarySwatch: Colors.amber,
+        theme: ThemeData(
+          primarySwatch: Colors.amber,
           accentColor: Colors.deepOrange,
           textTheme: GoogleFonts.openSansTextTheme(
             Theme.of(context).textTheme,

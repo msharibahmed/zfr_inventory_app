@@ -44,7 +44,7 @@ class _DepartmentChartState extends State<DepartmentChart> {
       mindepValue = departmentData
           .reduce((current, next) => current < next ? current : next);
     }
-    _boolCheck = false;
+    // _boolCheck = false;
   }
 
   // List<double> departmentData = [, 454, 1663, 1000.34, 354, 1235.44];

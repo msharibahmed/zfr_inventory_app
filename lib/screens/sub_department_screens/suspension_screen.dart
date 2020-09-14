@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../provider/departments_provider/suspension.dart';
 import '../../widgets/item_card.dart';
+import '../add_item_screen.dart';
 
 class SuspensionItemListScreen extends StatelessWidget {
   static const routeName = 'suspension-item-list-screen';
@@ -13,7 +14,10 @@ class SuspensionItemListScreen extends StatelessWidget {
     );
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (ctx) => AddItemScreen(itemData.addItem)));
+        },
         child: Icon(Icons.add),
       ),
       appBar: AppBar(

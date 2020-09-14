@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../provider/departments_provider/miscellaneous.dart';
 import '../../widgets/item_card.dart';
+import '../add_item_screen.dart';
 
 class MiscellaneousItemListScreen extends StatelessWidget {
   static const routeName = 'miscellaneous-item-list-screen';
@@ -12,7 +13,10 @@ class MiscellaneousItemListScreen extends StatelessWidget {
     final itemData = Provider.of<MiscellaneousProvider>(context, );
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (ctx) => AddItemScreen(itemData.addItem)));
+        },
         child: Icon(Icons.add),
       ),
       appBar: AppBar(

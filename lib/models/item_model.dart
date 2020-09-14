@@ -16,7 +16,7 @@ class  ItemModel {
       @required this.itemName,
       @required this.itemBuyer,
       @required this.itemDate,
-      this.itemDescription = 'none',
+      @required this.itemDescription,
       @required this.itemQuantity,
       @required this.itemVendor,
       @required this.itemCost});

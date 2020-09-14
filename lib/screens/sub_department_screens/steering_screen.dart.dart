@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../provider/departments_provider/steering.dart';
 import '../../widgets/item_card.dart';
+import '../add_item_screen.dart';
 
 class SteeringItemListScreen extends StatelessWidget {
   static const routeName = 'steering-item-list-screen';
@@ -12,7 +13,10 @@ class SteeringItemListScreen extends StatelessWidget {
     final itemData = Provider.of<SteeringProvider>(context, );
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (ctx) => AddItemScreen(itemData.addItem)));
+        },
         child: Icon(Icons.add),
       ),
       appBar: AppBar(

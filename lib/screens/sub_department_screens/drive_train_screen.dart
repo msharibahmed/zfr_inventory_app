@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../provider/departments_provider/drive_train.dart';
 import '../../widgets/item_card.dart';
+import '../add_item_screen.dart';
 
 class DriveTrainItemListScreen extends StatelessWidget {
   static const routeName = 'driveTrain-item-list-screen';
@@ -13,7 +14,10 @@ class DriveTrainItemListScreen extends StatelessWidget {
     final itemData = Provider.of<DriveTrainProvider>(context, );
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (ctx) => AddItemScreen(itemData.addItem)));
+        },
         child: Icon(Icons.add),
       ),
       appBar: AppBar(

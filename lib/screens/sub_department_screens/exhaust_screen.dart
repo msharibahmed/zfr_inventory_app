@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../provider/departments_provider/exhaust.dart';
 import '../../widgets/item_card.dart';
+import '../add_item_screen.dart';
 
 class ExhaustItemListScreen extends StatelessWidget {
   static const routeName = 'exhaust-item-list-screen';
@@ -13,7 +14,10 @@ class ExhaustItemListScreen extends StatelessWidget {
     final itemData = Provider.of<ExhaustProvider>(context,);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (ctx) => AddItemScreen(itemData.addItem)));
+        },
         child: Icon(Icons.add),
       ),
       appBar: AppBar(
