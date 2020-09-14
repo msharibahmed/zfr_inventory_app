@@ -34,7 +34,6 @@ class SteeringProvider with ChangeNotifier {
     feb.forEach((element) {
       total += element.itemCost * element.itemQuantity;
     });
-        notifyListeners();
 
     return total;
   }

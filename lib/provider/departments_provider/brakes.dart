@@ -9,7 +9,7 @@ class BrakesProvider with ChangeNotifier {
       itemId: 'p4',
       itemName: 'A Pan',
       itemBuyer: 'Anas',
-      itemDate: DateTime(2020,11,1),
+      itemDate: DateTime(2020, 11, 1),
       itemDescription: 'Prepare any meal you want.',
       itemQuantity: 7,
       itemVendor: 'Natonal ltd',
@@ -33,7 +33,6 @@ class BrakesProvider with ChangeNotifier {
     feb.forEach((element) {
       total += element.itemCost * element.itemQuantity;
     });
-        notifyListeners();
 
     return total;
   }
