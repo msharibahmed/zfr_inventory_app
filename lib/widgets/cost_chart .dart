@@ -1,9 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 import 'package:zfr_inventory_app/main_imports.dart';
-import 'package:zfr_inventory_app/provider/other/budget.dart';
 
 class LineChartSample2 extends StatefulWidget {
   @override
@@ -15,9 +13,6 @@ class _LineChartSample2State extends State<LineChartSample2> {
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
   ];
-
-  // bool showAvg = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,24 +29,176 @@ class _LineChartSample2State extends State<LineChartSample2> {
         Stack(
           children: <Widget>[
             Container(
-              height: 300,
-              width: double.infinity,
-              decoration: const BoxDecoration(color: Color(0xff232d37)),
-              child: Padding(
-                  padding: const EdgeInsets.only(
-                      right: 18.0, left: 12.0, top: 24, bottom: 12),
-                  child: Consumer<BudgetProv>(
-                      builder: (context, data, _) => LineChart(
-                            mainData(data.lst),
-                          ))),
-            ),
+                height: 300,
+                width: double.infinity,
+                decoration: const BoxDecoration(color: Color(0xff232d37)),
+                child: Padding(
+                    padding: const EdgeInsets.only(
+                        right: 18.0, left: 12.0, top: 24, bottom: 12),
+                    child: LineChart(
+                      mainData(),
+                    )))
           ],
         )
       ],
     );
   }
 
-  LineChartData mainData(List<double> lst) {
+  LineChartData mainData() {
+    final a = Provider.of<SteeringProvider>(context);
+    final b = Provider.of<SuspensionProvider>(context);
+    final c = Provider.of<ExhaustProvider>(context);
+    final d = Provider.of<CoolingProvider>(context);
+    final e = Provider.of<IntakeProvider>(context);
+    final f = Provider.of<DriveTrainProvider>(context);
+    final g = Provider.of<BrakesProvider>(context);
+    final h = Provider.of<ChassisProvider>(context);
+    final i = Provider.of<ElectronicsProvider>(context);
+    final j = Provider.of<MiscellaneousProvider>(context);
+    // List l = [
+    //   Provider.of<SteeringProvider>(context),
+    //   Provider.of<SuspensionProvider>(context),
+    //   Provider.of<ExhaustProvider>(context),
+    //   Provider.of<CoolingProvider>(context),
+    //   Provider.of<IntakeProvider>(context),
+    //   Provider.of<DriveTrainProvider>(context),
+    //   Provider.of<BrakesProvider>(context),
+    //   Provider.of<ChassisProvider>(context),
+    //   subdep9,
+    //   subdep10
+    // ];
+    double jan = a.jancost +
+        b.jancost +
+        c.jancost +
+        d.jancost +
+        e.jancost +
+        f.jancost +
+        g.jancost +
+        h.jancost +
+        i.jancost +
+        j.jancost;
+        double feb = a.febcost +
+        b.febcost +
+        c.febcost +
+        d.febcost +
+        e.febcost +
+        f.febcost +
+        g.febcost +
+        h.febcost +
+        i.febcost +
+        j.febcost;
+        double mar = a.marcost +
+        b.marcost +
+        c.marcost +
+        d.marcost +
+        e.marcost +
+        f.marcost +
+        g.marcost +
+        h.marcost +
+        i.marcost +
+        j.marcost;
+        
+        double apr = a.aprcost +
+        b.aprcost +
+        c.aprcost +
+        d.aprcost +
+        e.aprcost +
+        f.aprcost +
+        g.aprcost +
+        h.aprcost +
+        i.aprcost +
+        j.aprcost;
+         double may = a.maycost +
+        b.maycost +
+        c.maycost +
+        d.maycost +
+        e.maycost +
+        f.maycost +
+        g.maycost +
+        h.maycost +
+        i.maycost +
+        j.maycost;
+        
+         double jun = a.juncost +
+        b.juncost +
+        c.juncost +
+        d.juncost +
+        e.juncost +
+        f.juncost +
+        g.juncost +
+        h.juncost +
+        i.juncost +
+        j.juncost;
+        
+         double jul = a.julcost +
+        b.julcost +
+        c.julcost +
+        d.julcost +
+        e.julcost +
+        f.julcost +
+        g.julcost +
+        h.julcost +
+        i.julcost +
+        j.julcost;
+        
+         double aug = a.augcost +
+        b.augcost +
+        c.augcost +
+        d.augcost +
+        e.augcost +
+        f.augcost +
+        g.augcost +
+        h.augcost +
+        i.augcost +
+        j.augcost;
+        
+         double sep = a.sepcost +
+        b.sepcost +
+        c.sepcost +
+        d.sepcost +
+        e.sepcost +
+        f.sepcost +
+        g.sepcost +
+        h.sepcost +
+        i.sepcost +
+        j.sepcost;
+        
+         double oct = a.octcost +
+        b.octcost +
+        c.octcost +
+        d.octcost +
+        e.octcost +
+        f.octcost +
+        g.octcost +
+        h.octcost +
+        i.octcost +
+        j.octcost;
+        
+         double nov = a.novcost +
+        b.novcost +
+        c.novcost +
+        d.novcost +
+        e.novcost +
+        f.novcost +
+        g.novcost +
+        h.novcost +
+        i.novcost +
+        j.novcost;
+        
+         double dec = a.deccost +
+        b.deccost +
+        c.deccost +
+        d.deccost +
+        e.deccost +
+        f.deccost +
+        g.deccost +
+        h.deccost +
+        i.deccost +
+        j.deccost;
+
+
+    List lst = [double.parse(jan.toStringAsFixed(2)), double.parse(feb.toStringAsFixed(2)), double.parse(mar.toStringAsFixed(2)), double.parse(apr.toStringAsFixed(2)), double.parse(may.toStringAsFixed(2)), double.parse(jun.toStringAsFixed(2)), double.parse(jul.toStringAsFixed(2)), double.parse(aug.toStringAsFixed(2)), double.parse(sep.toStringAsFixed(2)), double.parse(oct.toStringAsFixed(2)), double.parse(nov.toStringAsFixed(2)), double.parse(dec.toStringAsFixed(2))];
+
     return LineChartData(
       gridData: FlGridData(
         show: true,
@@ -140,7 +287,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
       minX: 0,
       maxX: 11,
       minY: 0,
-      maxY: lst.reduce(max) + 1000,
+      maxY: lst.reduce((value, element) => value > element ? value : element) +
+          1000,
       lineBarsData: [
         LineChartBarData(
           spots: [

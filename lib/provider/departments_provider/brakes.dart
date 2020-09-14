@@ -15,7 +15,6 @@ class BrakesProvider with ChangeNotifier {
       itemVendor: 'Natonal ltd',
       itemCost: 49.99,
     ),
-    
     ItemModel(
       itemId: 'ww4',
       itemName: 'A Pan',
@@ -27,6 +26,7 @@ class BrakesProvider with ChangeNotifier {
       itemCost: 100.99,
     ),
   ];
+
   double get jancost {
     var total = 0.0;
     var jan = _items.where(
