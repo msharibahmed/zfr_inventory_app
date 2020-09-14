@@ -17,19 +17,19 @@ class _LineChartSample2State extends State<LineChartSample2> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-            width: double.infinity,
-            color: Color(0xff232d37),
-            padding: EdgeInsets.all(5),
-            child: Text(
-              'Total Cost/MonthWise',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
-            )),
+        // Container(
+        //     width: double.infinity,
+        //     color: Color(0xff232d37),
+        //     padding: EdgeInsets.all(10),
+        //     child: Text(
+        //       'Total Cost/MonthWise',
+        //       style:
+        //           TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+        //     )),
         Stack(
           children: <Widget>[
             Container(
-                height: 300,
+                height: 320,
                 width: double.infinity,
                 decoration: const BoxDecoration(color: Color(0xff232d37)),
                 child: Padding(
@@ -37,7 +37,15 @@ class _LineChartSample2State extends State<LineChartSample2> {
                         right: 18.0, left: 12.0, top: 24, bottom: 12),
                     child: LineChart(
                       mainData(),
-                    )))
+                    ))),
+            Container(
+                width: double.infinity,
+                color: Color(0xff232d37),
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  'Total Cost' + '\n' + 'MonthWise',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                )),
           ],
         )
       ],
@@ -77,7 +85,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         h.jancost +
         i.jancost +
         j.jancost;
-        double feb = a.febcost +
+    double feb = a.febcost +
         b.febcost +
         c.febcost +
         d.febcost +
@@ -87,7 +95,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         h.febcost +
         i.febcost +
         j.febcost;
-        double mar = a.marcost +
+    double mar = a.marcost +
         b.marcost +
         c.marcost +
         d.marcost +
@@ -97,8 +105,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
         h.marcost +
         i.marcost +
         j.marcost;
-        
-        double apr = a.aprcost +
+
+    double apr = a.aprcost +
         b.aprcost +
         c.aprcost +
         d.aprcost +
@@ -108,7 +116,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         h.aprcost +
         i.aprcost +
         j.aprcost;
-         double may = a.maycost +
+    double may = a.maycost +
         b.maycost +
         c.maycost +
         d.maycost +
@@ -118,8 +126,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
         h.maycost +
         i.maycost +
         j.maycost;
-        
-         double jun = a.juncost +
+
+    double jun = a.juncost +
         b.juncost +
         c.juncost +
         d.juncost +
@@ -129,8 +137,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
         h.juncost +
         i.juncost +
         j.juncost;
-        
-         double jul = a.julcost +
+
+    double jul = a.julcost +
         b.julcost +
         c.julcost +
         d.julcost +
@@ -140,8 +148,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
         h.julcost +
         i.julcost +
         j.julcost;
-        
-         double aug = a.augcost +
+
+    double aug = a.augcost +
         b.augcost +
         c.augcost +
         d.augcost +
@@ -151,8 +159,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
         h.augcost +
         i.augcost +
         j.augcost;
-        
-         double sep = a.sepcost +
+
+    double sep = a.sepcost +
         b.sepcost +
         c.sepcost +
         d.sepcost +
@@ -162,8 +170,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
         h.sepcost +
         i.sepcost +
         j.sepcost;
-        
-         double oct = a.octcost +
+
+    double oct = a.octcost +
         b.octcost +
         c.octcost +
         d.octcost +
@@ -173,8 +181,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
         h.octcost +
         i.octcost +
         j.octcost;
-        
-         double nov = a.novcost +
+
+    double nov = a.novcost +
         b.novcost +
         c.novcost +
         d.novcost +
@@ -184,8 +192,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
         h.novcost +
         i.novcost +
         j.novcost;
-        
-         double dec = a.deccost +
+
+    double dec = a.deccost +
         b.deccost +
         c.deccost +
         d.deccost +
@@ -196,8 +204,20 @@ class _LineChartSample2State extends State<LineChartSample2> {
         i.deccost +
         j.deccost;
 
-
-    List lst = [double.parse(jan.toStringAsFixed(2)), double.parse(feb.toStringAsFixed(2)), double.parse(mar.toStringAsFixed(2)), double.parse(apr.toStringAsFixed(2)), double.parse(may.toStringAsFixed(2)), double.parse(jun.toStringAsFixed(2)), double.parse(jul.toStringAsFixed(2)), double.parse(aug.toStringAsFixed(2)), double.parse(sep.toStringAsFixed(2)), double.parse(oct.toStringAsFixed(2)), double.parse(nov.toStringAsFixed(2)), double.parse(dec.toStringAsFixed(2))];
+    List lst = [
+      double.parse(jan.toStringAsFixed(2)),
+      double.parse(feb.toStringAsFixed(2)),
+      double.parse(mar.toStringAsFixed(2)),
+      double.parse(apr.toStringAsFixed(2)),
+      double.parse(may.toStringAsFixed(2)),
+      double.parse(jun.toStringAsFixed(2)),
+      double.parse(jul.toStringAsFixed(2)),
+      double.parse(aug.toStringAsFixed(2)),
+      double.parse(sep.toStringAsFixed(2)),
+      double.parse(oct.toStringAsFixed(2)),
+      double.parse(nov.toStringAsFixed(2)),
+      double.parse(dec.toStringAsFixed(2))
+    ];
 
     return LineChartData(
       gridData: FlGridData(

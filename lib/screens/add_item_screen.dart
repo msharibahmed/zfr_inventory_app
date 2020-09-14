@@ -32,6 +32,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
       itemVendor: '',
       itemDescription: '',
       itemCost: 0);
+  bool dateCheck = false;
   @override
   void dispose() {
     super.dispose();
@@ -266,6 +267,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                       ),
                     ),
                     Card(
+                        color: dateCheck ? Colors.red : Colors.white,
                         elevation: 5,
                         shadowColor: Colors.amber,
                         child: Padding(
@@ -290,18 +292,17 @@ class _AddItemScreenState extends State<AddItemScreen> {
                                   firstDate: DateTime(2020),
                                   lastDate: DateTime(2021))
                               .then((value) {
-                           
-                         setState(() {
+                            setState(() {
                               _editProduct = ItemModel(
-                                itemId: _editProduct.itemId,
-                                itemName: _editProduct.itemName,
-                                itemBuyer: _editProduct.itemBuyer,
-                                itemDate: value,
-                                itemDescription: _editProduct.itemDescription,
-                                itemQuantity: _editProduct.itemQuantity,
-                                itemVendor: _editProduct.itemVendor,
-                                itemCost: _editProduct.itemCost);
-                         });
+                                  itemId: _editProduct.itemId,
+                                  itemName: _editProduct.itemName,
+                                  itemBuyer: _editProduct.itemBuyer,
+                                  itemDate: value,
+                                  itemDescription: _editProduct.itemDescription,
+                                  itemQuantity: _editProduct.itemQuantity,
+                                  itemVendor: _editProduct.itemVendor,
+                                  itemCost: _editProduct.itemCost);
+                            });
                           });
                         })
                   ],
@@ -391,7 +392,14 @@ class _AddItemScreenState extends State<AddItemScreen> {
                     child: Text('Save Item',
                         style: TextStyle(fontWeight: FontWeight.bold)),
                     onPressed: () {
-                      _saveForm();
+                      if (_editProduct.itemDate == null) {
+                        setState(() {
+                          dateCheck = true;
+                        });
+                        return;
+                      } else {
+                        _saveForm();
+                      }
                     })
               ],
             )),

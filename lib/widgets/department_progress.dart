@@ -17,8 +17,7 @@ class DepartmentProgress extends StatelessWidget {
     final dep4Data = Provider.of<ChassisProvider>(context);
     final dep5Data = Provider.of<ElectronicsProvider>(context);
     final dep6Data = Provider.of<MiscellaneousProvider>(context);
-
-        final budgetData = Provider.of<BudgetProv>(context);
+    final budgetData = Provider.of<BudgetProv>(context);
 
 
 
@@ -43,7 +42,7 @@ class DepartmentProgress extends StatelessWidget {
     double budget6 = budgetData.budgets.values.toList()[5];
 
     double totalCost6 = dep6Data.totalItemCost;
-    Divider dv = Divider(
+  const Divider dv = const Divider(
       color: Colors.white,
       endIndent: 10,
       indent: 10,
@@ -59,7 +58,7 @@ class DepartmentProgress extends StatelessWidget {
             padding: const EdgeInsets.only(left: 5.0, top: 5, right: 5),
             child: Row(
               children: [
-                Text(name, style: TextStyle(color: Colors.white)),
+                Text(name, style: const TextStyle(color: Colors.white)),
                 Spacer(),
                 Text('Budget: \$$budget', style: TextStyle(color: Colors.white))
               ],
@@ -103,13 +102,15 @@ class DepartmentProgress extends StatelessWidget {
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
             'Department Progress',
-            style: TextStyle(fontWeight: FontWeight.w600),
+            style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18),
           ),
         ),
         Divider(
+          color: Colors.black,
           height: 3,
+          thickness: 1,
           indent: 5,
-          endIndent: 240,
+          endIndent: 200,
         ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Icon(

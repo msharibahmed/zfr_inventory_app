@@ -44,7 +44,7 @@ class _DepartmentChartState extends State<DepartmentChart> {
       mindepValue = departmentData
           .reduce((current, next) => current < next ? current : next);
     }
-    // _boolCheck = false;
+    
   }
 
   // List<double> departmentData = [, 454, 1663, 1000.34, 354, 1235.44];
@@ -53,13 +53,9 @@ class _DepartmentChartState extends State<DepartmentChart> {
   Widget build(BuildContext context) {
     return Container(
       height: 320,
-      margin: const EdgeInsets.symmetric(horizontal: 2.0),
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-          color: Color(0xff81e5cd),
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10.0))),
+          color: Color(0xff81e5cd),),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,
