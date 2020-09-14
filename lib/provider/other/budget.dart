@@ -13,6 +13,23 @@ class BudgetProv with ChangeNotifier {
     notifyListeners();
   }
 
+  List<double> get lst {
+    return [
+      jandepcost,
+      febdepcost,
+      mardepcost,
+      aprdepcost,
+      maydepcost,
+      jundepcost,
+      juldepcost,
+      augdepcost,
+      sepdepcost,
+      octdepcost,
+      novdepcost,
+      decdepcost
+    ];
+  }
+
   double get jandepcost {
     var value = SteeringProvider().jancost +
         SuspensionProvider().jancost +

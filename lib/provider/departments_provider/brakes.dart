@@ -15,6 +15,17 @@ class BrakesProvider with ChangeNotifier {
       itemVendor: 'Natonal ltd',
       itemCost: 49.99,
     ),
+    
+    ItemModel(
+      itemId: 'ww4',
+      itemName: 'A Pan',
+      itemBuyer: 'Anas',
+      itemDate: DateTime(2020, 5, 5),
+      itemDescription: 'Prepare any meal you want.',
+      itemQuantity: 7,
+      itemVendor: 'Natonal ltd',
+      itemCost: 100.99,
+    ),
   ];
   double get jancost {
     var total = 0.0;

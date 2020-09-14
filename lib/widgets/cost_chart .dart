@@ -38,12 +38,12 @@ class _LineChartSample2State extends State<LineChartSample2> {
               width: double.infinity,
               decoration: const BoxDecoration(color: Color(0xff232d37)),
               child: Padding(
-                padding: const EdgeInsets.only(
-                    right: 18.0, left: 12.0, top: 24, bottom: 12),
-                child: LineChart(
-                  mainData(),
-                ),
-              ),
+                  padding: const EdgeInsets.only(
+                      right: 18.0, left: 12.0, top: 24, bottom: 12),
+                  child: Consumer<BudgetProv>(
+                      builder: (context, data, _) => LineChart(
+                            mainData(data.lst),
+                          ))),
             ),
           ],
         )
@@ -51,22 +51,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
     );
   }
 
-  LineChartData mainData() {
-    final data = Provider.of<BudgetProv>(context);
-    var lst = [
-      data.jandepcost,
-      data.febdepcost,
-      data.mardepcost,
-      data.aprdepcost,
-      data.maydepcost,
-      data.jundepcost,
-      data.juldepcost,
-      data.augdepcost,
-      data.sepdepcost,
-      data.octdepcost,
-      data.novdepcost,
-      data.decdepcost
-    ];
+  LineChartData mainData(List<double> lst) {
     return LineChartData(
       gridData: FlGridData(
         show: true,
