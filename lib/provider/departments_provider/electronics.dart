@@ -25,6 +25,8 @@ class ElectronicsProvider with ChangeNotifier {
     jan.forEach((element) {
       total += element.itemCost * element.itemQuantity;
     });
+        notifyListeners();
+
     return total;
   }
 

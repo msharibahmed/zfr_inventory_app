@@ -9,11 +9,11 @@ class ChassisProvider with ChangeNotifier {
       itemId: 'p4',
       itemName: 'A Pan',
       itemBuyer: 'Anas',
-      itemDate: DateTime.now(),
+      itemDate: DateTime(2020, 1, 1),
       itemDescription: 'Prepare any meal you want.',
       itemQuantity: 8,
       itemVendor: 'Natonal ltd',
-      itemCost: 49.99,
+      itemCost: 39.99,
     ),
   ];
   List<ItemModel> get items => [..._items];
@@ -35,6 +35,8 @@ class ChassisProvider with ChangeNotifier {
     feb.forEach((element) {
       total += element.itemCost * element.itemQuantity;
     });
+    notifyListeners();
+
     return total;
   }
 

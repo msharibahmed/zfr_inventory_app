@@ -16,6 +16,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
     const Color(0xff02d39a),
   ];
 
+  // bool showAvg = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(

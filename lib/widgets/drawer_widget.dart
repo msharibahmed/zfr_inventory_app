@@ -22,7 +22,6 @@ class DrawerWidget extends StatelessWidget {
           ),
           onTap: () {
             Navigator.pop(context);
-
             Navigator.pushReplacementNamed(context, screenName);
           },
         ),

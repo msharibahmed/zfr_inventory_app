@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/item_model.dart';
 
@@ -26,7 +27,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
       itemId: null,
       itemName: '',
       itemBuyer: '',
-      itemDate: DateTime.now(),
+      itemDate: null,
       itemQuantity: 0,
       itemVendor: '',
       itemDescription: '',
@@ -158,7 +159,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                       itemQuantity: _editProduct.itemQuantity,
                       itemVendor: _editProduct.itemVendor,
                       itemCost: _editProduct.itemCost),
-                      focusNode: _buyerFocus,
+                  focusNode: _buyerFocus,
                   onFieldSubmitted: (_) {
                     FocusScope.of(context).requestFocus(_vendorFocus);
                   },
@@ -185,7 +186,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                       itemQuantity: _editProduct.itemQuantity,
                       itemVendor: newValue,
                       itemCost: _editProduct.itemCost),
-                      focusNode: _vendorFocus,
+                  focusNode: _vendorFocus,
                   onFieldSubmitted: (_) {
                     FocusScope.of(context).requestFocus(_priceFocus);
                   },
@@ -227,37 +228,83 @@ class _AddItemScreenState extends State<AddItemScreen> {
                     labelText: 'Item Price',
                   ),
                 ),
-                 TextFormField(
-                  // initialValue: _editProduct.price.toString(),
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'This field cannot be empty.';
-                    }
-                    if (int.tryParse(value) == null) {
-                      return 'Enter Valid numbers.';
-                    }
-                    if ((int.parse(value)) <= 0) {
-                      return 'Quantity cannot be zero.';
-                    }
-                    return null;
-                  },
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.number,
-                  onSaved: (newValue) => _editProduct = ItemModel(
-                      itemId: _editProduct.itemId,
-                      itemName: _editProduct.itemName,
-                      itemBuyer: _editProduct.itemBuyer,
-                      itemDate: _editProduct.itemDate,
-                      itemDescription: _editProduct.itemDescription,
-                      itemQuantity: int.parse(newValue),
-                      itemVendor: _editProduct.itemVendor,
-                      itemCost: _editProduct.itemCost),
-                  focusNode: _quantityFocus,
-                  onFieldSubmitted: (_) =>
-                      FocusScope.of(context).requestFocus(_descriptionFocus),
-                  decoration: InputDecoration(
-                    labelText: 'Item Quantity',
-                  ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        // initialValue: _editProduct.price.toString(),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'This field cannot be empty.';
+                          }
+                          if (int.tryParse(value) == null) {
+                            return 'Enter Valid numbers.';
+                          }
+                          if ((int.parse(value)) <= 0) {
+                            return 'Quantity cannot be zero.';
+                          }
+                          return null;
+                        },
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
+                        onSaved: (newValue) => _editProduct = ItemModel(
+                            itemId: _editProduct.itemId,
+                            itemName: _editProduct.itemName,
+                            itemBuyer: _editProduct.itemBuyer,
+                            itemDate: _editProduct.itemDate,
+                            itemDescription: _editProduct.itemDescription,
+                            itemQuantity: int.parse(newValue),
+                            itemVendor: _editProduct.itemVendor,
+                            itemCost: _editProduct.itemCost),
+                        focusNode: _quantityFocus,
+                        onFieldSubmitted: (_) => FocusScope.of(context)
+                            .requestFocus(_descriptionFocus),
+                        decoration: InputDecoration(
+                          labelText: 'Item Quantity',
+                        ),
+                      ),
+                    ),
+                    Card(
+                        elevation: 5,
+                        shadowColor: Colors.amber,
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Text(
+                              _editProduct.itemDate == null
+                                  ? 'Pick Date'
+                                  : DateFormat('dd MMM, yyyy')
+                                      .format(_editProduct.itemDate),
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        )),
+                    IconButton(
+                        icon: Icon(
+                          Icons.calendar_today,
+                          size: 40,
+                          color: Colors.purple,
+                        ),
+                        onPressed: () {
+                          showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(2020),
+                                  lastDate: DateTime(2021))
+                              .then((value) {
+                           
+                         setState(() {
+                              _editProduct = ItemModel(
+                                itemId: _editProduct.itemId,
+                                itemName: _editProduct.itemName,
+                                itemBuyer: _editProduct.itemBuyer,
+                                itemDate: value,
+                                itemDescription: _editProduct.itemDescription,
+                                itemQuantity: _editProduct.itemQuantity,
+                                itemVendor: _editProduct.itemVendor,
+                                itemCost: _editProduct.itemCost);
+                         });
+                          });
+                        })
+                  ],
                 ),
                 TextFormField(
                   // initialValue: _editProduct.description,

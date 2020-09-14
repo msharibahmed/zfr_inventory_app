@@ -38,6 +38,7 @@ class BudgetProv with ChangeNotifier {
         ChassisProvider().febcost +
         ElectronicsProvider().febcost +
         MiscellaneousProvider().febcost;
+
     return double.parse(value.toStringAsFixed(2));
   }
 
