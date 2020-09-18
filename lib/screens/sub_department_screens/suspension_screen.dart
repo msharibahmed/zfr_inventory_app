@@ -4,10 +4,36 @@ import '../../provider/departments_provider/suspension.dart';
 import '../../widgets/item_card.dart';
 import '../add_item_screen.dart';
 
-class SuspensionItemListScreen extends StatelessWidget {
+class SuspensionItemListScreen extends StatefulWidget {
   static const routeName = 'suspension-item-list-screen';
 
   @override
+  _SuspensionItemListScreenState createState() => _SuspensionItemListScreenState();
+}
+
+class _SuspensionItemListScreenState extends State<SuspensionItemListScreen> {
+ var _boolCheck = true;
+  var _boolCheck2 = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_boolCheck2 == true) {
+      Provider.of<SuspensionProvider>(context, listen: false)
+          .fetchItems(context)
+          .then((_) {
+        setState(() {
+          _boolCheck = false;
+        });
+      });
+      _boolCheck2 = false;
+    }
+  }
+
+  Future<void> refreshFetch() {
+    return Provider.of<SuspensionProvider>(context, listen: false)
+        .fetchItems(context);
+  } @override
   Widget build(BuildContext context) {
     final itemData = Provider.of<SuspensionProvider>(
       context,
@@ -34,11 +60,22 @@ class SuspensionItemListScreen extends StatelessWidget {
               ))
         ],
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) => ItemCard(itemData.items[index],
-            itemData.deleteItem, itemData.undoDelete, index),
-        itemCount: itemData.items.length,
-      ),
+      body: Consumer<SuspensionProvider>(
+          builder: (context, value, child) => RefreshIndicator(
+                onRefresh: refreshFetch,
+                child: _boolCheck
+                    ? Align(
+                        alignment: Alignment.topCenter,
+                        child: CircularProgressIndicator())
+                    : ListView.builder(
+                        itemBuilder: (context, index) => ItemCard(
+                            itemData.items[index],
+                            itemData.deleteItem,
+                            itemData.undoDelete,
+                            index),
+                        itemCount: itemData.items.length,
+                      ),
+              )),
     );
   }
 }

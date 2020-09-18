@@ -11,6 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<ProviderModel>(
+            create: (_) => ProviderModel()),
         ChangeNotifierProvider<SteeringProvider>(
             create: (_) => SteeringProvider()),
         ChangeNotifierProvider<SuspensionProvider>(

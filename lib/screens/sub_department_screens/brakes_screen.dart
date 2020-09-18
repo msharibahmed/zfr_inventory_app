@@ -5,11 +5,40 @@ import 'package:zfr_inventory_app/screens/add_item_screen.dart';
 import '../../provider/departments_provider/brakes.dart';
 import '../../widgets/item_card.dart';
 
-class BrakesItemListScreen extends StatelessWidget {
+class BrakesItemListScreen extends StatefulWidget {
   static const routeName = 'brakes-item-list-screen';
+
+  @override
+  _BrakesItemListScreenState createState() => _BrakesItemListScreenState();
+}
+
+class _BrakesItemListScreenState extends State<BrakesItemListScreen> {
+  var _boolCheck = true;
+  var _boolCheck2 = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_boolCheck2 == true) {
+      Provider.of<BrakesProvider>(context, listen: false)
+          .fetchItems(context)
+          .then((_) {
+        setState(() {
+          _boolCheck = false;
+        });
+      });
+      _boolCheck2 = false;
+    }
+  }
+
+  Future<void> refreshFetch() {
+    return Provider.of<BrakesProvider>(context, listen: false)
+        .fetchItems(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final itemData = Provider.of<BrakesProvider>(context);
+    final itemData = Provider.of<BrakesProvider>(context, listen: false);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -33,11 +62,22 @@ class BrakesItemListScreen extends StatelessWidget {
               ))
         ],
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) => ItemCard(itemData.items[index],
-            itemData.deleteItem, itemData.undoDelete, index),
-        itemCount: itemData.items.length,
-      ),
+      body: Consumer<BrakesProvider>(
+          builder: (context, value, child) => RefreshIndicator(
+                onRefresh: refreshFetch,
+                child: _boolCheck
+                    ? Align(
+                        alignment: Alignment.topCenter,
+                        child: CircularProgressIndicator())
+                    : ListView.builder(
+                        itemBuilder: (context, index) => ItemCard(
+                            itemData.items[index],
+                            itemData.deleteItem,
+                            itemData.undoDelete,
+                            index),
+                        itemCount: itemData.items.length,
+                      ),
+              )),
     );
   }
 }

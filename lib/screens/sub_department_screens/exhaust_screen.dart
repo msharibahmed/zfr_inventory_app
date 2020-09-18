@@ -5,11 +5,36 @@ import '../../provider/departments_provider/exhaust.dart';
 import '../../widgets/item_card.dart';
 import '../add_item_screen.dart';
 
-class ExhaustItemListScreen extends StatelessWidget {
+class ExhaustItemListScreen extends StatefulWidget {
   static const routeName = 'exhaust-item-list-screen';
-  
 
   @override
+  _ExhaustItemListScreenState createState() => _ExhaustItemListScreenState();
+}
+
+class _ExhaustItemListScreenState extends State<ExhaustItemListScreen> {
+ var _boolCheck = true;
+  var _boolCheck2 = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_boolCheck2 == true) {
+      Provider.of<ExhaustProvider>(context, listen: false)
+          .fetchItems(context)
+          .then((_) {
+        setState(() {
+          _boolCheck = false;
+        });
+      });
+      _boolCheck2 = false;
+    }
+  }
+
+  Future<void> refreshFetch() {
+    return Provider.of<ExhaustProvider>(context, listen: false)
+        .fetchItems(context);
+  } @override
   Widget build(BuildContext context) {
     final itemData = Provider.of<ExhaustProvider>(context,);
     return Scaffold(
@@ -30,10 +55,22 @@ class ExhaustItemListScreen extends StatelessWidget {
               label: Consumer<ExhaustProvider>(builder: (context,data,_)=>Text('\$'+itemData.totalItemCost.toStringAsFixed(2), style: TextStyle(color: Colors.white)),))
         ],
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) => ItemCard(itemData.items[index],itemData.deleteItem,itemData.undoDelete,index),
-        itemCount: itemData.items.length,
-      ),
+      body:Consumer<ExhaustProvider>(
+          builder: (context, value, child) => RefreshIndicator(
+                onRefresh: refreshFetch,
+                child: _boolCheck
+                    ? Align(
+                        alignment: Alignment.topCenter,
+                        child: CircularProgressIndicator())
+                    : ListView.builder(
+                        itemBuilder: (context, index) => ItemCard(
+                            itemData.items[index],
+                            itemData.deleteItem,
+                            itemData.undoDelete,
+                            index),
+                        itemCount: itemData.items.length,
+                      ),
+              )),
     );
   }
 }

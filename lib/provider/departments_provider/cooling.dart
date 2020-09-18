@@ -1,142 +1,38 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/item_model.dart';
 
 class CoolingProvider with ChangeNotifier {
-  List<ItemModel> _items = [
-    ItemModel(
-      itemId: 'p4',
-      itemName: 'A Pan',
-      itemBuyer: 'Anas',
-      itemDate: DateTime.now(),
-      itemDescription: 'Prepare any meal you want.',
-      itemQuantity: 4,
-      itemVendor: 'Natonal ltd',
-      itemCost: 49.99,
-    ),
-  ];
+  List<ItemModel> _items = [];
   List<ItemModel> get items => [..._items];
-
-  double get jancost {
-    var total = 0.0;
-    var jan = _items.where(
-        (element) => DateFormat('MMM').format(element.itemDate) == 'Jan');
-    jan.forEach((element) {
-      total += element.itemCost * element.itemQuantity;
+  List<double> get va {
+    Map<String, double> mon = {
+      'Jan': 0,
+      'feb': 0,
+      'Mar': 0,
+      'Apr': 0,
+      'May': 0,
+      'Jun': 0,
+      'Jul': 0,
+      'Aug': 0,
+      'Sep': 0,
+      'Oct': 0,
+      'Nov': 0,
+      'Dec': 0,
+    };
+    _items.forEach((element) {
+      mon.forEach((k, v) {
+        if (DateFormat('MMM').format(element.itemDate) == k) {
+          v += element.itemCost * element.itemQuantity;
+          // print(v);
+          mon.update(k, (value) => value = v);
+        }
+      });
     });
-    return total;
-  }
-
-  double get febcost {
-    var total = 0.0;
-    var feb = _items.where(
-        (element) => DateFormat('MMM').format(element.itemDate) == 'Feb');
-    feb.forEach((element) {
-      total += element.itemCost * element.itemQuantity;
-    });
-
-    return total;
-  }
-
-  double get marcost {
-    var total = 0.0;
-    var mar = _items.where(
-        (element) => DateFormat('MMM').format(element.itemDate) == 'Mar');
-    mar.forEach((element) {
-      total += element.itemCost * element.itemQuantity;
-    });
-    return total;
-  }
-
-  double get aprcost {
-    var total = 0.0;
-    var apr = _items.where(
-        (element) => DateFormat('MMM').format(element.itemDate) == 'Apr');
-    apr.forEach((element) {
-      total += element.itemCost * element.itemQuantity;
-    });
-    return total;
-  }
-
-  double get maycost {
-    var total = 0.0;
-    var jan = _items.where(
-        (element) => DateFormat('MMM').format(element.itemDate) == 'May');
-    jan.forEach((element) {
-      total += element.itemCost * element.itemQuantity;
-    });
-    return total;
-  }
-
-  double get juncost {
-    var total = 0.0;
-    var jun = _items.where(
-        (element) => DateFormat('MMM').format(element.itemDate) == 'Jun');
-    jun.forEach((element) {
-      total += element.itemCost * element.itemQuantity;
-    });
-    return total;
-  }
-
-  double get julcost {
-    var total = 0.0;
-    var jul = _items.where(
-        (element) => DateFormat('MMM').format(element.itemDate) == 'Jul');
-    jul.forEach((element) {
-      total += element.itemCost * element.itemQuantity;
-    });
-    return total;
-  }
-
-  double get augcost {
-    var total = 0.0;
-    var aug = _items.where(
-        (element) => DateFormat('MMM').format(element.itemDate) == 'Aug');
-    aug.forEach((element) {
-      total += element.itemCost * element.itemQuantity;
-    });
-    return total;
-  }
-
-  double get sepcost {
-    var total = 0.0;
-    var sep = _items.where(
-        (element) => DateFormat('MMM').format(element.itemDate) == 'Sep');
-    sep.forEach((element) {
-      total += element.itemCost * element.itemQuantity;
-    });
-    return total;
-  }
-
-  double get octcost {
-    var total = 0.0;
-    var oct = _items.where(
-        (element) => DateFormat('MMM').format(element.itemDate) == 'Oct');
-    oct.forEach((element) {
-      total += element.itemCost * element.itemQuantity;
-    });
-    return total;
-  }
-
-  double get novcost {
-    var total = 0.0;
-    var nov = _items.where(
-        (element) => DateFormat('MMM').format(element.itemDate) == 'Nov');
-    nov.forEach((element) {
-      total += element.itemCost * element.itemQuantity;
-    });
-    return total;
-  }
-
-  double get deccost {
-    var total = 0.0;
-    var dec = _items.where(
-        (element) => DateFormat('MMM').format(element.itemDate) == 'Dec');
-    dec.forEach((element) {
-      total += element.itemCost * element.itemQuantity;
-    });
-    return total;
+    return mon.values.toList();
   }
 
   void undoDelete(int index, ItemModel deletedItem) {
@@ -163,17 +59,96 @@ class CoolingProvider with ChangeNotifier {
     }
   }
 
-  void addItem(ItemModel itemModel) {
-    final item = ItemModel(
-        itemId: DateTime.now().toIso8601String(),
-        itemName: itemModel.itemName,
-        itemBuyer: itemModel.itemBuyer,
-        itemDate: itemModel.itemDate,
-        itemQuantity: itemModel.itemQuantity,
-        itemVendor: itemModel.itemVendor,
-        itemDescription: itemModel.itemDescription,
-        itemCost: itemModel.itemCost);
-    _items.add(item);
-    notifyListeners();
+  Future<void> addItem(ItemModel itemModel, BuildContext context) async {
+    const url = 'https://zfr-inventory.firebaseio.com/department/cooling.json';
+    final date = itemModel.itemDate;
+    try {
+      final response = await http.post(url,
+          body: jsonEncode({
+            'itemName': itemModel.itemName,
+            'itemBuyer': itemModel.itemBuyer,
+            'itemDate': date.toIso8601String(),
+            'itemQuantity': itemModel.itemQuantity,
+            'itemVendor': itemModel.itemVendor,
+            'itemDescription': itemModel.itemDescription,
+            'itemCost': itemModel.itemCost,
+          }));
+      final postData = jsonDecode(response.body);
+      print(postData);
+
+      final item = ItemModel(
+          itemId: postData['name'],
+          itemName: itemModel.itemName,
+          itemBuyer: itemModel.itemBuyer,
+          itemDate: date,
+          itemQuantity: itemModel.itemQuantity,
+          itemVendor: itemModel.itemVendor,
+          itemDescription: itemModel.itemDescription,
+          itemCost: itemModel.itemCost);
+      _items.add(item);
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      await showDialog(
+          context: context,
+          builder: (ctx) {
+            return AlertDialog(
+              title: Text('Error Occured!'),
+              content: Text('Check You connection or contact developer.'),
+              actions: [
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.pop(ctx);
+                  },
+                  child: Text('Okay!'),
+                )
+              ],
+            );
+          });
+    }
+  }
+
+  Future<void> fetchItems(BuildContext context) async {
+    const url = 'https://zfr-inventory.firebaseio.com/department/cooling.json';
+    try {
+      final response = await http.get(url);
+      final getResponse = (jsonDecode(response.body)) as Map<String, dynamic>;
+      final List<ItemModel> temp = [];
+      if(getResponse!=null){
+        
+      getResponse.forEach((itemId, item) {
+        temp.add(ItemModel(
+            itemId: itemId,
+            itemName: item['itemName'],
+            itemBuyer: item['itemBuyer'],
+            itemDate: DateTime.parse(item['itemDate']),
+            itemDescription: item['itemDescription'],
+            itemQuantity: item['itemQuantity'],
+            itemVendor: item['itemVendor'],
+            itemCost: item['itemCost']));
+      });
+
+      _items = temp;
+      notifyListeners();
+      }
+    } catch (error) {
+      print(error);
+      await showDialog(
+          context: context,
+          builder: (ctx) {
+            return AlertDialog(
+              title: Text('Error Occured!'),
+              content: Text('Check Your connection or contact developer.'),
+              actions: [
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.pop(ctx);
+                  },
+                  child: Text('Okay!'),
+                )
+              ],
+            );
+          });
+    }
   }
 }

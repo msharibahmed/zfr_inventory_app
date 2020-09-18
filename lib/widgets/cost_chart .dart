@@ -17,15 +17,6 @@ class _LineChartSample2State extends State<LineChartSample2> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Container(
-        //     width: double.infinity,
-        //     color: Color(0xff232d37),
-        //     padding: EdgeInsets.all(10),
-        //     child: Text(
-        //       'Total Cost/MonthWise',
-        //       style:
-        //           TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
-        //     )),
         Stack(
           children: <Widget>[
             Container(
@@ -53,156 +44,145 @@ class _LineChartSample2State extends State<LineChartSample2> {
   }
 
   LineChartData mainData() {
-    final a = Provider.of<SteeringProvider>(context);
-    final b = Provider.of<SuspensionProvider>(context);
-    final c = Provider.of<ExhaustProvider>(context);
-    final d = Provider.of<CoolingProvider>(context);
-    final e = Provider.of<IntakeProvider>(context);
-    final f = Provider.of<DriveTrainProvider>(context);
-    final g = Provider.of<BrakesProvider>(context);
-    final h = Provider.of<ChassisProvider>(context);
-    final i = Provider.of<ElectronicsProvider>(context);
-    final j = Provider.of<MiscellaneousProvider>(context);
-    // List l = [
-    //   Provider.of<SteeringProvider>(context),
-    //   Provider.of<SuspensionProvider>(context),
-    //   Provider.of<ExhaustProvider>(context),
-    //   Provider.of<CoolingProvider>(context),
-    //   Provider.of<IntakeProvider>(context),
-    //   Provider.of<DriveTrainProvider>(context),
-    //   Provider.of<BrakesProvider>(context),
-    //   Provider.of<ChassisProvider>(context),
-    //   subdep9,
-    //   subdep10
-    // ];
-    double jan = a.jancost +
-        b.jancost +
-        c.jancost +
-        d.jancost +
-        e.jancost +
-        f.jancost +
-        g.jancost +
-        h.jancost +
-        i.jancost +
-        j.jancost;
-    double feb = a.febcost +
-        b.febcost +
-        c.febcost +
-        d.febcost +
-        e.febcost +
-        f.febcost +
-        g.febcost +
-        h.febcost +
-        i.febcost +
-        j.febcost;
-    double mar = a.marcost +
-        b.marcost +
-        c.marcost +
-        d.marcost +
-        e.marcost +
-        f.marcost +
-        g.marcost +
-        h.marcost +
-        i.marcost +
-        j.marcost;
+    final a = Provider.of<SteeringProvider>(context, listen: false);
+    final b = Provider.of<SuspensionProvider>(context, listen: false);
+    final c = Provider.of<ExhaustProvider>(context, listen: false);
+    final d = Provider.of<CoolingProvider>(context, listen: false);
+    final e = Provider.of<IntakeProvider>(context, listen: false);
+    final f = Provider.of<DriveTrainProvider>(context, listen: false);
+    final g = Provider.of<BrakesProvider>(context, listen: false);
+    final h = Provider.of<ChassisProvider>(context, listen: false);
+    final i = Provider.of<ElectronicsProvider>(context, listen: false);
+    final j = Provider.of<MiscellaneousProvider>(context, listen: false);
 
-    double apr = a.aprcost +
-        b.aprcost +
-        c.aprcost +
-        d.aprcost +
-        e.aprcost +
-        f.aprcost +
-        g.aprcost +
-        h.aprcost +
-        i.aprcost +
-        j.aprcost;
-    double may = a.maycost +
-        b.maycost +
-        c.maycost +
-        d.maycost +
-        e.maycost +
-        f.maycost +
-        g.maycost +
-        h.maycost +
-        i.maycost +
-        j.maycost;
+    double jan = a.va[0] +
+        b.va[0] +
+        c.va[0] +
+        d.va[0] +
+        e.va[0] +
+        f.va[0] +
+        g.va[0] +
+        h.va[0] +
+        i.va[0] +
+        j.va[0];
+    double feb = a.va[1] +
+        b.va[1] +
+        c.va[1] +
+        d.va[1] +
+        e.va[1] +
+        f.va[1] +
+        g.va[1] +
+        h.va[1] +
+        i.va[1] +
+        j.va[1];
+    double mar = a.va[2] +
+        b.va[2] +
+        c.va[2] +
+        d.va[2] +
+        e.va[2] +
+        f.va[2] +
+        g.va[2] +
+        h.va[2] +
+        i.va[2] +
+        j.va[2];
 
-    double jun = a.juncost +
-        b.juncost +
-        c.juncost +
-        d.juncost +
-        e.juncost +
-        f.juncost +
-        g.juncost +
-        h.juncost +
-        i.juncost +
-        j.juncost;
+    double apr = a.va[3] +
+        b.va[3] +
+        c.va[3] +
+        d.va[3] +
+        e.va[3] +
+        f.va[3] +
+        g.va[3] +
+        h.va[3] +
+        i.va[3] +
+        j.va[3];
+    double may = a.va[4] +
+        b.va[4] +
+        c.va[4] +
+        d.va[4] +
+        e.va[4] +
+        f.va[4] +
+        g.va[4] +
+        h.va[4] +
+        i.va[4] +
+        j.va[4];
 
-    double jul = a.julcost +
-        b.julcost +
-        c.julcost +
-        d.julcost +
-        e.julcost +
-        f.julcost +
-        g.julcost +
-        h.julcost +
-        i.julcost +
-        j.julcost;
+    double jun = a.va[5] +
+        b.va[5] +
+        c.va[5] +
+        d.va[5] +
+        e.va[5] +
+        f.va[5] +
+        g.va[5] +
+        h.va[5] +
+        i.va[5] +
+        j.va[5];
 
-    double aug = a.augcost +
-        b.augcost +
-        c.augcost +
-        d.augcost +
-        e.augcost +
-        f.augcost +
-        g.augcost +
-        h.augcost +
-        i.augcost +
-        j.augcost;
+    double jul = a.va[6] +
+        b.va[6] +
+        c.va[6] +
+        d.va[6] +
+        e.va[6] +
+        f.va[6] +
+        g.va[6] +
+        h.va[6] +
+        i.va[6] +
+        j.va[6];
 
-    double sep = a.sepcost +
-        b.sepcost +
-        c.sepcost +
-        d.sepcost +
-        e.sepcost +
-        f.sepcost +
-        g.sepcost +
-        h.sepcost +
-        i.sepcost +
-        j.sepcost;
+    double aug = a.va[7] +
+        b.va[7] +
+        c.va[7] +
+        d.va[7] +
+        e.va[7] +
+        f.va[7] +
+        g.va[7] +
+        h.va[7] +
+        i.va[7] +
+        j.va[7];
 
-    double oct = a.octcost +
-        b.octcost +
-        c.octcost +
-        d.octcost +
-        e.octcost +
-        f.octcost +
-        g.octcost +
-        h.octcost +
-        i.octcost +
-        j.octcost;
+    double sep = a.va[8] +
+        b.va[8] +
+        c.va[8] +
+        d.va[8] +
+        e.va[8] +
+        f.va[8] +
+        g.va[8] +
+        h.va[8] +
+        i.va[8] +
+        j.va[8];
 
-    double nov = a.novcost +
-        b.novcost +
-        c.novcost +
-        d.novcost +
-        e.novcost +
-        f.novcost +
-        g.novcost +
-        h.novcost +
-        i.novcost +
-        j.novcost;
+    double oct = a.va[9] +
+        b.va[9] +
+        c.va[9] +
+        d.va[9] +
+        e.va[9] +
+        f.va[9] +
+        g.va[9] +
+        h.va[9] +
+        i.va[9] +
+        j.va[9];
 
-    double dec = a.deccost +
-        b.deccost +
-        c.deccost +
-        d.deccost +
-        e.deccost +
-        f.deccost +
-        g.deccost +
-        h.deccost +
-        i.deccost +
-        j.deccost;
+    double nov = a.va[10] +
+        b.va[10] +
+        c.va[10] +
+        d.va[10] +
+        e.va[10] +
+        f.va[10] +
+        g.va[10] +
+        h.va[10] +
+        i.va[10] +
+        j.va[10];
+
+    double dec = a.va[11] +
+        b.va[11] +
+        c.va[11] +
+        d.va[11] +
+        e.va[11] +
+        f.va[11] +
+        g.va[11] +
+        h.va[11] +
+        i.va[11] +
+        j.va[11];
 
     List lst = [
       double.parse(jan.toStringAsFixed(2)),

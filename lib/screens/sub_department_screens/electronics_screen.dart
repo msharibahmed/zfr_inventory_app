@@ -5,11 +5,36 @@ import '../../provider/departments_provider/electronics.dart';
 import '../../widgets/item_card.dart';
 import '../add_item_screen.dart';
 
-class ElectronicsItemListScreen extends StatelessWidget {
+class ElectronicsItemListScreen extends StatefulWidget {
   static const routeName = 'electronics-item-list-screen';
-  
 
   @override
+  _ElectronicsItemListScreenState createState() => _ElectronicsItemListScreenState();
+}
+
+class _ElectronicsItemListScreenState extends State<ElectronicsItemListScreen> {
+ var _boolCheck = true;
+  var _boolCheck2 = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_boolCheck2 == true) {
+      Provider.of<ElectronicsProvider>(context, listen: false)
+          .fetchItems(context)
+          .then((_) {
+        setState(() {
+          _boolCheck = false;
+        });
+      });
+      _boolCheck2 = false;
+    }
+  }
+
+  Future<void> refreshFetch() {
+    return Provider.of<ElectronicsProvider>(context, listen: false)
+        .fetchItems(context);
+  } @override
   Widget build(BuildContext context) {
     final itemData = Provider.of<ElectronicsProvider>(context,);
     return Scaffold(
@@ -30,10 +55,22 @@ class ElectronicsItemListScreen extends StatelessWidget {
               label: Consumer<ElectronicsProvider>(builder: (context,data,_)=>Text('\$'+itemData.totalItemCost.toStringAsFixed(2), style: TextStyle(color: Colors.white)),))
         ],
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) => ItemCard(itemData.items[index],itemData.deleteItem,itemData.undoDelete,index),
-        itemCount: itemData.items.length,
-      ),
+      body: Consumer<ElectronicsProvider>(
+          builder: (context, value, child) => RefreshIndicator(
+                onRefresh: refreshFetch,
+                child: _boolCheck
+                    ? Align(
+                        alignment: Alignment.topCenter,
+                        child: CircularProgressIndicator())
+                    : ListView.builder(
+                        itemBuilder: (context, index) => ItemCard(
+                            itemData.items[index],
+                            itemData.deleteItem,
+                            itemData.undoDelete,
+                            index),
+                        itemCount: itemData.items.length,
+                      ),
+              )),
     );
   }
 }

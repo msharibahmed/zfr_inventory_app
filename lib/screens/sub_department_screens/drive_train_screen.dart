@@ -5,11 +5,36 @@ import '../../provider/departments_provider/drive_train.dart';
 import '../../widgets/item_card.dart';
 import '../add_item_screen.dart';
 
-class DriveTrainItemListScreen extends StatelessWidget {
+class DriveTrainItemListScreen extends StatefulWidget {
   static const routeName = 'driveTrain-item-list-screen';
-  
 
   @override
+  _DriveTrainItemListScreenState createState() => _DriveTrainItemListScreenState();
+}
+
+class _DriveTrainItemListScreenState extends State<DriveTrainItemListScreen> {
+var _boolCheck = true;
+  var _boolCheck2 = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_boolCheck2 == true) {
+      Provider.of<DriveTrainProvider>(context, listen: false)
+          .fetchItems(context)
+          .then((_) {
+        setState(() {
+          _boolCheck = false;
+        });
+      });
+      _boolCheck2 = false;
+    }
+  }
+
+  Future<void> refreshFetch() {
+    return Provider.of<DriveTrainProvider>(context, listen: false)
+        .fetchItems(context);
+  }  @override
   Widget build(BuildContext context) {
     final itemData = Provider.of<DriveTrainProvider>(context, );
     return Scaffold(
@@ -30,10 +55,22 @@ class DriveTrainItemListScreen extends StatelessWidget {
               label: Consumer<DriveTrainProvider>(builder: (context,data,_)=>Text('\$'+itemData.totalItemCost.toStringAsFixed(2), style: TextStyle(color: Colors.white)),))
         ],
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) => ItemCard(itemData.items[index],itemData.deleteItem,itemData.undoDelete,index),
-        itemCount: itemData.items.length,
-      ),
+      body: Consumer<DriveTrainProvider>(
+          builder: (context, value, child) => RefreshIndicator(
+                onRefresh: refreshFetch,
+                child: _boolCheck
+                    ? Align(
+                        alignment: Alignment.topCenter,
+                        child: CircularProgressIndicator())
+                    : ListView.builder(
+                        itemBuilder: (context, index) => ItemCard(
+                            itemData.items[index],
+                            itemData.deleteItem,
+                            itemData.undoDelete,
+                            index),
+                        itemCount: itemData.items.length,
+                      ),
+              )),
     );
   }
 }
