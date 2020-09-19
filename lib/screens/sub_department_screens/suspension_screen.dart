@@ -8,11 +8,12 @@ class SuspensionItemListScreen extends StatefulWidget {
   static const routeName = 'suspension-item-list-screen';
 
   @override
-  _SuspensionItemListScreenState createState() => _SuspensionItemListScreenState();
+  _SuspensionItemListScreenState createState() =>
+      _SuspensionItemListScreenState();
 }
 
 class _SuspensionItemListScreenState extends State<SuspensionItemListScreen> {
- var _boolCheck = true;
+  var _boolCheck = true;
   var _boolCheck2 = true;
 
   @override
@@ -33,7 +34,9 @@ class _SuspensionItemListScreenState extends State<SuspensionItemListScreen> {
   Future<void> refreshFetch() {
     return Provider.of<SuspensionProvider>(context, listen: false)
         .fetchItems(context);
-  } @override
+  }
+
+  @override
   Widget build(BuildContext context) {
     final itemData = Provider.of<SuspensionProvider>(
       context,
@@ -67,14 +70,28 @@ class _SuspensionItemListScreenState extends State<SuspensionItemListScreen> {
                     ? Align(
                         alignment: Alignment.topCenter,
                         child: CircularProgressIndicator())
-                    : ListView.builder(
-                        itemBuilder: (context, index) => ItemCard(
-                            itemData.items[index],
-                            itemData.deleteItem,
-                            itemData.undoDelete,
-                            index),
-                        itemCount: itemData.items.length,
-                      ),
+                    : value.items.length == 0
+                        ? Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.hot_tub,
+                                  size: 100,
+                                ),
+                                Text(
+                                    "Empty here, click on '+' button to add items")
+                              ],
+                            ),
+                          )
+                        : ListView.builder(
+                            itemBuilder: (context, index) => ItemCard(
+                                itemData.items[index],
+                                itemData.deleteItem,
+                                itemData.undoDelete,
+                                index),
+                            itemCount: itemData.items.length,
+                          ),
               )),
     );
   }

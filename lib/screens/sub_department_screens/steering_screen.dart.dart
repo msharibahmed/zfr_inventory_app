@@ -67,7 +67,8 @@ class _SteeringItemListScreenState extends State<SteeringItemListScreen> {
                     ? Align(
                         alignment: Alignment.topCenter,
                         child: CircularProgressIndicator())
-                    : ListView.builder(
+                    :value.items.length==0?Center(child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,children:[Icon(Icons.hot_tub,size: 100,),Text("Empty here, click on '+' button to add items")],),): ListView.builder(
                         itemBuilder: (context, index) => ItemCard(
                             itemData.items[index],
                             itemData.deleteItem,

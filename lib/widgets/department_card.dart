@@ -38,7 +38,7 @@ class DepartmentCard extends StatelessWidget {
     final chassisData = Provider.of<ChassisProvider>(context);
     final electronicsData = Provider.of<ElectronicsProvider>(context);
     final miscellaneousData = Provider.of<MiscellaneousProvider>(context);
-
+    var p = -1;
     const Map<String, List> departmentNames = {
       'Vehicle Dynamics': ['Steering', 'Suspension'],
       'Power Train': ['Cooling', 'Drive Train', 'Exhaust', 'Intake'],
@@ -90,10 +90,19 @@ class DepartmentCard extends StatelessWidget {
           total: miscellaneousData.totalItemCost.toStringAsFixed(2)),
     ];
     const subDepartmentNumber = ['two', 'four', 'zero', 'zero', 'zero', 'zero'];
+    const images = [
+      'vehicledynamics',
+      'powertrain',
+      'brakes',
+      'chassis',
+      'electronics',
+      'miscellaneous'
+    ];
     return Card(
       color: Colors.blue[50],
       elevation: 10,
       child: ExpansionTile(
+          leading: Image.asset('assets/images/${images[index]}.png'),
           subtitle: Text(
               'This has ' + subDepartmentNumber[index] + ' Sub Departments'),
           title: Text(
@@ -105,10 +114,24 @@ class DepartmentCard extends StatelessWidget {
             ...(departmentNames.values.toList()[index]).map((e) {
               DepartmentModel value =
                   modelData.firstWhere((element) => e == element.name);
+              const photo = [
+                'steering',
+                'suspension',
+                'cooling',
+                'drive_train',
+                'exhaust',
+                'intake',
+                'null',
+                'null',
+                'null',
+                'null'
+              ];
+              p++;
               return Card(
                   elevation: 3,
                   color: Colors.blue[100],
                   child: ListTile(
+                    leading: Image.asset('assets/images/${photo[p]}.png'),
                     trailing: Chip(
                       backgroundColor: Colors.blue,
                       elevation: 5,

@@ -287,33 +287,39 @@ class _AddItemScreenState extends State<AddItemScreen> {
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold)),
                               )),
-                          IconButton(
-                              icon: Icon(
-                                Icons.calendar_today,
-                                size: 40,
-                                color: Colors.purple,
-                              ),
-                              onPressed: () {
-                                showDatePicker(
-                                        context: context,
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime(2020),
-                                        lastDate: DateTime(2021))
-                                    .then((value) {
-                                  setState(() {
-                                    _editProduct = ItemModel(
-                                        itemId: _editProduct.itemId,
-                                        itemName: _editProduct.itemName,
-                                        itemBuyer: _editProduct.itemBuyer,
-                                        itemDate: value,
-                                        itemDescription:
-                                            _editProduct.itemDescription,
-                                        itemQuantity: _editProduct.itemQuantity,
-                                        itemVendor: _editProduct.itemVendor,
-                                        itemCost: _editProduct.itemCost);
+                          Card(
+                            elevation: 5,
+                            shadowColor: Colors.purple,
+                            color: Colors.yellow[100],
+                            child: IconButton(
+                                icon: Icon(
+                                  Icons.event,
+                                  size: 40,
+                                  color: Colors.purple,
+                                ),
+                                onPressed: () {
+                                  showDatePicker(
+                                          context: context,
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime(2020),
+                                          lastDate: DateTime(2021))
+                                      .then((value) {
+                                    setState(() {
+                                      _editProduct = ItemModel(
+                                          itemId: _editProduct.itemId,
+                                          itemName: _editProduct.itemName,
+                                          itemBuyer: _editProduct.itemBuyer,
+                                          itemDate: value,
+                                          itemDescription:
+                                              _editProduct.itemDescription,
+                                          itemQuantity:
+                                              _editProduct.itemQuantity,
+                                          itemVendor: _editProduct.itemVendor,
+                                          itemCost: _editProduct.itemCost);
+                                    });
                                   });
-                                });
-                              })
+                                }),
+                          )
                         ],
                       ),
                       TextFormField(

@@ -1,50 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:zfr_inventory_app/widgets/department_progress.dart';
 import '../main_imports.dart';
+
 import '../widgets/cost_chart%20.dart';
 
-import '../widgets/drawer_widget.dart';
 import '../widgets/department_chart.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = 'home-screen';
+  final bool button;
+  HomeScreen(this.button);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool button = false;
+  // bool button = false;
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      drawer: Drawer(
-        child: DrawerWidget(),
-      ),
-      appBar: AppBar(
-        elevation: 10,
-        title: Text(
-          'ZFR Inventory',
-        ),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.ac_unit),
-              onPressed: () {
-                setState(() {
-                  button = !button;
-                });
-                print(button);
-              })
+
+      body: Column(
+        children: [
+          widget.button ? DepartmentChart() : LineChartSample2(),
+          DepartmentProgress()
         ],
-      ),
-      body:  Column(
-          children: [
-            button ? DepartmentChart() : LineChartSample2(),
-            DepartmentProgress()
-          ],
-        
       ),
     );
   }
