@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:zfr_inventory_app/main_imports.dart';
+import 'package:zfr_inventory_app/provider/other/budget.dart';
+import 'package:zfr_inventory_app/provider/other/tasks.dart';
 import 'package:zfr_inventory_app/screens/tab_screen.dart';
 
 class Splash extends StatefulWidget {
@@ -9,31 +11,37 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-
-
   @override
   Widget build(BuildContext context) {
-    
-      final a = Provider.of<SteeringProvider>(context,listen: false);
-      final b = Provider.of<SuspensionProvider>(context,listen: false);
-      final c = Provider.of<ExhaustProvider>(context,listen: false);
-      final d = Provider.of<CoolingProvider>(context,listen: false);
-      final e = Provider.of<IntakeProvider>(context,listen: false);
-      final f = Provider.of<DriveTrainProvider>(context,listen: false);
-      final g = Provider.of<BrakesProvider>(context,listen: false);
-      final h = Provider.of<ChassisProvider>(context,listen: false);
-      final i = Provider.of<ElectronicsProvider>(context,listen: false);
-      final j = Provider.of<MiscellaneousProvider>(context,listen: false);
-          a.fetchItems(context);
-      b.fetchItems(context);
-      c.fetchItems(context);
-      d.fetchItems(context);
-      e.fetchItems(context);
-      f.fetchItems(context);
-      g.fetchItems(context);
-      h.fetchItems(context);
-      i.fetchItems(context);
-      j.fetchItems(context);
+    final a = Provider.of<SteeringProvider>(context, listen: false);
+    final b = Provider.of<SuspensionProvider>(context, listen: false);
+    final c = Provider.of<ExhaustProvider>(context, listen: false);
+    final d = Provider.of<CoolingProvider>(context, listen: false);
+    final e = Provider.of<IntakeProvider>(context, listen: false);
+    final f = Provider.of<DriveTrainProvider>(context, listen: false);
+    final g = Provider.of<BrakesProvider>(context, listen: false);
+    final h = Provider.of<ChassisProvider>(context, listen: false);
+    final i = Provider.of<ElectronicsProvider>(context, listen: false);
+    final j = Provider.of<MiscellaneousProvider>(context, listen: false);
+    a.fetchItems(context);
+    b.fetchItems(context);
+    c.fetchItems(context);
+    d.fetchItems(context);
+    e.fetchItems(context);
+    f.fetchItems(context);
+    g.fetchItems(context);
+    h.fetchItems(context);
+    i.fetchItems(context);
+    j.fetchItems(context);
+    final budget = Provider.of<BudgetProv>(context, listen: false);
+    budget.fetchBudget(2);
+    budget.fetchBudget(3);
+    budget.fetchBudget(4);
+    budget.fetchBudget(5);
+    budget.fetchBudget(6);
+    budget.fetchBudget(7);
+    Provider.of<TasksProv>(context, listen: false).fetch(context);
+
     return SplashScreen(
         loadingText: Text(
           'Z       F       R',
@@ -42,7 +50,7 @@ class _SplashState extends State<Splash> {
         loaderColor: Colors.white,
         backgroundColor: Colors.black,
         photoSize: 200,
-        seconds: 10,
+        seconds: 8,
         image: Image.asset('assets/images/splash.gif'),
         navigateAfterSeconds: TabScreen());
   }

@@ -44,7 +44,6 @@ class _DepartmentChartState extends State<DepartmentChart> {
       mindepValue = departmentData
           .reduce((current, next) => current < next ? current : next);
     }
-    
   }
 
   // List<double> departmentData = [, 454, 1663, 1000.34, 354, 1235.44];
@@ -55,7 +54,8 @@ class _DepartmentChartState extends State<DepartmentChart> {
       height: 320,
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-          color: Color(0xff81e5cd),),
+        color: Color(0xff81e5cd),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -204,8 +204,6 @@ class _DepartmentChartState extends State<DepartmentChart> {
         getTitles: (value) {
           if (value == 0) {
             return '\$' + '100';
-          } else if (value == 1000) {
-            return "\$" + "1000";
           } else if (value == 10000) {
             return "\$" + "10000";
           } else {

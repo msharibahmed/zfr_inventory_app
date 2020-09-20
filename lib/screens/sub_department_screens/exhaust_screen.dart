@@ -13,7 +13,7 @@ class ExhaustItemListScreen extends StatefulWidget {
 }
 
 class _ExhaustItemListScreenState extends State<ExhaustItemListScreen> {
- var _boolCheck = true;
+  var _boolCheck = true;
   var _boolCheck2 = true;
 
   @override
@@ -34,9 +34,13 @@ class _ExhaustItemListScreenState extends State<ExhaustItemListScreen> {
   Future<void> refreshFetch() {
     return Provider.of<ExhaustProvider>(context, listen: false)
         .fetchItems(context);
-  } @override
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final itemData = Provider.of<ExhaustProvider>(context,);
+    final itemData = Provider.of<ExhaustProvider>(
+      context,
+    );
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -52,25 +56,42 @@ class _ExhaustItemListScreenState extends State<ExhaustItemListScreen> {
               elevation: 10,
               shadowColor: Colors.amber,
               backgroundColor: Colors.blue[900],
-              label: Consumer<ExhaustProvider>(builder: (context,data,_)=>Text('\$'+itemData.totalItemCost.toStringAsFixed(2), style: TextStyle(color: Colors.white)),))
+              label: Consumer<ExhaustProvider>(
+                builder: (context, data, _) => Text(
+                    '\$' + itemData.totalItemCost.toStringAsFixed(2),
+                    style: TextStyle(color: Colors.white)),
+              ))
         ],
       ),
-      body:Consumer<ExhaustProvider>(
+      body: Consumer<ExhaustProvider>(
           builder: (context, value, child) => RefreshIndicator(
                 onRefresh: refreshFetch,
                 child: _boolCheck
                     ? Align(
                         alignment: Alignment.topCenter,
                         child: CircularProgressIndicator())
-                    : value.items.length==0?Center(child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,children:[Icon(Icons.hot_tub,size: 100,),Text("Empty here, click on '+' button to add items")],),):ListView.builder(
-                        itemBuilder: (context, index) => ItemCard(
-                            itemData.items[index],
-                            itemData.deleteItem,
-                            itemData.undoDelete,
-                            index),
-                        itemCount: itemData.items.length,
-                      ),
+                    : value.items.length == 0
+                        ? Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.hot_tub,
+                                  size: 100,
+                                ),
+                                Text(
+                                    "Empty here, click on '+' button to add items")
+                              ],
+                            ),
+                          )
+                        : ListView.builder(
+                            itemBuilder: (context, index) => ItemCard(
+                                itemData.items[index],
+                                itemData.deleteItem,
+                                itemData.undoDelete,
+                                index),
+                            itemCount: itemData.items.length,
+                          ),
               )),
     );
   }

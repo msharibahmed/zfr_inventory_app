@@ -15,29 +15,28 @@ class _LineChartSample2State extends State<LineChartSample2> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
+      alignment: Alignment.centerLeft,
       children: [
-        Stack(
-          children: <Widget>[
-            Container(
-                height: 320,
-                width: double.infinity,
-                decoration: const BoxDecoration(color: Color(0xff232d37)),
-                child: Padding(
-                    padding: const EdgeInsets.only(
-                        right: 18.0, left: 12.0, top: 24, bottom: 12),
-                    child: LineChart(
-                      mainData(),
-                    ))),
-            Container(
-                width: double.infinity,
-                color: Color(0xff232d37),
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'Total Cost' + '\n' + 'MonthWise',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                )),
-          ],
+        Container(
+            height: 320,
+            width: double.infinity,
+            decoration: const BoxDecoration(color: Color(0xff232d37)),
+            child: Padding(
+                padding: const EdgeInsets.only(
+                    right: 18.0, left: 12.0, top: 24, bottom: 12),
+                child: LineChart(
+                  mainData(),
+                ))),
+        Padding(
+          padding: const EdgeInsets.only(top:5.0),
+          child: RotatedBox(
+              quarterTurns: 3,
+              child: Text(
+                "Cost Analysis"+"\n"+"       Monthwise",
+                
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              )),
         )
       ],
     );
@@ -222,7 +221,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           showTitles: true,
           reservedSize: 15,
           textStyle: const TextStyle(
-              color: Color(0xff68737d),
+              color: const Color(0xff68737d),
               fontWeight: FontWeight.normal,
               fontSize: 12),
           getTitles: (value) {
@@ -265,16 +264,6 @@ class _LineChartSample2State extends State<LineChartSample2> {
             fontSize: 12,
           ),
           getTitles: (value) {
-            switch (value.toInt()) {
-              case 0:
-                return '0';
-              case 2000:
-                return '2000';
-              case 1000:
-                return '1000';
-              case 3000:
-                return '3000';
-            }
             return '';
           },
           reservedSize: 28,
@@ -288,7 +277,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
       maxX: 11,
       minY: 0,
       maxY: lst.reduce((value, element) => value > element ? value : element) +
-          1000,
+          10000,
       lineBarsData: [
         LineChartBarData(
           spots: [

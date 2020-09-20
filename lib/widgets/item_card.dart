@@ -9,7 +9,7 @@ class ItemCard extends StatelessWidget {
   final Function undoFunction;
   final int index;
 
-  ItemCard(this.modelData, this.dismissFunction, this.undoFunction,this.index);
+  ItemCard(this.modelData, this.dismissFunction, this.undoFunction, this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +32,16 @@ class ItemCard extends StatelessWidget {
     }
 
     return Dismissible(
-      onDismissed: (direction) {
-        dismissFunction(modelData.itemId);
+      
+      key: ValueKey(modelData.itemId),
+      onDismissed: (direction) async {
+        await dismissFunction(modelData.itemId,context);
+        // print(modelData.itemId);
         Scaffold.of(context).showSnackBar(SnackBar(
             action: SnackBarAction(
                 label: 'Undo',
                 onPressed: () {
-                  undoFunction(index,modelData);
+                  undoFunction(context,index, modelData);
                 }),
             elevation: 5,
             backgroundColor: Colors.blue[50],
@@ -46,7 +49,6 @@ class ItemCard extends StatelessWidget {
                 style: TextStyle(
                     color: Colors.black, fontWeight: FontWeight.bold))));
       },
-      key: ValueKey(modelData.itemId),
       direction: DismissDirection.endToStart,
       background: Container(
           color: Colors.red,

@@ -38,7 +38,7 @@ class DepartmentCard extends StatelessWidget {
     final chassisData = Provider.of<ChassisProvider>(context);
     final electronicsData = Provider.of<ElectronicsProvider>(context);
     final miscellaneousData = Provider.of<MiscellaneousProvider>(context);
-    var p = -1;
+
     const Map<String, List> departmentNames = {
       'Vehicle Dynamics': ['Steering', 'Suspension'],
       'Power Train': ['Cooling', 'Drive Train', 'Exhaust', 'Intake'],
@@ -114,24 +114,33 @@ class DepartmentCard extends StatelessWidget {
             ...(departmentNames.values.toList()[index]).map((e) {
               DepartmentModel value =
                   modelData.firstWhere((element) => e == element.name);
-              const photo = [
-                'steering',
-                'suspension',
-                'cooling',
-                'drive_train',
-                'exhaust',
-                'intake',
-                'null',
-                'null',
-                'null',
-                'null'
-              ];
-              p++;
+              const photo = {
+                'Steering': 'steering',
+                'Suspension': 'suspension',
+                'Cooling': 'cooling',
+                'Drive Train': 'drive_train',
+                'Exhaust': 'exhaust',
+                'Intake': 'intake',
+                'Cost of Brakes': 'null',
+                'Cost of Chassis': 'null',
+                'Cost of Electronics': 'null',
+                'Cost of Miscellaneous': 'null'
+              };
+              String cc;
+              photo.forEach((key, value) {
+                if (key == e) {
+                  cc = value;
+                }
+              });
               return Card(
                   elevation: 3,
                   color: Colors.blue[100],
                   child: ListTile(
-                    leading: Image.asset('assets/images/${photo[p]}.png'),
+                    leading: Image.asset(
+                      'assets/images/$cc.png',
+                      width: 40,
+                      height: 40,
+                    ),
                     trailing: Chip(
                       backgroundColor: Colors.blue,
                       elevation: 5,

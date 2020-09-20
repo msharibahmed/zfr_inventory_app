@@ -8,11 +8,13 @@ class MiscellaneousItemListScreen extends StatefulWidget {
   static const routeName = 'miscellaneous-item-list-screen';
 
   @override
-  _MiscellaneousItemListScreenState createState() => _MiscellaneousItemListScreenState();
+  _MiscellaneousItemListScreenState createState() =>
+      _MiscellaneousItemListScreenState();
 }
 
-class _MiscellaneousItemListScreenState extends State<MiscellaneousItemListScreen> {
- var _boolCheck = true;
+class _MiscellaneousItemListScreenState
+    extends State<MiscellaneousItemListScreen> {
+  var _boolCheck = true;
   var _boolCheck2 = true;
 
   @override
@@ -33,9 +35,13 @@ class _MiscellaneousItemListScreenState extends State<MiscellaneousItemListScree
   Future<void> refreshFetch() {
     return Provider.of<MiscellaneousProvider>(context, listen: false)
         .fetchItems(context);
-  }@override
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final itemData = Provider.of<MiscellaneousProvider>(context, );
+    final itemData = Provider.of<MiscellaneousProvider>(
+      context,
+    );
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -51,7 +57,11 @@ class _MiscellaneousItemListScreenState extends State<MiscellaneousItemListScree
               elevation: 10,
               shadowColor: Colors.amber,
               backgroundColor: Colors.blue[900],
-              label: Consumer<MiscellaneousProvider>(builder: (context,data,_)=>Text('\$'+itemData.totalItemCost.toStringAsFixed(2), style: TextStyle(color: Colors.white)),))
+              label: Consumer<MiscellaneousProvider>(
+                builder: (context, data, _) => Text(
+                    '\$' + itemData.totalItemCost.toStringAsFixed(2),
+                    style: TextStyle(color: Colors.white)),
+              ))
         ],
       ),
       body: Consumer<MiscellaneousProvider>(
@@ -61,15 +71,28 @@ class _MiscellaneousItemListScreenState extends State<MiscellaneousItemListScree
                     ? Align(
                         alignment: Alignment.topCenter,
                         child: CircularProgressIndicator())
-                    :value.items.length==0?Center(child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,children:[Icon(Icons.hot_tub,size: 100,),Text("Empty here, click on '+' button to add items")],),):ListView.builder(
-                        itemBuilder: (context, index) => ItemCard(
-                            itemData.items[index],
-                            itemData.deleteItem,
-                            itemData.undoDelete,
-                            index),
-                        itemCount: itemData.items.length,
-                      ),
+                    : value.items.length == 0
+                        ? Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.hot_tub,
+                                  size: 100,
+                                ),
+                                Text(
+                                    "Empty here, click on '+' button to add items")
+                              ],
+                            ),
+                          )
+                        : ListView.builder(
+                            itemBuilder: (context, index) => ItemCard(
+                                itemData.items[index],
+                                itemData.deleteItem,
+                                itemData.undoDelete,
+                                index),
+                            itemCount: itemData.items.length,
+                          ),
               )),
     );
   }

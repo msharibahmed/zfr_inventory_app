@@ -1,7 +1,9 @@
 import 'package:zfr_inventory_app/provider/other/budget.dart';
+import 'package:zfr_inventory_app/provider/other/tasks.dart';
 import 'package:zfr_inventory_app/screens/splash_screen.dart';
 
 import 'main_imports.dart';
+import 'provider/other/provider_model.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<TasksProv>(create: (_) => TasksProv()),
         ChangeNotifierProvider<ProviderModel>(create: (_) => ProviderModel()),
         ChangeNotifierProvider<SteeringProvider>(
             create: (_) => SteeringProvider()),
@@ -41,8 +44,8 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        home:Splash(),
-       debugShowCheckedModeBanner: false,
+        home: Splash(),
+        debugShowCheckedModeBanner: false,
         routes: {
           DepartmentScreen.routeName: (contex) => DepartmentScreen(),
           SettingScreen.routeName: (contex) => SettingScreen(),

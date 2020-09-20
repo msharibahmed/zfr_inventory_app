@@ -123,6 +123,9 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   child: SingleChildScrollView(
                       child: Column(
                     children: [
+                      const SizedBox(
+                        height: 5,
+                      ),
                       TextFormField(
                         // initialValue: _editProduct.itemName,
                         validator: (value) {
@@ -146,8 +149,21 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         textInputAction: TextInputAction.next,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              )),
                           labelText: 'Item Name',
                         ),
+                      ),
+                      const SizedBox(
+                        height: 5,
                       ),
 
                       TextFormField(
@@ -174,8 +190,21 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         textInputAction: TextInputAction.next,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              )),
                           labelText: 'Who was the Buyer?',
                         ),
+                      ),
+                      const SizedBox(
+                        height: 5,
                       ),
                       TextFormField(
                         // initialValue: _editProduct.itemName,
@@ -201,8 +230,21 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         textInputAction: TextInputAction.next,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              )),
                           labelText: 'Who was the Vendor?',
                         ),
+                      ),
+                      const SizedBox(
+                        height: 5,
                       ),
                       TextFormField(
                         // initialValue: _editProduct.price.toString(),
@@ -233,8 +275,21 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         onFieldSubmitted: (_) =>
                             FocusScope.of(context).requestFocus(_quantityFocus),
                         decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              )),
                           labelText: 'Item Price',
                         ),
+                      ),
+                      const SizedBox(
+                        height: 5,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -269,6 +324,16 @@ class _AddItemScreenState extends State<AddItemScreen> {
                               onFieldSubmitted: (_) => FocusScope.of(context)
                                   .requestFocus(_descriptionFocus),
                               decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                    )),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                    )),
                                 labelText: 'Item Quantity',
                               ),
                             ),
@@ -322,6 +387,9 @@ class _AddItemScreenState extends State<AddItemScreen> {
                           )
                         ],
                       ),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       TextFormField(
                         // initialValue: _editProduct.description,
                         validator: (value) {
@@ -345,6 +413,16 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         focusNode: _descriptionFocus,
                         textCapitalization: TextCapitalization.sentences,
                         decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              )),
                           labelText: 'Item Description',
                         ),
                         maxLines: 3,

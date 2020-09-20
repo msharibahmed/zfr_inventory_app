@@ -13,7 +13,7 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
   bool _validate = false;
 
   int _value = 1;
-
+  var _boolCheck = true;
   @override
   void dispose() {
     super.dispose();
@@ -92,33 +92,39 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
                 Container(
                     alignment: Alignment.centerRight,
                     child: FlatButton(
-                        color: Colors.blue,
-                        onPressed: () {
-                          if (_value == 1 || textCtrl.text.isEmpty) {
-                            Navigator.pop(context);
+                      color: Colors.blue,
+                      onPressed: () async {
+                        if (_value == 1 || textCtrl.text.isEmpty) {
+                          Navigator.pop(context);
+                        } else {
+                          if (double.tryParse(textCtrl.text) == null) {
+                            setState(() {
+                              _validate = true;
+                            });
                           } else {
-                            if (double.tryParse(textCtrl.text) == null) {
-                              setState(() {
-                                _validate = true;
-                              });
-                            } else {
-                              setState(() {
-                                _validate = false;
-                              });
-                              budgetData.addBudget(
-                                  _value, double.parse(textCtrl.text));
-                              Navigator.popAndPushNamed(
-                                context,
-                                HomeScreen.routeName,
-                              );
-                            }
-                            print(_validate);
+                            setState(() {
+                              _validate = false;
+                            });
+
+                            setState(() {
+                              _boolCheck = false;
+                            });
+                            await budgetData.addBudget(
+                                _value, double.parse(textCtrl.text),context);
+
+                            Navigator.pop(context);
                           }
-                        },
-                        child: Text(
-                          'Add',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )))
+                          // print(_validate);
+                        }
+                      },
+                      child: _boolCheck
+                          ? Text('Add',
+                              style: TextStyle(fontWeight: FontWeight.bold))
+                          : CircularProgressIndicator(
+                              strokeWidth: 2,
+                              backgroundColor: Colors.white,
+                            ),
+                    ))
               ],
             )),
       ),
