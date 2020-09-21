@@ -36,7 +36,7 @@ class _TabScreenState extends State<TabScreen> {
           title: Text(names[selectedIndex]),
           centerTitle: true,
           actions: [
-            selectedIndex > 1
+            selectedIndex > 0
                 ? Text('')
                 : IconButton(
                     icon: button

@@ -93,7 +93,7 @@ class TasksProv with ChangeNotifier {
               check: value['check']));
         });
         _tasks = temp;
-        print(_tasks);
+        // print(_tasks);
         notifyListeners();
       }
     } catch (error) {
@@ -106,4 +106,36 @@ class TasksProv with ChangeNotifier {
     var list = _tasks.where((element) => element.check == false);
     return list.length;
   }
+ Future<void> dismissFunction(String id,BuildContext context)async{
+       final url = 'https://zfr-inventory.firebaseio.com/task/$id.json';
+
+     try {
+      await http.delete(url);
+      // final response = await http.delete(url);
+      // print(response.statusCode);
+    } catch (error) {
+      print(error);
+      throw await showDialog(
+          context: context,
+          builder: (ctx) {
+            return AlertDialog(
+              title: Text('Couldn\'t Delete!'),
+              content: Text('Check Your connection or contact developer.'),
+              actions: [
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.pop(ctx);
+                  },
+                  child: Text('Okay!'),
+                )
+              ],
+            );
+          });
+    }
+
+    TaskModel itemToDelete =
+        _tasks.firstWhere((element) => element.id == id);
+    _tasks.remove(itemToDelete);
+
+ }
 }

@@ -35,7 +35,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
               child: Text(
                 "Cost Analysis"+"\n"+"       Monthwise",
                 
-                style: TextStyle(color: Colors.white, fontSize: 18),
+                style: GoogleFonts.lato(textStyle:TextStyle(color: Colors.white, fontSize: 18)),
               )),
         )
       ],

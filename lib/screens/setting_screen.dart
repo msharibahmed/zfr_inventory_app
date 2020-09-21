@@ -1,6 +1,6 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:zfr_inventory_app/main_imports.dart';
-import 'package:zfr_inventory_app/provider/other/budget.dart';
 
 class SettingScreen extends StatefulWidget {
   static const routeName = 'setting-screen';
@@ -10,27 +10,28 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  Future<void> fetch() async {
-    final budget = Provider.of<BudgetProv>(context, listen: false);
-
-    await budget.fetchBudget(2);
-    await budget.fetchBudget(3);
-    await budget.fetchBudget(4);
-    await budget.fetchBudget(5);
-    await budget.fetchBudget(6);
-    await budget.fetchBudget(7);
-    Navigator.pop(context);
-  }
-
+  var _boolCheck = true;
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
+      backgroundColor: _boolCheck?Colors.white:Colors.black,
         // drawer: Drawer(child:DrawerWidget()),
         appBar: AppBar(title: Text('Settings')),
         body: Center(
-            child: OutlineButton(
-          onPressed: fetch,
+            child: GestureDetector(
+          onTap: () {
+            setState(() {
+              _boolCheck = !_boolCheck;
+            });
+          },
+          child: Container(
+            height: 110,
+            width:110,
+            child: FlareActor('assets/images/switch_daytime.flr',
+                alignment: Alignment.center,
+                fit: BoxFit.contain,
+                animation: _boolCheck?"day_idle":"night_idle"),
+          ),
         )));
   }
 }

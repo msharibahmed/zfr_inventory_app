@@ -36,14 +36,7 @@ class MyApp extends StatelessWidget {
             create: (_) => MiscellaneousProvider()),
         ChangeNotifierProvider<BudgetProv>(create: (_) => BudgetProv())
       ],
-      child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.amber,
-          accentColor: Colors.deepOrange,
-          textTheme: GoogleFonts.openSansTextTheme(
-            Theme.of(context).textTheme,
-          ),
-        ),
+      child: MaterialApp( theme: ThemeData(fontFamily: 'Lato'),
         home: Splash(),
         debugShowCheckedModeBanner: false,
         routes: {

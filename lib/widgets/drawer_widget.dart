@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 
 import '../screens/setting_screen.dart';
 
-class DrawerWidget extends StatelessWidget {
+class DrawerWidget extends StatefulWidget {
+  @override
+  _DrawerWidgetState createState() => _DrawerWidgetState();
+}
+
+class _DrawerWidgetState extends State<DrawerWidget> {
+  var _boolCheck = true;
   @override
   Widget build(BuildContext context) {
     ListTile drawerList(String title, IconData iconData, String screenName) {
@@ -28,7 +34,7 @@ class DrawerWidget extends StatelessWidget {
         Container(
           width: double.infinity,
           height: 100,
-          color: Colors.amber[700],
+          color: Colors.blue[700],
           child: Padding(
             padding: const EdgeInsets.only(top: 2.0, left: 8.0),
             child: Row(
@@ -58,7 +64,7 @@ class DrawerWidget extends StatelessWidget {
                   elevation: 5,
                   shadowColor: Colors.green,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom:8.0,right: 8.0),
+                    padding: const EdgeInsets.only(bottom: 8.0, right: 8.0),
                     child: IconButton(
                         icon: Icon(
                           Icons.settings,
@@ -101,23 +107,38 @@ class DrawerWidget extends StatelessWidget {
         Divider(),
         Expanded(
           child: Container(
-            color: Colors.amber,
+            color: Colors.blue,
             child: Column(
               children: [
                 drawerList('Settings', Icons.settings, SettingScreen.routeName),
                 Divider(
                   height: 15,
                 ),
-                drawerList('Logout', Icons.settings_power, SettingScreen.routeName),
+                drawerList(
+                    'Logout', Icons.settings_power, SettingScreen.routeName),
                 Divider(
                   height: 15,
                 ),
-               
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _boolCheck = !_boolCheck;
+                    });
+                  },
+                  child: Container(
+                    alignment: Alignment.bottomRight,
+                    height: 110,
+                    width: 110,
+                    child: FlareActor('assets/images/switch_daytime.flr',
+                        alignment: Alignment.bottomRight,
+                        fit: BoxFit.contain,
+                        animation: _boolCheck ? "day_idle" : "night_idle"),
+                  ),
+                )
               ],
             ),
           ),
         ),
-        
       ]),
     );
   }

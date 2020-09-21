@@ -33,6 +33,7 @@ class _TaskScreenState extends State<TaskScreen> {
     final data = Provider.of<TasksProv>(context);
 
     return Scaffold(
+      // backgroundColor: Colors.blue[50],
         body: Column(
       children: [
         Expanded(
