@@ -1,5 +1,7 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zfr_inventory_app/provider/other/auth.dart';
 
 import '../screens/setting_screen.dart';
 
@@ -112,13 +114,23 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               children: [
                 drawerList('Settings', Icons.settings, SettingScreen.routeName),
                 Divider(
-                  height: 15,
+                  height: 10,
                 ),
-                drawerList(
-                    'Logout', Icons.settings_power, SettingScreen.routeName),
-                Divider(
-                  height: 15,
+                Consumer<Auth>(
+                  builder: (context, auth, _) => ListTile(
+                    onTap: auth.logout,
+                    leading: Icon(
+                      Icons.settings_power,
+                      size: 60,
+                      color: Colors.black,
+                    ),
+                    title: Text(
+                      'Logout',
+                      style: TextStyle(fontSize: 25),
+                    ),
+                  ),
                 ),
+              
                 GestureDetector(
                   onTap: () {
                     setState(() {

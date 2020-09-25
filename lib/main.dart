@@ -1,9 +1,13 @@
 import 'package:zfr_inventory_app/provider/other/budget.dart';
 import 'package:zfr_inventory_app/provider/other/tasks.dart';
-import 'package:zfr_inventory_app/screens/splash_screen.dart';
 
 import 'main_imports.dart';
+import 'provider/other/auth.dart';
 import 'provider/other/provider_model.dart';
+import 'screens/login_screen.dart';
+import 'screens/splash1.dart';
+import 'screens/splash_screen.dart';
+import 'screens/tab_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,52 +17,104 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<TasksProv>(create: (_) => TasksProv()),
-        ChangeNotifierProvider<ProviderModel>(create: (_) => ProviderModel()),
-        ChangeNotifierProvider<SteeringProvider>(
-            create: (_) => SteeringProvider()),
-        ChangeNotifierProvider<SuspensionProvider>(
-            create: (_) => SuspensionProvider()),
-        ChangeNotifierProvider<ExhaustProvider>(
-            create: (_) => ExhaustProvider()),
-        ChangeNotifierProvider<CoolingProvider>(
-            create: (_) => CoolingProvider()),
-        ChangeNotifierProvider<DriveTrainProvider>(
-            create: (_) => DriveTrainProvider()),
-        ChangeNotifierProvider<IntakeProvider>(create: (_) => IntakeProvider()),
-        ChangeNotifierProvider<BrakesProvider>(create: (_) => BrakesProvider()),
-        ChangeNotifierProvider<ElectronicsProvider>(
-            create: (_) => ElectronicsProvider()),
-        ChangeNotifierProvider<ChassisProvider>(
-            create: (_) => ChassisProvider()),
-        ChangeNotifierProvider<MiscellaneousProvider>(
-            create: (_) => MiscellaneousProvider()),
-        ChangeNotifierProvider<BudgetProv>(create: (_) => BudgetProv())
-      ],
-      child: MaterialApp( theme: ThemeData(fontFamily: 'Lato'),
-        home: Splash(),
-        debugShowCheckedModeBanner: false,
-        routes: {
-          DepartmentScreen.routeName: (contex) => DepartmentScreen(),
-          SettingScreen.routeName: (contex) => SettingScreen(),
-          SteeringItemListScreen.routeName: (contex) =>
-              SteeringItemListScreen(),
-          SuspensionItemListScreen.routeName: (contex) =>
-              SuspensionItemListScreen(),
-          ExhaustItemListScreen.routeName: (contex) => ExhaustItemListScreen(),
-          CoolingItemListScreen.routeName: (contex) => CoolingItemListScreen(),
-          IntakeItemListScreen.routeName: (contex) => IntakeItemListScreen(),
-          BrakesItemListScreen.routeName: (contex) => BrakesItemListScreen(),
-          ElectronicsItemListScreen.routeName: (contex) =>
-              ElectronicsItemListScreen(),
-          MiscellaneousItemListScreen.routeName: (contex) =>
-              MiscellaneousItemListScreen(),
-          ChassisItemListScreen.routeName: (contex) => ChassisItemListScreen(),
-          DriveTrainItemListScreen.routeName: (contex) =>
-              DriveTrainItemListScreen(),
-        },
-      ),
-    );
+        providers: [
+          ChangeNotifierProvider<Auth>(create: (_) => Auth()),
+//  ChangeNotifierProxyProvider<Auth, Order>(
+//             create: null,
+//             update: (context, auth, oldOrder) => Order(auth.token, auth.userId,
+//                 oldOrder == null ? [] : oldOrder.items)),
+ ChangeNotifierProxyProvider<Auth, SuspensionProvider>(
+            create: null,
+            update: (context, auth, oldItems) => SuspensionProvider(auth.token,
+                oldItems == null ? [] : oldItems.items)),
+                ChangeNotifierProxyProvider<Auth, SteeringProvider>(
+            create: null,
+            update: (context, auth, oldItems) => SteeringProvider(auth.token,
+                oldItems == null ? [] : oldItems.items)),
+                ChangeNotifierProxyProvider<Auth, ExhaustProvider>(
+            create: null,
+            update: (context, auth, oldItems) => ExhaustProvider(auth.token,
+                oldItems == null ? [] : oldItems.items)),
+                ChangeNotifierProxyProvider<Auth, CoolingProvider>(
+            create: null,
+            update: (context, auth, oldItems) => CoolingProvider(auth.token,
+                oldItems == null ? [] : oldItems.items)),
+                ChangeNotifierProxyProvider<Auth, DriveTrainProvider>(
+            create: null,
+            update: (context, auth, oldItems) => DriveTrainProvider(auth.token,
+                oldItems == null ? [] : oldItems.items)),
+                ChangeNotifierProxyProvider<Auth, IntakeProvider>(
+            create: null,
+            update: (context, auth, oldItems) => IntakeProvider(auth.token,
+                oldItems == null ? [] : oldItems.items)),
+                ChangeNotifierProxyProvider<Auth, BrakesProvider>(
+            create: null,
+            update: (context, auth, oldItems) => BrakesProvider(auth.token,
+                oldItems == null ? [] : oldItems.items)),
+                 ChangeNotifierProxyProvider<Auth, ElectronicsProvider>(
+            create: null,
+            update: (context, auth, oldItems) => ElectronicsProvider(auth.token,
+                oldItems == null ? [] : oldItems.items)),
+                 ChangeNotifierProxyProvider<Auth, ChassisProvider>(
+            create: null,
+            update: (context, auth, oldItems) => ChassisProvider(auth.token,
+                oldItems == null ? [] : oldItems.items)),
+                ChangeNotifierProxyProvider<Auth, MiscellaneousProvider>(
+            create: null,
+            update: (context, auth, oldItems) => MiscellaneousProvider(auth.token,
+                oldItems == null ? [] : oldItems.items)),
+                ChangeNotifierProxyProvider<Auth, TasksProv>(
+            create: null,
+            update: (context, auth, oldTasks) => TasksProv(auth.token,
+                oldTasks == null ? [] : oldTasks.tasks)),
+                 ChangeNotifierProxyProvider<Auth, BudgetProv>(
+            create: null,
+            update: (context, auth, oldBudget) => BudgetProv(auth.token,
+                oldBudget == null ? {2: 0.0, 3: 0.0, 4: 0.0, 5: 0.0, 6: 0.0, 7: 0.0} : oldBudget.budgets)),
+                 ChangeNotifierProxyProvider<Auth, ProviderModel>(
+            create: null,
+            update: (context, auth, oldTasks) => ProviderModel(auth.token
+                )),
+       
+        ],
+        child: Consumer<Auth>(
+          builder: (ctx, auth, _) => MaterialApp(
+            theme: ThemeData(fontFamily: 'Lato'),
+            debugShowCheckedModeBanner: false,
+            routes: {
+              DepartmentScreen.routeName: (contex) => DepartmentScreen(),
+              SettingScreen.routeName: (contex) => SettingScreen(),
+              SteeringItemListScreen.routeName: (contex) =>
+                  SteeringItemListScreen(),
+              SuspensionItemListScreen.routeName: (contex) =>
+                  SuspensionItemListScreen(),
+              ExhaustItemListScreen.routeName: (contex) =>
+                  ExhaustItemListScreen(),
+              CoolingItemListScreen.routeName: (contex) =>
+                  CoolingItemListScreen(),
+              IntakeItemListScreen.routeName: (contex) =>
+                  IntakeItemListScreen(),
+              BrakesItemListScreen.routeName: (contex) =>
+                  BrakesItemListScreen(),
+              ElectronicsItemListScreen.routeName: (contex) =>
+                  ElectronicsItemListScreen(),
+              MiscellaneousItemListScreen.routeName: (contex) =>
+                  MiscellaneousItemListScreen(),
+              ChassisItemListScreen.routeName: (contex) =>
+                  ChassisItemListScreen(),
+              DriveTrainItemListScreen.routeName: (contex) =>
+                  DriveTrainItemListScreen(),
+            },
+            home: auth.isAuth
+                ? Splash()
+                : FutureBuilder(
+                    future: auth.tryAutoLogin(),
+                    builder: (ctx, snapshot) =>
+                        snapshot.connectionState == ConnectionState.waiting
+                            ? Splash1()
+                            : AuthScreen(),
+                  ),
+          ),
+        ));
   }
 }

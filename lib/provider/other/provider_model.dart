@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:intl/intl.dart';
@@ -7,6 +6,8 @@ import 'package:http/http.dart' as http;
 import '../../main_imports.dart';
 
 class ProviderModel with ChangeNotifier {
+ final String token;
+  ProviderModel(this.token);
   List<double> va(List<ItemModel> _items) {
     Map<String, double> mon = {
       'Jan': 0,
@@ -37,7 +38,7 @@ class ProviderModel with ChangeNotifier {
   Future<void> deleteItem(BuildContext context, String id,
       List<ItemModel> _items, String name) async {
     final url =
-        'https://zfr-inventory.firebaseio.com/department/$name/$id.json';
+        'https://zfr-inventory.firebaseio.com/department/$name/$id.json?auth=$token';
     try {
       await http.delete(url);
       // final response = await http.delete(url);
@@ -67,9 +68,9 @@ class ProviderModel with ChangeNotifier {
     _items.remove(itemToDelete);
   }
 
-  Future<void> undoDelete(BuildContext context,int index, ItemModel deletedItem,
-      List<ItemModel> _items, String name) async {
-    final url = 'https://zfr-inventory.firebaseio.com/department/$name.json';
+  Future<void> undoDelete(BuildContext context, int index,
+      ItemModel deletedItem, List<ItemModel> _items, String name) async {
+    final url = 'https://zfr-inventory.firebaseio.com/department/$name.json?auth=$token';
     try {
       final response = await http.post(url,
           body: jsonEncode({
@@ -112,7 +113,8 @@ class ProviderModel with ChangeNotifier {
                 )
               ],
             );
-          });}
+          });
+    }
   }
 
   double totalItemCost(List<ItemModel> _items) {
@@ -129,7 +131,7 @@ class ProviderModel with ChangeNotifier {
 
   Future<void> addItem(ItemModel itemModel, BuildContext context,
       List<ItemModel> _items, String name) async {
-    final url = 'https://zfr-inventory.firebaseio.com/department/$name.json';
+    final url = 'https://zfr-inventory.firebaseio.com/department/$name.json?auth=$token';
     final date = itemModel.itemDate;
     try {
       final response = await http.post(url,

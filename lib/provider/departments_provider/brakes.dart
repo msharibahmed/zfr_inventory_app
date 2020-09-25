@@ -6,33 +6,36 @@ import 'package:zfr_inventory_app/main_imports.dart';
 import '../../models/item_model.dart';
 import '../other/provider_model.dart';
 
-
 class BrakesProvider with ChangeNotifier {
+  final String token;
+  BrakesProvider(this.token,this._items);
   List<ItemModel> _items = [];
 
   List<ItemModel> get items => [..._items];
 
   List<double> get va {
-    return ProviderModel().va(_items);
+    return ProviderModel(token).va(_items);
   }
 
   Future<void> deleteItem(String id, BuildContext context) async {
-    await ProviderModel().deleteItem(context, id, _items, 'brakes');
+    await ProviderModel(token).deleteItem(context, id, _items, 'brakes');
     notifyListeners();
   }
 
-  Future<void> undoDelete(BuildContext context,int index, ItemModel deletedItem) async{
-   await ProviderModel().undoDelete(context,index, deletedItem, _items,'brakes');
+  Future<void> undoDelete(
+      BuildContext context, int index, ItemModel deletedItem) async {
+    await ProviderModel(token)
+        .undoDelete(context, index, deletedItem, _items, 'brakes');
 
     notifyListeners();
   }
 
   double get totalItemCost {
-    return ProviderModel().totalItemCost(_items);
+    return ProviderModel(token).totalItemCost(_items);
   }
 
   Future<void> addItem(ItemModel itemModel, BuildContext context) async {
-    await ProviderModel().addItem(itemModel, context, _items, 'brakes');
+    await ProviderModel(token).addItem(itemModel, context, _items, 'brakes');
     notifyListeners();
   }
 
@@ -43,7 +46,7 @@ class BrakesProvider with ChangeNotifier {
   // }
 
   Future<void> fetchItems(BuildContext context) async {
-    const url = 'https://zfr-inventory.firebaseio.com/department/brakes.json';
+    final url = 'https://zfr-inventory.firebaseio.com/department/brakes.json?auth=$token';
     try {
       final response = await http.get(url);
       final getResponse = (jsonDecode(response.body)) as Map<String, dynamic>;
@@ -82,11 +85,11 @@ class BrakesProvider with ChangeNotifier {
               ],
             );
           });
-
     }
   }
+
   Future<void> fetchSplash(BuildContext context) async {
-    const url = 'https://zfr-inventory.firebaseio.com/department/brakes.json';
+    final url = 'https://zfr-inventory.firebaseio.com/department/brakes.json?auth=$token';
     try {
       final response = await http.get(url);
       final getResponse = (jsonDecode(response.body)) as Map<String, dynamic>;
@@ -125,7 +128,7 @@ class BrakesProvider with ChangeNotifier {
               ],
             );
           });
-          Navigator.pop(context);
+      Navigator.pop(context);
     }
   }
 }

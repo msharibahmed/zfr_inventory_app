@@ -11,47 +11,50 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+  Future<void> fetch ()async{
+
+      final budget = Provider.of<BudgetProv>(context, listen: false);
+    Provider.of<SteeringProvider>(context, listen: false)
+          .fetchItems(context).then((value) => Provider.of<SuspensionProvider>(context, listen: false)
+          .fetchItems(context).then((value) =>  Provider.of<ExhaustProvider>(context, listen: false)
+          .fetchItems(context).then((value) =>  Provider.of<CoolingProvider>(context, listen: false)
+          .fetchItems(context).then((value) => Provider.of<IntakeProvider>(context, listen: false)
+          .fetchItems(context).then((value) =>Provider.of<DriveTrainProvider>(context, listen: false)
+          .fetchItems(context).then((value) =>   Provider.of<BrakesProvider>(context, listen: false)
+          .fetchItems(context).then((value) => 
+      Provider.of<ChassisProvider>(context, listen: false)
+          .fetchItems(context).then((value) =>Provider.of<ElectronicsProvider>(context, listen: false)
+          .fetchItems(context).then((value) => Provider.of<MiscellaneousProvider>(context, listen: false)
+          .fetchItems(context).then((value) => budget.fetchBudget(2).then((value) =>       budget.fetchBudget(3)
+.then((value) =>      budget.fetchBudget(4)
+.then((value) =>       budget.fetchBudget(5)
+.then((value) =>     budget.fetchBudget(6)
+.then((value) =>      budget.fetchBudget(7)
+.then((value) =>      Provider.of<TasksProv>(context, listen: false).fetch(context)) ) )) )))) )) ) )))));
+  }
   @override
   Widget build(BuildContext context) {
-    final a = Provider.of<SteeringProvider>(context, listen: false);
-    final b = Provider.of<SuspensionProvider>(context, listen: false);
-    final c = Provider.of<ExhaustProvider>(context, listen: false);
-    final d = Provider.of<CoolingProvider>(context, listen: false);
-    final e = Provider.of<IntakeProvider>(context, listen: false);
-    final f = Provider.of<DriveTrainProvider>(context, listen: false);
-    final g = Provider.of<BrakesProvider>(context, listen: false);
-    final h = Provider.of<ChassisProvider>(context, listen: false);
-    final i = Provider.of<ElectronicsProvider>(context, listen: false);
-    final j = Provider.of<MiscellaneousProvider>(context, listen: false);
-    a.fetchItems(context);
-    b.fetchItems(context);
-    c.fetchItems(context);
-    d.fetchItems(context);
-    e.fetchItems(context);
-    f.fetchItems(context);
-    g.fetchItems(context);
-    h.fetchItems(context);
-    i.fetchItems(context);
-    j.fetchItems(context);
-    final budget = Provider.of<BudgetProv>(context, listen: false);
-    budget.fetchBudget(2);
-    budget.fetchBudget(3);
-    budget.fetchBudget(4);
-    budget.fetchBudget(5);
-    budget.fetchBudget(6);
-    budget.fetchBudget(7);
-    Provider.of<TasksProv>(context, listen: false).fetch(context);
-
-    return SplashScreen(
-        loadingText: Text(
-          'Z       F       R',
-          style: TextStyle(color: Colors.white, fontSize: 25),
-        ),
-        loaderColor: Colors.white,
+    return Scaffold(
         backgroundColor: Colors.black,
-        photoSize: 200,
-        seconds: 8,
-        image: Image.asset('assets/images/splash.gif'),
-        navigateAfterSeconds: TabScreen());
+        body:FutureBuilder(future:fetch() ,builder: (ctx,snapshot)=>snapshot.connectionState==ConnectionState.waiting?Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/splash.gif'),
+              SizedBox(
+                height: 100,
+              ),
+              Text(
+                'Z       F       R',
+                style: TextStyle(color: Colors.white, fontSize: 25),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              CircularProgressIndicator()
+            ],
+          ),
+        ):TabScreen()) 
+        );
   }
 }

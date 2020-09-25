@@ -16,6 +16,8 @@ class TaskModel {
 
 class TasksProv with ChangeNotifier {
   List<TaskModel> _tasks = [];
+  final String token;
+  TasksProv(this.token,this._tasks);
 
   List<TaskModel> get tasks {
     return [..._tasks];
@@ -41,7 +43,7 @@ class TasksProv with ChangeNotifier {
   }
 
   Future<void> checkChange(String id, BuildContext context) async {
-    final url = 'https://zfr-inventory.firebaseio.com/task/$id.json';
+    final url = 'https://zfr-inventory.firebaseio.com/task/$id.json?auth=$token';
     var thatElement = _tasks.firstWhere((element) => element.id == id);
 
     try {
@@ -60,7 +62,7 @@ class TasksProv with ChangeNotifier {
   }
 
   Future<void> addTask(String text, BuildContext context) async {
-    const url = 'https://zfr-inventory.firebaseio.com/task.json';
+    final url = 'https://zfr-inventory.firebaseio.com/task.json?auth=$token';
     var date = DateTime.now();
     try {
       final response = await http.post(url,
@@ -76,7 +78,7 @@ class TasksProv with ChangeNotifier {
   }
 
   Future<void> fetch(BuildContext context) async {
-    const url = 'https://zfr-inventory.firebaseio.com/task.json';
+    final url = 'https://zfr-inventory.firebaseio.com/task.json?auth=$token';
     try {
       final response =
           jsonDecode((await http.get(url)).body) as Map<String, dynamic>;
@@ -106,10 +108,11 @@ class TasksProv with ChangeNotifier {
     var list = _tasks.where((element) => element.check == false);
     return list.length;
   }
- Future<void> dismissFunction(String id,BuildContext context)async{
-       final url = 'https://zfr-inventory.firebaseio.com/task/$id.json';
 
-     try {
+  Future<void> dismissFunction(String id, BuildContext context) async {
+    final url = 'https://zfr-inventory.firebaseio.com/task/$id.json?auth=$token';
+
+    try {
       await http.delete(url);
       // final response = await http.delete(url);
       // print(response.statusCode);
@@ -133,9 +136,7 @@ class TasksProv with ChangeNotifier {
           });
     }
 
-    TaskModel itemToDelete =
-        _tasks.firstWhere((element) => element.id == id);
+    TaskModel itemToDelete = _tasks.firstWhere((element) => element.id == id);
     _tasks.remove(itemToDelete);
-
- }
+  }
 }
