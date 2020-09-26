@@ -58,7 +58,7 @@ class _CoolingItemListScreenState extends State<CoolingItemListScreen> {
               backgroundColor: Colors.blue[900],
               label: Consumer<CoolingProvider>(
                 builder: (context, data, _) => Text(
-                    '\$' + itemData.totalItemCost.toStringAsFixed(2),
+                    '\₹' + itemData.totalItemCost.toStringAsFixed(2),
                     style: TextStyle(color: Colors.white)),
               ))
         ],

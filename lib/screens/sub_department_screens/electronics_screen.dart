@@ -59,7 +59,7 @@ class _ElectronicsItemListScreenState extends State<ElectronicsItemListScreen> {
               backgroundColor: Colors.blue[900],
               label: Consumer<ElectronicsProvider>(
                 builder: (context, data, _) => Text(
-                    '\$' + itemData.totalItemCost.toStringAsFixed(2),
+                    '\₹' + itemData.totalItemCost.toStringAsFixed(2),
                     style: TextStyle(color: Colors.white)),
               ))
         ],

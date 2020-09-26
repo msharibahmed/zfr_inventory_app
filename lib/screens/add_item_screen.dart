@@ -1,7 +1,6 @@
 import '../main_imports.dart';
 import 'package:intl/intl.dart';
 
-
 class AddItemScreen extends StatefulWidget {
   static const routeName = 'add-item-screen';
   final Function prov;
@@ -146,18 +145,18 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         textInputAction: TextInputAction.next,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                              borderSide: BorderSide(
-                                color: Colors.black,
-                              )),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                              borderSide: BorderSide(
-                                color: Colors.black,
-                              )),
-                          labelText: 'Item Name',
-                        ),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                )),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                )),
+                            labelText: 'Item Name',
+                            prefixIcon: Icon(Icons.person)),
                       ),
                       const SizedBox(
                         height: 5,
@@ -187,6 +186,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         textInputAction: TextInputAction.next,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.person),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15.0),
                               borderSide: BorderSide(
@@ -227,6 +227,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         textInputAction: TextInputAction.next,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.person),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15.0),
                               borderSide: BorderSide(

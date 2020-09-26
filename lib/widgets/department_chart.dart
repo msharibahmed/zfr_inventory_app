@@ -202,9 +202,9 @@ class _DepartmentChartState extends State<DepartmentChart> {
         margin: 15,
         getTitles: (value) {
           if (value == 0) {
-            return '\$' + '100';
+            return '\₹' + '100';
           } else if (value == 10000) {
-            return "\$" + "10000";
+            return "\₹" + "10000";
           } else {
             return '';
           }

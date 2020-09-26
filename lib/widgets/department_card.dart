@@ -124,7 +124,7 @@ class DepartmentCard extends StatelessWidget {
                       backgroundColor: Colors.blue,
                       elevation: 5,
                       shadowColor: Colors.amber,
-                      label: Text('\$' + value.total,
+                      label: Text('\₹' + value.total,
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600)),

@@ -103,7 +103,7 @@ class ItemCard extends StatelessWidget {
                             elevation: 10.0,
                             shadowColor: Colors.amber,
                             label: Text(
-                                '\$${(modelData.itemCost * modelData.itemQuantity).toStringAsFixed(2)}',
+                                '\₹${(modelData.itemCost * modelData.itemQuantity).toStringAsFixed(2)}',
                                 style: TextStyle(fontSize: 20))),
                         Spacer(),
                         Padding(

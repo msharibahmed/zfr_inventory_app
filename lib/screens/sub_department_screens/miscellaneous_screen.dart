@@ -59,7 +59,7 @@ class _MiscellaneousItemListScreenState
               backgroundColor: Colors.blue[900],
               label: Consumer<MiscellaneousProvider>(
                 builder: (context, data, _) => Text(
-                    '\$' + itemData.totalItemCost.toStringAsFixed(2),
+                    '\₹' + itemData.totalItemCost.toStringAsFixed(2),
                     style: TextStyle(color: Colors.white)),
               ))
         ],

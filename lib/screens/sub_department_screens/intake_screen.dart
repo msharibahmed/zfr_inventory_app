@@ -58,7 +58,7 @@ class _IntakeItemListScreenState extends State<IntakeItemListScreen> {
               backgroundColor: Colors.blue[900],
               label: Consumer<IntakeProvider>(
                 builder: (context, data, _) => Text(
-                    '\$' + itemData.totalItemCost.toStringAsFixed(2),
+                    '\₹' + itemData.totalItemCost.toStringAsFixed(2),
                     style: TextStyle(color: Colors.white)),
               ))
         ],

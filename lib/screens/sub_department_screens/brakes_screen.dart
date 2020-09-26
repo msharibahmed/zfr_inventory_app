@@ -57,7 +57,7 @@ class _BrakesItemListScreenState extends State<BrakesItemListScreen> {
               backgroundColor: Colors.blue[900],
               label: Consumer<BrakesProvider>(
                 builder: (context, data, _) => Text(
-                    '\$' + itemData.totalItemCost.toStringAsFixed(2),
+                    '\₹' + itemData.totalItemCost.toStringAsFixed(2),
                     style: TextStyle(color: Colors.white)),
               ))
         ],

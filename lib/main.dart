@@ -97,7 +97,7 @@ class MyApp extends StatelessWidget {
               DeveloperScreen.routeName: (contex) => DeveloperScreen(),
             },
             home: auth.isAuth
-                ? TabScreen()
+                ? Splash()
                 : FutureBuilder(
                     future: auth.tryAutoLogin(),
                     builder: (ctx, snapshot) =>

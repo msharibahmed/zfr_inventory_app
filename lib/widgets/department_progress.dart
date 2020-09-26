@@ -58,7 +58,7 @@ class DepartmentProgress extends StatelessWidget {
               children: [
                 Text(name, style: const TextStyle(color: Colors.white)),
                 Spacer(),
-                Text('Budget: \$$budget', style: TextStyle(color: Colors.white))
+                Text('Budget: \₹$budget', style: TextStyle(color: Colors.white))
               ],
             ),
           ),
