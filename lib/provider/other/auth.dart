@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:zfr_inventory_app/models/http_exception.dart';
+import '../../main_imports.dart';
+
 
 class Auth with ChangeNotifier {
   String _token;

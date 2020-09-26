@@ -1,7 +1,6 @@
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
 
-import 'package:zfr_inventory_app/main_imports.dart';
+import 'package:fl_chart/fl_chart.dart';
+import '../main_imports.dart';
 
 class LineChartSample2 extends StatefulWidget {
   @override
@@ -29,12 +28,11 @@ class _LineChartSample2State extends State<LineChartSample2> {
                   mainData(),
                 ))),
         Padding(
-          padding: const EdgeInsets.only(top:5.0),
+          padding: const EdgeInsets.only(top: 5.0),
           child: RotatedBox(
               quarterTurns: 3,
               child: Text(
-                "Cost Analysis"+"\n"+"       Monthwise",
-                
+                "Cost Analysis" + "\n" + "       Monthwise",
                 style: TextStyle(color: Colors.white, fontSize: 18),
               )),
         )

@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
 import '../main_imports.dart';
-import '../widgets/department_card.dart';
 
 class DepartmentScreen extends StatefulWidget {
   static const routeName = 'department-screen';

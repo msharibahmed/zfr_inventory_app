@@ -1,7 +1,5 @@
-import 'package:zfr_inventory_app/main_imports.dart';
+import '../main_imports.dart';
 
-import 'package:flutter/material.dart';
-import 'package:zfr_inventory_app/provider/other/budget.dart';
 
 class HomeModalSheet extends StatefulWidget {
   @override

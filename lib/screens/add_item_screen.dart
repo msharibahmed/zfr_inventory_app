@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
+import '../main_imports.dart';
 import 'package:intl/intl.dart';
 
-import '../models/item_model.dart';
-
-// import '../provider/product.dart';
 
 class AddItemScreen extends StatefulWidget {
   static const routeName = 'add-item-screen';

@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DeveloperScreen extends StatelessWidget {
-  static const routeName = 'developre-screen';
+  static const routeName = 'developer-screen';
   _launchURL(BuildContext context, String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -44,7 +44,7 @@ class DeveloperScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Card(
-              elevation: 50,
+              elevation: 30,
               shadowColor: Colors.amber,
               color: Colors.blue[100],
               child: Stack(
@@ -64,16 +64,48 @@ class DeveloperScreen extends StatelessWidget {
                         color: Colors.blue[100],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Text('Sharib Ahmed',
-                            style: GoogleFonts.anton(textStyle:TextStyle(
-                                fontSize: 25)),)
-                      ),
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Text(
+                            'Sharib Ahmed',
+                            style: GoogleFonts.anton(
+                                textStyle: TextStyle(fontSize: 25)),
+                          )),
                       Text(
                           'B.Tech  Electrical  Engineering \'22' +
                               '\n' +
                               'ZHCET, Aligarh Muslim University',
-                          style: GoogleFonts.openSans(textStyle:TextStyle(fontWeight: FontWeight.w500))),
+                          style: GoogleFonts.openSans(
+                              textStyle:
+                                  TextStyle(fontWeight: FontWeight.w500))),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40.0),
+                        child: CupertinoButton.filled(
+                          child: Text('Developer Request'),
+                          onPressed: () {
+                            showCupertinoDialog(
+                                context: context,
+                                builder: (ctx) => CupertinoAlertDialog(
+                                      actions: [
+                                        FlatButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text('Close',style:TextStyle(color: Colors.red)),
+                                        ),
+                                        FlatButton(
+                                          onPressed: () {
+                                            _launchURL(context,
+                                                'https://www.linkedin.com/in/sharib-ahmed-b3b930174/');
+                                          },
+                                          child: Text('Open Linkedin',style:TextStyle(color: Colors.blue)),
+                                        )
+                                      ],
+                                      content: Text(
+                                          'If You Like This App Then Endorse The Developer on Linked In.'),
+                                    ));
+                          },
+                        ),
+                      ),
                       Spacer(),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
@@ -101,82 +133,85 @@ class DeveloperScreen extends StatelessWidget {
                     ],
                   ),
                   Positioned(
-                    left: 18,
+                    left: 15,
                     top: 200,
-                    child: Row(children: [
-                      GestureDetector(
-                        onTap: () {
-                          _launchURL(context,
-                              'https://www.linkedin.com/in/sharib-ahmed-b3b930174/');
-                        },
-                        child: CircleAvatar(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(children: [
+                        GestureDetector(
+                          onTap: () {
+                            _launchURL(context,
+                                'https://www.linkedin.com/in/sharib-ahmed-b3b930174/');
+                          },
+                          child: CircleAvatar(
+                              child: Image.asset(
+                                'assets/images/linkedin.png',
+                                fit: BoxFit.contain,
+                              ),
+                              backgroundColor: Colors.white),
+                        ),
+                        SizedBox(
+                          width: 7,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            _launchURL(context,
+                                'https://www.instagram.com/i._.m._.sharib/');
+                          },
+                          child: CircleAvatar(
+                              child: Image.asset(
+                                'assets/images/instagram.png',
+                                fit: BoxFit.contain,
+                              ),
+                              backgroundColor: Colors.white),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Container(
+                            color: Colors.black,
                             child: Image.asset(
-                              'assets/images/linkedin.png',
+                              'assets/images/s.jpg',
                               fit: BoxFit.contain,
+                              width: 150,
+                              height: 150,
                             ),
-                            backgroundColor: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          _launchURL(context,
-                              'https://www.instagram.com/i._.m._.sharib/');
-                        },
-                        child: CircleAvatar(
-                            child: Image.asset(
-                              'assets/images/instagram.png',
-                              fit: BoxFit.contain,
-                            ),
-                            backgroundColor: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Container(
-                          color: Colors.black,
-                          child: Image.asset(
-                            'assets/images/s.jpg',
-                            fit: BoxFit.contain,
-                            width: 150,
-                            height: 150,
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          _launchURL(
-                              context, 'https://www.facebook.com/MSharib786');
-                        },
-                        child: CircleAvatar(
-                            child: Image.asset(
-                              'assets/images/facebook.png',
-                              fit: BoxFit.contain,
-                            ),
-                            backgroundColor: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          _launchURL(
-                              context, 'https://github.com/msharibahmed');
-                        },
-                        child: CircleAvatar(
-                            child: Image.asset(
-                              'assets/images/github.png',
-                              fit: BoxFit.contain,
-                            ),
-                            backgroundColor: Colors.white),
-                      ),
-                    ]),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            _launchURL(
+                                context, 'https://www.facebook.com/MSharib786');
+                          },
+                          child: CircleAvatar(
+                              child: Image.asset(
+                                'assets/images/facebook.png',
+                                fit: BoxFit.contain,
+                              ),
+                              backgroundColor: Colors.white),
+                        ),
+                        SizedBox(
+                          width: 7,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            _launchURL(
+                                context, 'https://github.com/msharibahmed');
+                          },
+                          child: CircleAvatar(
+                              child: Image.asset(
+                                'assets/images/github.png',
+                                fit: BoxFit.contain,
+                              ),
+                              backgroundColor: Colors.white),
+                        ),
+                      ]),
+                    ),
                   )
                 ],
               ),

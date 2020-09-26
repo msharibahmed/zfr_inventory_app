@@ -1,11 +1,6 @@
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:zfr_inventory_app/provider/other/auth.dart';
-import 'package:zfr_inventory_app/screens/about_screen.dart';
-import 'package:zfr_inventory_app/screens/developer_screen.dart';
+import '../main_imports.dart';
 
-import '../screens/setting_screen.dart';
 
 class DrawerWidget extends StatefulWidget {
   @override
@@ -13,22 +8,23 @@ class DrawerWidget extends StatefulWidget {
 }
 
 class _DrawerWidgetState extends State<DrawerWidget> {
-  var _boolCheck = true;
   @override
   Widget build(BuildContext context) {
-    ListTile drawerList(String title, IconData iconData, String screenName) {
+    final mode = Provider.of<ThemeProv>(context);
+    ListTile drawerList(
+        String title, IconData iconData, String screenName, Color color) {
       return ListTile(
         onTap: () {
           Navigator.pushNamed(context, screenName);
         },
         leading: Icon(
           iconData,
-          size: 60,
-          color: Colors.black,
+          size: 40,
+          color: color,
         ),
         title: Text(
           title,
-          style: TextStyle(fontSize: 25),
+          style: TextStyle(fontSize: 20),
         ),
       );
     }
@@ -92,7 +88,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         ExpansionTile(
           subtitle: Text(
             'Click to see the note!',
-            style: TextStyle(fontSize: 12),
+            style: TextStyle(fontSize: 12, color: Colors.red),
           ),
           title: Text(
             'Note from the Developer',
@@ -116,16 +112,18 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               color: Colors.blue,
               child: ListView(
                 children: [
-                  drawerList(
-                      'Settings', Icons.settings, SettingScreen.routeName),
+                  drawerList('Settings', Icons.settings,
+                      SettingScreen.routeName, Colors.brown),
                   Divider(
                     height: 10,
                   ),
-                  drawerList('About Developer', Icons.perm_contact_calendar, DeveloperScreen.routeName),
+                  drawerList('About Developer', Icons.perm_contact_calendar,
+                      DeveloperScreen.routeName, Colors.green[300]),
                   Divider(
                     height: 10,
                   ),
-                  drawerList('About Us', Icons.account_box, AboutUs.routeName),
+                  drawerList('About Us', Icons.account_box, AboutUs.routeName,
+                      Colors.amber[700]),
                   Divider(
                     height: 10,
                   ),
@@ -134,31 +132,24 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       onTap: () {
                         auth.logout();
                       },
-                      leading: Icon(
-                        Icons.settings_power,
-                        size: 60,
-                        color: Colors.black,
-                      ),
+                      leading: Icon(Icons.settings_power,
+                          size: 40, color: Colors.deepOrange),
                       title: Text(
                         'Logout',
-                        style: TextStyle(fontSize: 25),
+                        style: TextStyle(fontSize: 20),
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _boolCheck = !_boolCheck;
-                      });
-                    },
+                    onTap: mode.changeMode,
                     child: Container(
                       alignment: Alignment.bottomRight,
-                      height: 110,
-                      width: 110,
+                      height: 50,
+                      width: 50,
                       child: FlareActor('assets/images/switch_daytime.flr',
                           alignment: Alignment.bottomRight,
                           fit: BoxFit.contain,
-                          animation: _boolCheck ? "day_idle" : "night_idle"),
+                          animation: mode.mode ? "day_idle" : "night_idle"),
                     ),
                   )
                 ],

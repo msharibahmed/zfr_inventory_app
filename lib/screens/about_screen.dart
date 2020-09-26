@@ -13,7 +13,7 @@ class AboutUs extends StatelessWidget {
   }
 
   _launchURL(BuildContext context) async {
-    const url = 'hcetformularacing.com/';
+    const url = 'https://zhcetformularacing.com/';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -27,7 +27,7 @@ class AboutUs extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text('OKAY', style: TextStyle(color: Colors.black)),
+                    child: Text('Close', style: TextStyle(color: Colors.red)),
                   )
                 ],
               ));
@@ -74,7 +74,7 @@ class AboutUs extends StatelessWidget {
                         enableInfiniteScroll: true,
                         reverse: false,
                         autoPlay: true,
-                        autoPlayInterval: Duration(seconds: 3),
+                        autoPlayInterval: Duration(seconds: 2),
                         autoPlayAnimationDuration: Duration(milliseconds: 800),
                         autoPlayCurve: Curves.fastOutSlowIn,
                         enlargeCenterPage: true,

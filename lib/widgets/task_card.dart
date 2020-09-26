@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:zfr_inventory_app/provider/other/auth.dart';
-import 'package:zfr_inventory_app/provider/other/tasks.dart';
-
 import '../main_imports.dart';
 
 class TaskCard extends StatelessWidget {

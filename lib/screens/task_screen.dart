@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:zfr_inventory_app/main_imports.dart';
-import 'package:zfr_inventory_app/provider/other/auth.dart';
-import 'package:zfr_inventory_app/provider/other/tasks.dart';
-import 'package:zfr_inventory_app/widgets/task_card.dart';
+import '../main_imports.dart';
 
 class TaskScreen extends StatefulWidget {
   @override
@@ -19,9 +15,9 @@ class _TaskScreenState extends State<TaskScreen> {
     super.dispose();
   }
 
-  Future<void> fetch() async {
-    // await Provider.of<TasksProv>(context, listen: false).fetch(context);
-  }
+  // Future<void> fetch() async {
+  //   // await Provider.of<TasksProv>(context, listen: false).fetch(context);
+  // }
 
   var _boolcheck1 = true;
   @override
@@ -34,12 +30,7 @@ class _TaskScreenState extends State<TaskScreen> {
     return Scaffold(
         // backgroundColor: Colors.blue[50],
 
-        body: FutureBuilder(
-            future: fetch(),
-            builder: (ctx, snapshot) => snapshot.connectionState ==
-                    ConnectionState.waiting
-                ? Center(child: CircularProgressIndicator())
-                : Column(
+        body: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                      data.tasks.length==0? Center(
@@ -129,6 +120,6 @@ class _TaskScreenState extends State<TaskScreen> {
                         ],
                       )
                     ],
-                  )));
+                  ));
   }
 }

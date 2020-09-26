@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:zfr_inventory_app/main_imports.dart';
-import 'package:zfr_inventory_app/provider/other/budget.dart';
-import 'package:zfr_inventory_app/provider/other/tasks.dart';
-import 'package:zfr_inventory_app/screens/tab_screen.dart';
+import '../main_imports.dart';
 
 class Splash extends StatefulWidget {
   @override

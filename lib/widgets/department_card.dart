@@ -1,26 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:zfr_inventory_app/screens/sub_department_screens/brakes_screen.dart';
-import 'package:zfr_inventory_app/screens/sub_department_screens/chassis_screen.dart';
-import 'package:zfr_inventory_app/screens/sub_department_screens/cooling_screen.dart';
-import 'package:zfr_inventory_app/screens/sub_department_screens/drive_train_screen.dart';
-import 'package:zfr_inventory_app/screens/sub_department_screens/electronics_screen.dart';
-import 'package:zfr_inventory_app/screens/sub_department_screens/exhaust_screen.dart';
-import 'package:zfr_inventory_app/screens/sub_department_screens/intake_screen.dart';
-import 'package:zfr_inventory_app/screens/sub_department_screens/miscellaneous_screen.dart';
-import 'package:zfr_inventory_app/screens/sub_department_screens/suspension_screen.dart';
+import '../main_imports.dart';
 
-import '../provider/departments_provider/brakes.dart';
-import '../provider/departments_provider/chassis.dart';
-import '../provider/departments_provider/cooling.dart';
-import '../provider/departments_provider/drive_train.dart';
-import '../provider/departments_provider/electronics.dart';
-import '../provider/departments_provider/exhaust.dart';
-import '../provider/departments_provider/intake.dart';
-import '../provider/departments_provider/miscellaneous.dart';
-import '../provider/departments_provider/steering.dart';
-import '../provider/departments_provider/suspension.dart';
-import '../screens/sub_department_screens/steering_screen.dart.dart';
 
 class DepartmentCard extends StatelessWidget {
   final int index;

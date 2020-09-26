@@ -1,11 +1,5 @@
 import 'package:backdrop/backdrop.dart';
-import 'package:flutter/material.dart';
-import 'package:zfr_inventory_app/main_imports.dart';
-import 'package:zfr_inventory_app/provider/other/tasks.dart';
-import 'package:zfr_inventory_app/widgets/badge_widget.dart';
-import 'package:zfr_inventory_app/widgets/drawer_widget.dart';
-
-import 'task_screen.dart';
+import '../main_imports.dart';
 
 class TabScreen extends StatefulWidget {
   @override

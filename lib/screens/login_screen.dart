@@ -1,12 +1,9 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:zfr_inventory_app/models/http_exception.dart';
-import 'package:zfr_inventory_app/provider/other/auth.dart';
-// import 'package:world_mart/models/http_exception.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../main_imports.dart';
 
-enum AuthMode { Signup, Login }
+
 
 class AuthScreen extends StatefulWidget {
   static const routeName = '/auth';
@@ -178,7 +175,9 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: SingleChildScrollView(
                           child: Column(
                             children: <Widget>[
-                              SizedBox(height: 15,),
+                              SizedBox(
+                                height: 15,
+                              ),
                               TextFormField(
                                 focusNode: _fnum,
                                 initialValue: '@zfr.com',
@@ -207,8 +206,10 @@ class _AuthScreenState extends State<AuthScreen> {
                                 onSaved: (value) {
                                   _authData['email'] = value;
                                 },
-                              ),                              SizedBox(height: 15,),
-
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
                               TextFormField(
                                 focusNode: _pass,
                                 decoration: InputDecoration(
@@ -245,7 +246,10 @@ class _AuthScreenState extends State<AuthScreen> {
                               else
                                 RaisedButton(
                                   child: Text('LOGIN'),
-                                  onPressed: _submit,
+                                  onPressed: () {
+                                    FocusScope.of(context).unfocus();
+                                    _submit();
+                                  },
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30),
                                   ),
@@ -269,7 +273,10 @@ class _AuthScreenState extends State<AuthScreen> {
                 height: 10,
               ),
               OutlineButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _launchURL(context,
+                        'mailto:msharibahmed@gmail.com?subject=Regarding%20a%20new%20email%20request&body=Please%20write%your%20Faculty%20Number%20and%20Name.');
+                  },
                   child: Text('Request E-mail',
                       style: TextStyle(
                         color: Colors.black,
@@ -279,5 +286,26 @@ class _AuthScreenState extends State<AuthScreen> {
         ],
       ),
     );
+  }
+
+  _launchURL(BuildContext context, String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      await showCupertinoDialog(
+          context: context,
+          builder: (ctx) => CupertinoAlertDialog(
+                title: Text('Error Occured!'),
+                content: Text('Couln\'t send mail'),
+                actions: [
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('OKAY', style: TextStyle(color: Colors.black)),
+                  )
+                ],
+              ));
+    }
   }
 }

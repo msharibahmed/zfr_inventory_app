@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:zfr_inventory_app/main_imports.dart';
+import '../main_imports.dart';
 
 class DepartmentChart extends StatefulWidget {
   @override

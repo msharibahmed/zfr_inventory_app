@@ -1,10 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
-import 'package:zfr_inventory_app/main_imports.dart';
+import '../../main_imports.dart';
 
-import '../../models/item_model.dart';
-import '../other/provider_model.dart';
 
 class BrakesProvider with ChangeNotifier {
   final String token;
