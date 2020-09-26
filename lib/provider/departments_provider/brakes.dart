@@ -2,10 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../main_imports.dart';
 
-
 class BrakesProvider with ChangeNotifier {
   final String token;
-  BrakesProvider(this.token,this._items);
+  BrakesProvider(this.token, this._items);
   List<ItemModel> _items = [];
 
   List<ItemModel> get items => [..._items];
@@ -36,14 +35,9 @@ class BrakesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // Future<void> fetchItems(BuildContext context) async {
-  //   await ProviderModel().fetchItems(context, _items, 'brakes');
-  //   notifyListeners();
-
-  // }
-
   Future<void> fetchItems(BuildContext context) async {
-    final url = 'https://zfr-inventory.firebaseio.com/department/brakes.json?auth=$token';
+    final url =
+        'https://zfr-inventory.firebaseio.com/department/brakes.json?auth=$token';
     try {
       final response = await http.get(url);
       final getResponse = (jsonDecode(response.body)) as Map<String, dynamic>;
@@ -86,7 +80,8 @@ class BrakesProvider with ChangeNotifier {
   }
 
   Future<void> fetchSplash(BuildContext context) async {
-    final url = 'https://zfr-inventory.firebaseio.com/department/brakes.json?auth=$token';
+    final url =
+        'https://zfr-inventory.firebaseio.com/department/brakes.json?auth=$token';
     try {
       final response = await http.get(url);
       final getResponse = (jsonDecode(response.body)) as Map<String, dynamic>;

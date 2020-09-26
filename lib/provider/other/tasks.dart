@@ -17,7 +17,7 @@ class TaskModel {
 class TasksProv with ChangeNotifier {
   List<TaskModel> _tasks = [];
   final String token;
-  TasksProv(this.token,this._tasks);
+  TasksProv(this.token, this._tasks);
 
   List<TaskModel> get tasks {
     return [..._tasks];
@@ -43,7 +43,8 @@ class TasksProv with ChangeNotifier {
   }
 
   Future<void> checkChange(String id, BuildContext context) async {
-    final url = 'https://zfr-inventory.firebaseio.com/task/$id.json?auth=$token';
+    final url =
+        'https://zfr-inventory.firebaseio.com/task/$id.json?auth=$token';
     var thatElement = _tasks.firstWhere((element) => element.id == id);
 
     try {
@@ -110,7 +111,8 @@ class TasksProv with ChangeNotifier {
   }
 
   Future<void> dismissFunction(String id, BuildContext context) async {
-    final url = 'https://zfr-inventory.firebaseio.com/task/$id.json?auth=$token';
+    final url =
+        'https://zfr-inventory.firebaseio.com/task/$id.json?auth=$token';
 
     try {
       await http.delete(url);

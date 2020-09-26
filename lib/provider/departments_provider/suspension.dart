@@ -2,10 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../main_imports.dart';
 
-
 class SuspensionProvider with ChangeNotifier {
   final String token;
-  SuspensionProvider(this.token,this._items);
+  SuspensionProvider(this.token, this._items);
   List<ItemModel> _items = [];
   List<ItemModel> get items => [..._items];
   List<double> get va {
@@ -30,7 +29,8 @@ class SuspensionProvider with ChangeNotifier {
   }
 
   Future<void> addItem(ItemModel itemModel, BuildContext context) async {
-    await ProviderModel(token).addItem(itemModel, context, _items, 'suspension');
+    await ProviderModel(token)
+        .addItem(itemModel, context, _items, 'suspension');
     notifyListeners();
   }
 
@@ -40,7 +40,7 @@ class SuspensionProvider with ChangeNotifier {
     try {
       final response = await http.get(url);
       final getResponse = (jsonDecode(response.body)) as Map<String, dynamic>;
-     
+
       final List<ItemModel> temp = [];
       if (getResponse != null) {
         getResponse.forEach((itemId, item) {

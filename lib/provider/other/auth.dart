@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../main_imports.dart';
 
-
 class Auth with ChangeNotifier {
   String _token;
   String _email;

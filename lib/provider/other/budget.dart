@@ -5,13 +5,14 @@ import 'dart:convert';
 class BudgetProv with ChangeNotifier {
   Map<int, double> _budgets = {2: 0.0, 3: 0.0, 4: 0.0, 5: 0.0, 6: 0.0, 7: 0.0};
   final String token;
-  BudgetProv(this.token,this._budgets);
+  BudgetProv(this.token, this._budgets);
   Map<int, double> get budgets {
     return {..._budgets};
   }
 
   Future<void> addBudget(int id, double budget, BuildContext context) async {
-    final url = 'https://zfr-inventory.firebaseio.com/budget/$id.json?auth=$token';
+    final url =
+        'https://zfr-inventory.firebaseio.com/budget/$id.json?auth=$token';
 
     try {
       await http.delete(url);
@@ -45,7 +46,8 @@ class BudgetProv with ChangeNotifier {
   }
 
   Future<void> fetchBudget(int id) async {
-    final url = 'https://zfr-inventory.firebaseio.com/budget/$id.json?auth=$token';
+    final url =
+        'https://zfr-inventory.firebaseio.com/budget/$id.json?auth=$token';
     try {
       final response = await http.get(url);
 

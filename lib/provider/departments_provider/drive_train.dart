@@ -2,10 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../main_imports.dart';
 
-
 class DriveTrainProvider with ChangeNotifier {
   final String token;
-  DriveTrainProvider(this.token,this._items);
+  DriveTrainProvider(this.token, this._items);
   List<ItemModel> _items = [];
   List<ItemModel> get items => [..._items];
 
@@ -18,8 +17,10 @@ class DriveTrainProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> undoDelete(BuildContext context,int index, ItemModel deletedItem) async{
-   await ProviderModel(token).undoDelete(context,index, deletedItem, _items,'driveTrain');
+  Future<void> undoDelete(
+      BuildContext context, int index, ItemModel deletedItem) async {
+    await ProviderModel(token)
+        .undoDelete(context, index, deletedItem, _items, 'driveTrain');
 
     notifyListeners();
   }
@@ -29,33 +30,33 @@ class DriveTrainProvider with ChangeNotifier {
   }
 
   Future<void> addItem(ItemModel itemModel, BuildContext context) async {
-    await ProviderModel(token).addItem(itemModel, context, _items, 'driveTrain');
+    await ProviderModel(token)
+        .addItem(itemModel, context, _items, 'driveTrain');
     notifyListeners();
   }
 
-
   Future<void> fetchItems(BuildContext context) async {
-    final url = 'https://zfr-inventory.firebaseio.com/department/driveTrain.json?auth=$token';
+    final url =
+        'https://zfr-inventory.firebaseio.com/department/driveTrain.json?auth=$token';
     try {
       final response = await http.get(url);
       final getResponse = (jsonDecode(response.body)) as Map<String, dynamic>;
       final List<ItemModel> temp = [];
-       if(getResponse!=null){
-        
-      getResponse.forEach((itemId, item) {
-        temp.add(ItemModel(
-            itemId: itemId,
-            itemName: item['itemName'],
-            itemBuyer: item['itemBuyer'],
-            itemDate: DateTime.parse(item['itemDate']),
-            itemDescription: item['itemDescription'],
-            itemQuantity: item['itemQuantity'],
-            itemVendor: item['itemVendor'],
-            itemCost: item['itemCost']));
-      });
+      if (getResponse != null) {
+        getResponse.forEach((itemId, item) {
+          temp.add(ItemModel(
+              itemId: itemId,
+              itemName: item['itemName'],
+              itemBuyer: item['itemBuyer'],
+              itemDate: DateTime.parse(item['itemDate']),
+              itemDescription: item['itemDescription'],
+              itemQuantity: item['itemQuantity'],
+              itemVendor: item['itemVendor'],
+              itemCost: item['itemCost']));
+        });
 
-      _items = temp;
-      notifyListeners();
+        _items = temp;
+        notifyListeners();
       }
     } catch (error) {
       print(error);

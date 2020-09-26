@@ -2,13 +2,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../main_imports.dart';
 
-
 class IntakeProvider with ChangeNotifier {
   final String token;
-  IntakeProvider(this.token,this._items);
+  IntakeProvider(this.token, this._items);
   List<ItemModel> _items = [];
   List<ItemModel> get items => [..._items];
- 
+
   List<double> get va {
     return ProviderModel(token).va(_items);
   }
@@ -18,8 +17,10 @@ class IntakeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> undoDelete(BuildContext context,int index, ItemModel deletedItem) async{
-   await ProviderModel(token).undoDelete(context,index, deletedItem, _items,'intake');
+  Future<void> undoDelete(
+      BuildContext context, int index, ItemModel deletedItem) async {
+    await ProviderModel(token)
+        .undoDelete(context, index, deletedItem, _items, 'intake');
 
     notifyListeners();
   }
@@ -34,27 +35,27 @@ class IntakeProvider with ChangeNotifier {
   }
 
   Future<void> fetchItems(BuildContext context) async {
-    final url = 'https://zfr-inventory.firebaseio.com/department/intake.json?auth=$token';
+    final url =
+        'https://zfr-inventory.firebaseio.com/department/intake.json?auth=$token';
     try {
       final response = await http.get(url);
       final getResponse = (jsonDecode(response.body)) as Map<String, dynamic>;
       final List<ItemModel> temp = [];
-       if(getResponse!=null){
-        
-      getResponse.forEach((itemId, item) {
-        temp.add(ItemModel(
-            itemId: itemId,
-            itemName: item['itemName'],
-            itemBuyer: item['itemBuyer'],
-            itemDate: DateTime.parse(item['itemDate']),
-            itemDescription: item['itemDescription'],
-            itemQuantity: item['itemQuantity'],
-            itemVendor: item['itemVendor'],
-            itemCost: item['itemCost']));
-      });
+      if (getResponse != null) {
+        getResponse.forEach((itemId, item) {
+          temp.add(ItemModel(
+              itemId: itemId,
+              itemName: item['itemName'],
+              itemBuyer: item['itemBuyer'],
+              itemDate: DateTime.parse(item['itemDate']),
+              itemDescription: item['itemDescription'],
+              itemQuantity: item['itemQuantity'],
+              itemVendor: item['itemVendor'],
+              itemCost: item['itemCost']));
+        });
 
-      _items = temp;
-      notifyListeners();
+        _items = temp;
+        notifyListeners();
       }
     } catch (error) {
       print(error);

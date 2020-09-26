@@ -2,10 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../main_imports.dart';
 
-
 class MiscellaneousProvider with ChangeNotifier {
   final String token;
-  MiscellaneousProvider(this.token,this._items);
+  MiscellaneousProvider(this.token, this._items);
   List<ItemModel> _items = [];
   List<ItemModel> get items => [..._items];
 
@@ -31,7 +30,8 @@ class MiscellaneousProvider with ChangeNotifier {
   }
 
   Future<void> addItem(ItemModel itemModel, BuildContext context) async {
-    await ProviderModel(token).addItem(itemModel, context, _items, 'miscellaneous');
+    await ProviderModel(token)
+        .addItem(itemModel, context, _items, 'miscellaneous');
     notifyListeners();
   }
 
