@@ -1,6 +1,5 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:zfr_inventory_app/provider/other/auth.dart';
 import 'package:zfr_inventory_app/screens/about_screen.dart';
@@ -122,7 +121,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   Divider(
                     height: 10,
                   ),
-                  drawerList('About Developer', FlutterIcons.account_box_outline_mco,DeveloperScreen.routeName),
+                  drawerList('About Developer', Icons.perm_contact_calendar, DeveloperScreen.routeName),
                   Divider(
                     height: 10,
                   ),

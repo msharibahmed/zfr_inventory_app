@@ -12,7 +12,7 @@ class BudgetProv with ChangeNotifier {
   }
 
   Future<void> addBudget(int id, double budget, BuildContext context) async {
-    final url = 'https://zfr-inventory.firebaseio.com/budget/$id.json';
+    final url = 'https://zfr-inventory.firebaseio.com/budget/$id.json?auth=$token';
 
     try {
       await http.delete(url);
