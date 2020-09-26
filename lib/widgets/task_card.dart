@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:zfr_inventory_app/provider/other/auth.dart';
 import 'package:zfr_inventory_app/provider/other/tasks.dart';
 
 import '../main_imports.dart';
@@ -10,8 +11,9 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<TasksProv>(context);
+    final auth = Provider.of<Auth>(context,listen: false);
 
-    return Dismissible(
+    return auth.userId=='kknzmBDLNzVhZffDtibSBwuGvGe2'? Dismissible(
       key: ValueKey(data.tasks[index].id),
        onDismissed: (direction) async {
         await data.dismissFunction(data.tasks[index].id,context);
@@ -32,30 +34,46 @@ class TaskCard extends StatelessWidget {
             child: Icon(Icons.delete, size: 30),
           ),
           alignment: Alignment.centerRight),
-      child: Card(
-        color: Colors.blue[50],
-        elevation: 5,
-        child: CheckboxListTile(
-            title: Text(
-              data.tasks[index].text,
+      child: TaskCard1(data: data, index: index),
+    ):TaskCard1(data: data, index: index);
+  }
+}
+
+class TaskCard1 extends StatelessWidget {
+  const TaskCard1({
+    Key key,
+    @required this.data,
+    @required this.index,
+  }) : super(key: key);
+
+  final TasksProv data;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.blue[50],
+      elevation: 5,
+      child: CheckboxListTile(
+          title: Text(
+            data.tasks[index].text,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                decoration: data.tasks[index].check
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none),
+          ),
+          value: data.tasks[index].check,
+          subtitle: Text(
+              DateFormat('dd MMM').format(data.tasks[index].time) +
+                  ',' +
+                  DateFormat('jm').format(data.tasks[index].time),
               style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  decoration: data.tasks[index].check
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none),
-            ),
-            value: data.tasks[index].check,
-            subtitle: Text(
-                DateFormat('dd MMM').format(data.tasks[index].time) +
-                    ',' +
-                    DateFormat('jm').format(data.tasks[index].time),
-                style: TextStyle(
-                  fontSize: 11,
-                )),
-            onChanged: (_) {
-              data.checkChange(data.tasks[index].id, context);
-            }),
-      ),
+                fontSize: 11,
+              )),
+          onChanged: (_) {
+            data.checkChange(data.tasks[index].id, context);
+          }),
     );
   }
 }

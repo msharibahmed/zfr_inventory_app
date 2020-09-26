@@ -4,10 +4,10 @@ import 'package:zfr_inventory_app/provider/other/tasks.dart';
 import 'main_imports.dart';
 import 'provider/other/auth.dart';
 import 'provider/other/provider_model.dart';
+import 'screens/about_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/splash1.dart';
 import 'screens/splash_screen.dart';
-import 'screens/tab_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -106,7 +106,7 @@ class MyApp extends StatelessWidget {
                   DriveTrainItemListScreen(),
             },
             home: auth.isAuth
-                ? Splash()
+                ? AboutUs()
                 : FutureBuilder(
                     future: auth.tryAutoLogin(),
                     builder: (ctx, snapshot) =>

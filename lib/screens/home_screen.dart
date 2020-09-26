@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:zfr_inventory_app/provider/other/budget.dart';
-import 'package:zfr_inventory_app/provider/other/tasks.dart';
 import 'package:zfr_inventory_app/widgets/department_progress.dart';
 import '../main_imports.dart';
 
@@ -19,55 +17,62 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var _boolCheck1 = true;
-  var _boolCheck2 = true;
-  // bool button = false;
-  @override
-  void didChangeDependencies() {
-   
-    if (_boolCheck1) {
-      
-
+  Future<void> fetch() async {
       final budget = Provider.of<BudgetProv>(context, listen: false);
-    Provider.of<SteeringProvider>(context, listen: false)
-          .fetchItems(context).then((value) => Provider.of<SuspensionProvider>(context, listen: false)
-          .fetchItems(context).then((value) =>  Provider.of<ExhaustProvider>(context, listen: false)
-          .fetchItems(context).then((value) =>  Provider.of<CoolingProvider>(context, listen: false)
-          .fetchItems(context).then((value) => Provider.of<IntakeProvider>(context, listen: false)
-          .fetchItems(context).then((value) =>Provider.of<DriveTrainProvider>(context, listen: false)
-          .fetchItems(context).then((value) =>   Provider.of<BrakesProvider>(context, listen: false)
-          .fetchItems(context).then((value) => 
-      Provider.of<ChassisProvider>(context, listen: false)
-          .fetchItems(context).then((value) =>Provider.of<ElectronicsProvider>(context, listen: false)
-          .fetchItems(context).then((value) => Provider.of<MiscellaneousProvider>(context, listen: false)
-          .fetchItems(context).then((value) => budget.fetchBudget(2).then((value) =>       budget.fetchBudget(3)
-.then((value) =>      budget.fetchBudget(4)
-.then((value) =>       budget.fetchBudget(5)
-.then((value) =>     budget.fetchBudget(6)
-.then((value) =>      budget.fetchBudget(7)
-.then((value) =>      Provider.of<TasksProv>(context, listen: false).fetch(context).then((value) { setState(() {
-        _boolCheck2 = false;
-      });} )) ) )) )))) )) ) )))));
-       
-    
-      
-  
-    
-     
+      await Provider.of<SteeringProvider>(context, listen: false)
+          .fetchItems(context);
+      await Provider.of<SuspensionProvider>(context, listen: false)
+          .fetchItems(context);
+      await Provider.of<ExhaustProvider>(context, listen: false)
+          .fetchItems(context);
+      await Provider.of<CoolingProvider>(context, listen: false)
+          .fetchItems(context);
+      await Provider.of<IntakeProvider>(context, listen: false)
+          .fetchItems(context);
+      await Provider.of<DriveTrainProvider>(context, listen: false)
+          .fetchItems(context);
+      await Provider.of<BrakesProvider>(context, listen: false)
+          .fetchItems(context);
+      await Provider.of<ChassisProvider>(context, listen: false)
+          .fetchItems(context);
+      await Provider.of<ElectronicsProvider>(context, listen: false)
+          .fetchItems(context);
+      await Provider.of<MiscellaneousProvider>(context, listen: false)
+          .fetchItems(context);
+
+      await budget.fetchBudget(2);
+      await budget.fetchBudget(3);
+      await budget.fetchBudget(4);
+      await budget.fetchBudget(5);
+      await budget.fetchBudget(6);
+      await budget.fetchBudget(7);
     }
-    _boolCheck1 = false;
-    super.didChangeDependencies();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:_boolCheck2?Center(child: CircularProgressIndicator()):Column(
-        children: [
-          widget.button ? DepartmentChart() : LineChartSample2(),
-          DepartmentProgress()
-        ],
-      ),
-    );
+        body:Column(
+                  children: [
+                    widget.button ? DepartmentChart() : LineChartSample2(),
+                    DepartmentProgress()
+                  ],
+                ));
   }
 }
+//  FutureBuilder(
+//             future: fetch(),
+//             builder: (ctx, snap) {
+//               if (snap.connectionState == ConnectionState.done) {
+//                 return Column(
+//                   children: [
+//                     widget.button ? DepartmentChart() : LineChartSample2(),
+//                     DepartmentProgress()
+//                   ],
+//                 );
+//               } else {
+//                 return Center(
+//                   child: CircularProgressIndicator(),
+//                 );
+//               }
+//             })

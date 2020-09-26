@@ -60,8 +60,8 @@ class _AuthScreenState extends State<AuthScreen> {
   };
   var _isLoading = false;
   final _passwordController = TextEditingController();
-  void _error(String message)async {
-   await showDialog(
+  void _error(String message) async {
+    await showDialog(
         context: context,
         builder: (ctx) => CupertinoAlertDialog(
               title: Text(
@@ -117,7 +117,6 @@ class _AuthScreenState extends State<AuthScreen> {
       _error(errorMessage);
       print(error);
     }
-   
   }
 
   @override
@@ -150,87 +149,133 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
             ),
           ),
-          Center(
-            child: Container(
-              height: deviceSize.height * 0.4,
-              width: deviceSize.width * 0.9,
-              child: Card(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                elevation: 8.0,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 60,
+              ),
+              Center(
                 child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(10.0)),
-                  height: 260,
-                  constraints: BoxConstraints(minHeight: 260),
-                  width: deviceSize.width * 0.75,
-                  padding: EdgeInsets.all(16.0),
-                  child: Form(
-                    key: _formKey,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: <Widget>[
-                          TextFormField(
-                            focusNode: _fnum,
+                  height: deviceSize.height * 0.4,
+                  width: deviceSize.width * 0.9,
+                  child: Card(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    elevation: 8.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(10.0)),
+                      height: 260,
+                      constraints: BoxConstraints(minHeight: 260),
+                      width: deviceSize.width * 0.75,
+                      padding: EdgeInsets.all(16.0),
+                      child: Form(
+                        key: _formKey,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(height: 15,),
+                              TextFormField(
+                                focusNode: _fnum,
+                                initialValue: '@zfr.com',
 
-                            decoration: InputDecoration(labelText: 'E-mail'),
-                            keyboardType: TextInputType.emailAddress,
-                            // ignore: missing_return
-                            validator: (value) {
-                              if ((value.isEmpty) || !(value.contains('@'))) {
-                                return 'Enter valid E-mail!';
-                              }
-                            },
-                            onSaved: (value) {
-                              _authData['email'] = value;
-                            },
-                          ),
-                          TextFormField(
-                            focusNode: _pass,
-                            decoration: InputDecoration(labelText: 'Password'),
-                            obscureText: true,
-                            controller: _passwordController,
-                            // ignore: missing_return
-                            validator: (value) {
-                              if (value.isEmpty || value.length < 5) {
-                                return 'Password is too short!';
-                              }
-                            },
-                            onSaved: (value) {
-                              _authData['password'] = value;
-                            },
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          if (_isLoading)
-                            CircularProgressIndicator()
-                          else
-                            RaisedButton(
-                              child: Text('LOGIN'),
-                              onPressed: _submit,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
+                                decoration: InputDecoration(
+                                  labelText: 'E-mail',
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                      )),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                      )),
+                                ),
+                                keyboardType: TextInputType.emailAddress,
+                                // ignore: missing_return
+                                validator: (value) {
+                                  if ((value.isEmpty) ||
+                                      !(value.contains('@zfr.com'))) {
+                                    return 'Enter valid E-mail!';
+                                  }
+                                },
+                                onSaved: (value) {
+                                  _authData['email'] = value;
+                                },
+                              ),                              SizedBox(height: 15,),
+
+                              TextFormField(
+                                focusNode: _pass,
+                                decoration: InputDecoration(
+                                  labelText: 'Password',
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                      )),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                      )),
+                                ),
+                                obscureText: true,
+                                controller: _passwordController,
+
+                                // ignore: missing_return
+                                validator: (value) {
+                                  if (value.isEmpty || value.length < 5) {
+                                    return 'Password is too short!';
+                                  }
+                                },
+                                onSaved: (value) {
+                                  _authData['password'] = value;
+                                },
                               ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 30.0, vertical: 8.0),
-                              color: Theme.of(context).primaryColor,
-                              textColor: Theme.of(context)
-                                  .primaryTextTheme
-                                  .button
-                                  .color,
-                            ),
-                        ],
+                              SizedBox(
+                                height: 20,
+                              ),
+                              if (_isLoading)
+                                CircularProgressIndicator()
+                              else
+                                RaisedButton(
+                                  child: Text('LOGIN'),
+                                  onPressed: _submit,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 30.0, vertical: 8.0),
+                                  color: Theme.of(context).primaryColor,
+                                  textColor: Theme.of(context)
+                                      .primaryTextTheme
+                                      .button
+                                      .color,
+                                ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
+              SizedBox(
+                height: 10,
+              ),
+              OutlineButton(
+                  onPressed: () {},
+                  child: Text('Request E-mail',
+                      style: TextStyle(
+                        color: Colors.black,
+                      )))
+            ],
+          )
         ],
       ),
     );

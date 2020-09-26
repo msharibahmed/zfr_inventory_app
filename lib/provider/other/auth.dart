@@ -7,8 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:zfr_inventory_app/models/http_exception.dart';
 
 class Auth with ChangeNotifier {
-  
   String _token;
+  String _email;
   DateTime _expiry;
   String _userId;
   Timer _authTime;
@@ -28,8 +28,11 @@ class Auth with ChangeNotifier {
     return _userId;
   }
 
-  Future<void> login(
-      String email, String password) async {
+  String get email {
+    return _email;
+  }
+
+  Future<void> login(String email, String password) async {
     const url =
         'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAQ-MLKYlewuPkQas_zMhUqvIqNQtTlTNc';
     try {
@@ -40,6 +43,7 @@ class Auth with ChangeNotifier {
             'returnSecureToken': true
           }));
       final postResponse = jsonDecode(response.body);
+      print(postResponse);
       if (postResponse['error'] != null) {
         throw HttpException(postResponse['error']['message']);
       }
@@ -47,13 +51,15 @@ class Auth with ChangeNotifier {
       _expiry = DateTime.now()
           .add(Duration(seconds: int.parse(postResponse['expiresIn'])));
       _userId = postResponse['localId'];
+      _email = postResponse['email'];
       autoLogout();
       notifyListeners();
       final prefs = await SharedPreferences.getInstance();
       final userData = jsonEncode({
         'token': _token,
         'userId': _userId,
-        'expiry': _expiry.toIso8601String()
+        'expiry': _expiry.toIso8601String(),
+        'email': _email
       });
       prefs.setString('userData1', userData);
     } catch (error) {
@@ -71,19 +77,17 @@ class Auth with ChangeNotifier {
     if (DateTime.parse(userData['expiry']).isBefore(DateTime.now())) {
       return false;
     }
-    print( userData['token']);
+    print(userData['expiry']);
     _token = userData['token'];
     _expiry = DateTime.parse(userData['expiry']);
     _userId = userData['userId'];
+    _email = userData['email'];
+
     notifyListeners();
     autoLogout();
 
     return true;
   }
-
- 
-
-  
 
   Future<void> logout() async {
     _userId = null;

@@ -58,8 +58,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 7.0, left: 8.0),
-                  child: Text('Sharob Ahmed' + '\n' + 'msharbahmed@gmal.com',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: Consumer<Auth>(
+                    builder: (context, value, child) => Text(value.email,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
                 ),
                 Spacer(),
                 Card(
@@ -109,47 +111,48 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         Divider(),
         Expanded(
           child: Container(
-            color: Colors.blue,
-            child: Column(
-              children: [
-                drawerList('Settings', Icons.settings, SettingScreen.routeName),
-                Divider(
-                  height: 10,
-                ),
-                Consumer<Auth>(
-                  builder: (context, auth, _) => ListTile(
-                    onTap: auth.logout,
-                    leading: Icon(
-                      Icons.settings_power,
-                      size: 60,
-                      color: Colors.black,
-                    ),
-                    title: Text(
-                      'Logout',
-                      style: TextStyle(fontSize: 25),
+              color: Colors.blue,
+              child: ListView(
+                children: [
+                  drawerList(
+                      'Settings', Icons.settings, SettingScreen.routeName),
+                  Divider(
+                    height: 10,
+                  ),
+                  Consumer<Auth>(
+                    builder: (context, auth, _) => ListTile(
+                      onTap: () {
+                        auth.logout();
+                      },
+                      leading: Icon(
+                        Icons.settings_power,
+                        size: 60,
+                        color: Colors.black,
+                      ),
+                      title: Text(
+                        'Logout',
+                        style: TextStyle(fontSize: 25),
+                      ),
                     ),
                   ),
-                ),
-              
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _boolCheck = !_boolCheck;
-                    });
-                  },
-                  child: Container(
-                    alignment: Alignment.bottomRight,
-                    height: 110,
-                    width: 110,
-                    child: FlareActor('assets/images/switch_daytime.flr',
-                        alignment: Alignment.bottomRight,
-                        fit: BoxFit.contain,
-                        animation: _boolCheck ? "day_idle" : "night_idle"),
-                  ),
-                )
-              ],
-            ),
-          ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _boolCheck = !_boolCheck;
+                      });
+                    },
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      height: 110,
+                      width: 110,
+                      child: FlareActor('assets/images/switch_daytime.flr',
+                          alignment: Alignment.bottomRight,
+                          fit: BoxFit.contain,
+                          animation: _boolCheck ? "day_idle" : "night_idle"),
+                    ),
+                  )
+                ],
+              )),
         ),
       ]),
     );

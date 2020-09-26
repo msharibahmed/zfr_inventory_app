@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:zfr_inventory_app/main_imports.dart';
+import 'package:zfr_inventory_app/provider/other/auth.dart';
 import 'package:zfr_inventory_app/provider/other/budget.dart';
 
 import 'home_modal_sheet.dart';
 
 class DepartmentProgress extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     final dep1aData = Provider.of<SteeringProvider>(context);
@@ -126,7 +128,7 @@ class DepartmentProgress extends StatelessWidget {
             'Exceeded Budget',
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
-          FlatButton(
+        Consumer<Auth>(builder: (ctx,auth,_)=> auth.userId=='kknzmBDLNzVhZffDtibSBwuGvGe2' ?FlatButton(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               padding: EdgeInsets.all(0.0),
@@ -138,7 +140,7 @@ class DepartmentProgress extends StatelessWidget {
                       return HomeModalSheet();
                     });
               },
-              child: Text('Add Budget', style: TextStyle(color: Colors.white)))
+              child: Text('Add Budget', style: TextStyle(color: Colors.white))):Text(''),)
         ]),
         Expanded(
           child: Container(
