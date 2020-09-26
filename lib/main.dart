@@ -5,6 +5,7 @@ import 'main_imports.dart';
 import 'provider/other/auth.dart';
 import 'provider/other/provider_model.dart';
 import 'screens/about_screen.dart';
+import 'screens/developer_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/splash1.dart';
 import 'screens/splash_screen.dart';
@@ -104,9 +105,13 @@ class MyApp extends StatelessWidget {
                   ChassisItemListScreen(),
               DriveTrainItemListScreen.routeName: (contex) =>
                   DriveTrainItemListScreen(),
+                   AboutUs.routeName: (contex) =>
+                  AboutUs(),
+                  DeveloperScreen.routeName: (contex) =>
+                  DeveloperScreen(),
             },
             home: auth.isAuth
-                ? AboutUs()
+                ? Splash()
                 : FutureBuilder(
                     future: auth.tryAutoLogin(),
                     builder: (ctx, snapshot) =>

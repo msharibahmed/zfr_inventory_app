@@ -1,7 +1,10 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:zfr_inventory_app/provider/other/auth.dart';
+import 'package:zfr_inventory_app/screens/about_screen.dart';
+import 'package:zfr_inventory_app/screens/developer_screen.dart';
 
 import '../screens/setting_screen.dart';
 
@@ -116,6 +119,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 children: [
                   drawerList(
                       'Settings', Icons.settings, SettingScreen.routeName),
+                  Divider(
+                    height: 10,
+                  ),
+                  drawerList('About Developer', FlutterIcons.account_box_outline_mco,DeveloperScreen.routeName),
+                  Divider(
+                    height: 10,
+                  ),
+                  drawerList('About Us', Icons.account_box, AboutUs.routeName),
                   Divider(
                     height: 10,
                   ),

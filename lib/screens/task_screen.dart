@@ -33,12 +33,16 @@ class _TaskScreenState extends State<TaskScreen> {
 
     return Scaffold(
         // backgroundColor: Colors.blue[50],
+
         body: FutureBuilder(
             future: fetch(),
             builder: (ctx, snapshot) => snapshot.connectionState ==
                     ConnectionState.waiting
                 ? Center(child: CircularProgressIndicator())
-                : data.tasks.length==0? Center(
+                : Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                     data.tasks.length==0? Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -47,12 +51,11 @@ class _TaskScreenState extends State<TaskScreen> {
                                   size: 100,
                                 ),
                                 Text(
-                                    "Zero Tasks!")
+                                    "Zero Tasks!"),
+                                    
                               ],
                             ),
-                          ):Column(
-                    children: [
-                      Expanded(
+                          ): Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: ListView.builder(
@@ -62,6 +65,7 @@ class _TaskScreenState extends State<TaskScreen> {
                           ),
                         ),
                       ),
+                   
                       if(auth.userId=='kknzmBDLNzVhZffDtibSBwuGvGe2')
                       Row(
                         children: [
