@@ -52,10 +52,10 @@ class _DriveTrainItemListScreenState extends State<DriveTrainItemListScreen> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (ctx) => AddItemScreen(itemData.addItem)));
                   },
-                  child: Icon(Icons.add),
+                  child:const Icon(Icons.add),
                 ),
       appBar: AppBar(
-        title: Text('Items'),
+        title: const Text('Items'),
         actions: [
           Chip(
               elevation: 10,
@@ -64,7 +64,7 @@ class _DriveTrainItemListScreenState extends State<DriveTrainItemListScreen> {
               label: Consumer<DriveTrainProvider>(
                 builder: (context, data, _) => Text(
                     '\₹' + itemData.totalItemCost.toStringAsFixed(2),
-                    style: TextStyle(color: Colors.white)),
+                    style:const TextStyle(color: Colors.white)),
               ))
         ],
       ),
@@ -74,17 +74,17 @@ class _DriveTrainItemListScreenState extends State<DriveTrainItemListScreen> {
                 child: _boolCheck
                     ? Align(
                         alignment: Alignment.topCenter,
-                        child: CircularProgressIndicator())
+                        child:const CircularProgressIndicator())
                     : value.items.length == 0
                         ? Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
+                              const  Icon(
                                   Icons.hot_tub,
                                   size: 100,
                                 ),
-                                Text(
+                              const  Text(
                                     "Empty here, click on '+' button to add items")
                               ],
                             ),

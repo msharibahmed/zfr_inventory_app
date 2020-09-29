@@ -50,7 +50,7 @@ class _SteeringItemListScreenState extends State<SteeringItemListScreen> {
         child: Icon(Icons.add),
       ),
       appBar: AppBar(
-        title: Text('Items'),
+        title:const Text('Items'),
         actions: [
           Chip(
               elevation: 10,
@@ -59,7 +59,7 @@ class _SteeringItemListScreenState extends State<SteeringItemListScreen> {
               label: Consumer<SteeringProvider>(
                 builder: (context, data, _) => Text(
                     '\₹' + itemData.totalItemCost.toStringAsFixed(2),
-                    style: TextStyle(color: Colors.white)),
+                    style:const TextStyle(color: Colors.white)),
               ))
         ],
       ),
@@ -69,17 +69,17 @@ class _SteeringItemListScreenState extends State<SteeringItemListScreen> {
                 child: _boolCheck
                     ? Align(
                         alignment: Alignment.topCenter,
-                        child: CircularProgressIndicator())
+                        child:const CircularProgressIndicator())
                     : value.items.length == 0
                         ? Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
+                               const Icon(
                                   Icons.hot_tub,
                                   size: 100,
                                 ),
-                                Text(
+                               const Text(
                                     "Empty here, click on '+' button to add items")
                               ],
                             ),

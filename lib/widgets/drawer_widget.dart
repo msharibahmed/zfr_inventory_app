@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../main_imports.dart';
 
-
 class DrawerWidget extends StatefulWidget {
   @override
   _DrawerWidgetState createState() => _DrawerWidgetState();
@@ -26,7 +25,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         ),
         title: Text(
           title,
-          style: GoogleFonts.openSans(textStyle:TextStyle(fontSize: 20)),
+          style: GoogleFonts.openSans(textStyle: const TextStyle(fontSize: 20)),
         ),
       );
     }
@@ -59,18 +58,19 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 Padding(
                   padding: const EdgeInsets.only(top: 7.0, left: 8.0),
                   child: Consumer<Auth>(
-                    builder: (context, value, child) => Text(value.email==null?'Anonymous Login':value.email,
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    builder: (context, value, child) => Text(
+                        value.email == null ? 'Anonymous Login' : value.email,
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Card(
                   elevation: 5,
                   shadowColor: Colors.green,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8.0, right: 8.0),
                     child: IconButton(
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.settings,
                           size: 40,
                         ),
@@ -86,13 +86,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             ),
           ),
         ),
-        Divider(),
+       const Divider(),
         ExpansionTile(
-          subtitle: Text(
+          subtitle:const Text(
             'Click to see the note!',
-            style: TextStyle(fontSize: 12, color: Colors.red),
+            style:const TextStyle(fontSize: 12, color: Colors.red),
           ),
-          title: Text(
+          title:const Text(
             'Note from the Developer',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
@@ -103,26 +103,25 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   'If the App crashes or show pop-up dialog saying error occured then please, check your Internet connection. If the problem still persists, try contacting the developer.'),
             )
           ],
-          trailing: Icon(
+          trailing:const Icon(
             Icons.info,
             color: Colors.black,
           ),
         ),
-        Divider(),
+      const  Divider(),
         Expanded(
           child: Container(
               color: Colors.blue,
               child: ListView(
                 children: [
-                 
                   drawerList('About Developer', Icons.perm_contact_calendar,
                       DeveloperScreen.routeName, Colors.green[400]),
-                  Divider(
+                 const Divider(
                     height: 10,
                   ),
                   drawerList('About Us', Icons.account_box, AboutUs.routeName,
                       Colors.amber[700]),
-                  Divider(
+                const  Divider(
                     height: 10,
                   ),
                   Consumer<Auth>(
@@ -132,7 +131,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       },
                       leading: Icon(Icons.settings_power,
                           size: 40, color: Colors.indigo[200]),
-                      title: Text(
+                      title:const Text(
                         'Logout',
                         style: TextStyle(fontSize: 20),
                       ),

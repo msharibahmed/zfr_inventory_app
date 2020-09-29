@@ -57,21 +57,21 @@ class _SplashState extends State<Splash> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset('assets/images/splash.gif'),
-                        SizedBox(
+                      const  SizedBox(
                           height: 170,
                         ),
-                        Text(
+                      const  Text(
                           'Z       F       R',
                           style: TextStyle(color: Colors.white, fontSize: 25),
                         ),
-                        SizedBox(
+                       const SizedBox(
                           height: 15,
                         ),
                         CircularProgressIndicator(),
-                        SizedBox(height:100),
+                       const SizedBox(height:100),
                         Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Align(alignment:Alignment.bottomRight,child: Text('Created By: Sharib Ahmed',style: GoogleFonts.raleway(textStyle:TextStyle(color: Colors.white, fontSize: 15)))),
+                          child: Align(alignment:Alignment.bottomRight,child: Text('Created By: Sharib Ahmed',style: GoogleFonts.raleway(textStyle:const TextStyle(color: Colors.white, fontSize: 15)))),
                         )
                       ],
                     ),

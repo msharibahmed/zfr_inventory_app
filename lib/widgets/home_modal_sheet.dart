@@ -1,6 +1,5 @@
 import '../main_imports.dart';
 
-
 class HomeModalSheet extends StatefulWidget {
   @override
   _HomeModalSheetState createState() => _HomeModalSheetState();
@@ -20,8 +19,14 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle txtstyle = TextStyle(fontWeight: FontWeight.bold);
+    TextStyle txtstyle = const TextStyle(fontWeight: FontWeight.bold);
     final budgetData = Provider.of<BudgetProv>(context, listen: false);
+    DropdownMenuItem dropdownMenuItem(String name, int value) {
+      return DropdownMenuItem(
+        child: Text(name, style: txtstyle),
+        value: value,
+      );
+    }
 
     return SingleChildScrollView(
       child: Container(
@@ -30,8 +35,8 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
             decoration: BoxDecoration(
                 color: Theme.of(context).canvasColor,
                 borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15))),
+                    topLeft: const Radius.circular(15),
+                    topRight: const Radius.circular(15))),
             padding: EdgeInsets.only(
                 top: 10,
                 left: 10,
@@ -41,33 +46,19 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Card(
-                  margin: EdgeInsets.all(5),
+                  margin: const EdgeInsets.all(5),
                   elevation: 5,
                   shadowColor: Colors.blue,
                   child: DropdownButton(
                       value: _value,
                       items: [
-                        DropdownMenuItem(
-                          child: Text(" Select Department", style: txtstyle),
-                          value: 1,
-                        ),
-                        DropdownMenuItem(
-                          child: Text(" Vehicle Dynamics", style: txtstyle),
-                          value: 2,
-                        ),
-                        DropdownMenuItem(
-                            child: Text(" Power Train", style: txtstyle),
-                            value: 3),
-                        DropdownMenuItem(
-                            child: Text(" Brakes", style: txtstyle), value: 4),
-                        DropdownMenuItem(
-                            child: Text(" Chassis", style: txtstyle), value: 5),
-                        DropdownMenuItem(
-                            child: Text(" Electronics", style: txtstyle),
-                            value: 6),
-                        DropdownMenuItem(
-                            child: Text(" Miscellaneous", style: txtstyle),
-                            value: 7),
+                        dropdownMenuItem(" Select Department", 1),
+                        dropdownMenuItem(" Vehicle Dynamics", 2),
+                        dropdownMenuItem(" Power Train", 3),
+                        dropdownMenuItem(" Brakes", 4),
+                        dropdownMenuItem(" Chassis", 5),
+                        dropdownMenuItem(" Electronics", 6),
+                        dropdownMenuItem(" Miscellaneous", 7),
                       ],
                       onChanged: (value) {
                         setState(() {
@@ -81,7 +72,7 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
                     decoration: InputDecoration(
                       errorText: _validate ? 'Enter valid numbers.' : '',
                       hintText: 'Enter Budget',
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.monetization_on,
                         color: Colors.red,
                         size: 30,
@@ -108,7 +99,7 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
                               _boolCheck = false;
                             });
                             await budgetData.addBudget(
-                                _value, double.parse(textCtrl.text),context);
+                                _value, double.parse(textCtrl.text), context);
 
                             Navigator.pop(context);
                           }
@@ -117,7 +108,7 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
                       },
                       child: _boolCheck
                           ? Text('Add',
-                              style: TextStyle(fontWeight: FontWeight.bold))
+                              style:const TextStyle(fontWeight: FontWeight.bold))
                           : CircularProgressIndicator(
                               strokeWidth: 2,
                               backgroundColor: Colors.white,

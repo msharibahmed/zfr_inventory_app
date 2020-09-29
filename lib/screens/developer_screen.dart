@@ -27,13 +27,29 @@ class DeveloperScreen extends StatelessWidget {
     }
   }
 
+  SizedBox sb([double h = 0, double w = 0]) => SizedBox(
+        height: h,
+        width: w,
+      );
+  GestureDetector gd(BuildContext context, String url, String imagePath) =>
+      GestureDetector(
+        onTap: () {
+          _launchURL(context, url);
+        },
+        child: CircleAvatar(
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.contain,
+            ),
+            backgroundColor: Colors.white),
+      );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.blue[50],
-          title: Text(
+          title: const Text(
             'ABOUT DEVELOPER',
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
           ),
@@ -41,7 +57,10 @@ class DeveloperScreen extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(7),color: Colors.blue[100],),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7),
+              color: Colors.blue[100],
+            ),
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Stack(
@@ -56,7 +75,7 @@ class DeveloperScreen extends StatelessWidget {
                           animation: 'idle',
                           fit: BoxFit.contain,
                         )),
-                    Divider(
+                    const Divider(
                       height: 120,
                     ),
                     Padding(
@@ -64,18 +83,19 @@ class DeveloperScreen extends StatelessWidget {
                         child: Text(
                           'Sharib Ahmed',
                           style: GoogleFonts.anton(
-                              textStyle: TextStyle(fontSize: 25)),
+                              textStyle: const TextStyle(fontSize: 25)),
                         )),
                     Text(
                         'B.Tech  Electrical  Engineering \'22' +
                             '\n' +
                             'ZHCET, Aligarh Muslim University',
                         style: GoogleFonts.openSans(
-                            textStyle: TextStyle(fontWeight: FontWeight.w500))),
+                            textStyle:
+                                const TextStyle(fontWeight: FontWeight.w500))),
                     Padding(
                       padding: const EdgeInsets.only(top: 40.0),
                       child: CupertinoButton.filled(
-                        child: Text('Developer Request'),
+                        child: const Text('Developer Request'),
                         onPressed: () {
                           showCupertinoDialog(
                               context: context,
@@ -85,7 +105,7 @@ class DeveloperScreen extends StatelessWidget {
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
-                                        child: Text('Close',
+                                        child: const Text('Close',
                                             style:
                                                 TextStyle(color: Colors.red)),
                                       ),
@@ -94,24 +114,24 @@ class DeveloperScreen extends StatelessWidget {
                                           _launchURL(context,
                                               'https://www.linkedin.com/in/sharib-ahmed-b3b930174/');
                                         },
-                                        child: Text('Open Linkedin',
+                                        child: const Text('Open Linkedin',
                                             style:
                                                 TextStyle(color: Colors.blue)),
                                       )
                                     ],
-                                    content: Text(
+                                    content: const Text(
                                         'If You Like This App Then Endorse The Developer on Linked In.'),
                                   ));
                         },
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text('Mail for any queries related to app:',
+                          const Text('Mail for any queries related to app:',
                               style: TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.w500)),
                           GestureDetector(
@@ -138,36 +158,14 @@ class DeveloperScreen extends StatelessWidget {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       child: Row(children: [
-                        GestureDetector(
-                          onTap: () {
-                            _launchURL(context,
-                                'https://www.linkedin.com/in/sharib-ahmed-b3b930174/');
-                          },
-                          child: CircleAvatar(
-                              child: Image.asset(
-                                'assets/images/linkedin.png',
-                                fit: BoxFit.contain,
-                              ),
-                              backgroundColor: Colors.white),
-                        ),
-                        SizedBox(
-                          width: 7,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            _launchURL(context,
-                                'https://www.instagram.com/i._.m._.sharib/');
-                          },
-                          child: CircleAvatar(
-                              child: Image.asset(
-                                'assets/images/instagram.png',
-                                fit: BoxFit.contain,
-                              ),
-                              backgroundColor: Colors.white),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
+                        gd(
+                            context,
+                            'https://www.linkedin.com/in/sharib-ahmed-b3b930174/',
+                            'assets/images/linkedin.png'),
+                        sb(0, 7),
+                        gd(context, 'https://www.instagram.com/i._.m._.sharib/',
+                            'assets/images/instagram.png'),
+                        sb(0, 5),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(100),
                           child: Container(
@@ -180,36 +178,12 @@ class DeveloperScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            _launchURL(
-                                context, 'https://www.facebook.com/MSharib786');
-                          },
-                          child: CircleAvatar(
-                              child: Image.asset(
-                                'assets/images/facebook.png',
-                                fit: BoxFit.contain,
-                              ),
-                              backgroundColor: Colors.white),
-                        ),
-                        SizedBox(
-                          width: 7,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            _launchURL(
-                                context, 'https://github.com/msharibahmed');
-                          },
-                          child: CircleAvatar(
-                              child: Image.asset(
-                                'assets/images/github.png',
-                                fit: BoxFit.contain,
-                              ),
-                              backgroundColor: Colors.white),
-                        ),
+                        sb(0, 5),
+                        gd(context, 'https://www.facebook.com/MSharib786',
+                            'assets/images/facebook.png'),
+                        sb(0, 7),
+                        gd(context, 'https://github.com/msharibahmed',
+                            'assets/images/github.png')
                       ]),
                     ),
                   ),

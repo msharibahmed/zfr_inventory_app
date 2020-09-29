@@ -20,14 +20,14 @@ class AboutUs extends StatelessWidget {
       await showCupertinoDialog(
           context: context,
           builder: (ctx) => CupertinoAlertDialog(
-                title: Text('Error Occured!'),
-                content: Text('Couln\'t Launch The URL'),
+                title: const Text('Error Occured!'),
+                content:const Text('Couln\'t Launch The URL'),
                 actions: [
                   FlatButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text('Close', style: TextStyle(color: Colors.red)),
+                    child:const Text('Close', style: TextStyle(color: Colors.red)),
                   )
                 ],
               ));
@@ -39,7 +39,7 @@ class AboutUs extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('ABOUT US',
+          title: const Text('ABOUT US',
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w300,
@@ -58,7 +58,7 @@ class AboutUs extends StatelessWidget {
                           builder: (BuildContext context) {
                             return Container(
                                 width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                margin:const EdgeInsets.symmetric(horizontal: 5.0),
                                 child: Image.asset(
                                   'assets/images/$i.jpeg',
                                   fit: BoxFit.cover,
@@ -88,11 +88,11 @@ class AboutUs extends StatelessWidget {
                         onPressed: () async {
                           _launchURL(context);
                         },
-                        child: Text('Our Website'),
+                        child: const Text('Our Website'),
                       ))
                 ],
               ),
-              Divider(
+            const  Divider(
                 height: 20,
               ),
               // heading('Our Team'),
@@ -123,11 +123,11 @@ class AboutUs extends StatelessWidget {
               //     Person('assets/images/boyracer.png', 'Anas', 'Member')
               //   ],
               // ),
-              SizedBox(
+            const  SizedBox(
                 height: 20,
               ),
               heading('Purpose of This App'),
-              Divider(
+            const  Divider(
                 color: Colors.black,
                 thickness: 2,
                 endIndent: 120,
@@ -136,14 +136,14 @@ class AboutUs extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 16.0, right: 16, top: 10),
-                child: Text(
+                child:const Text(
                     'The sole puprpose of this app is to keep track of the vehicle parts bought.'),
               ),
-              SizedBox(
+             const SizedBox(
                 height: 20,
               ),
               heading('About Z F R'),
-              Divider(
+             const Divider(
                 color: Colors.black,
                 thickness: 2,
                 endIndent: 150,
@@ -152,7 +152,7 @@ class AboutUs extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 16.0, right: 16, top: 6,bottom: 16),
-                child: Text(
+                child:const Text(
                     'ZHCET FORMULA RACING is a formula racing team of 40 quite hard working and passionate undergraduate engineering students from Aligarh Muslim University who ideate, design, fabricate and test a formula style race car and participate in various National as well as International formula student competitions.'),
               ),
             ],
@@ -180,9 +180,9 @@ class Person extends StatelessWidget {
         ),
         Text(
           name,
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style:const TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(position, style: TextStyle(fontSize: 10))
+        Text(position, style:const TextStyle(fontSize: 10))
       ],
     );
   }

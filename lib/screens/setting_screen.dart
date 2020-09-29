@@ -16,7 +16,7 @@ class _SettingScreenState extends State<SettingScreen> {
     return Scaffold(
       backgroundColor: mode.mode?Colors.white:Colors.black,
         // drawer: Drawer(child:DrawerWidget()),
-        appBar: AppBar(title: Text('Settings')),
+        appBar:  AppBar(title:const Text('Settings')),
         body: Center(
             child: GestureDetector(
           onTap:mode.changeMode,

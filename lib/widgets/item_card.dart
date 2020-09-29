@@ -38,7 +38,7 @@ class ItemCard extends StatelessWidget {
                 color: Colors.red,
                 child: Padding(
                   padding: const EdgeInsets.only(right: 5.0),
-                  child: Icon(Icons.delete, size: 30),
+                  child:const Icon(Icons.delete, size: 30),
                 ),
                 alignment: Alignment.centerRight),
             child: ItemCardWidget(modelData: modelData, divider: divider),
@@ -89,19 +89,19 @@ class ItemCardWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       Text('Item: ',
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20)),
                       Expanded(
                         child: Text(modelData.itemName,
                             overflow: TextOverflow.ellipsis,
                             softWrap: false,
-                            style: TextStyle(fontSize: 20)),
+                            style: const TextStyle(fontSize: 20)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0),
                         child: Text(
                             DateFormat('dd MMM').format(modelData.itemDate),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20)),
                       ),
                     ],
@@ -114,7 +114,7 @@ class ItemCardWidget extends StatelessWidget {
                     children: [
                       Text(
                         'Total Cost: ',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                       Chip(
@@ -124,12 +124,12 @@ class ItemCardWidget extends StatelessWidget {
                           label: Text(
                               '\₹${(modelData.itemCost * modelData.itemQuantity).toStringAsFixed(2)}',
                               style: TextStyle(fontSize: 20))),
-                      Spacer(),
+                    const  Spacer(),
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0),
                         child: Text(
                           '  x' + modelData.itemQuantity.toString(),
-                          style: TextStyle(
+                          style:const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500),
                         ),
                       )
@@ -141,8 +141,8 @@ class ItemCardWidget extends StatelessWidget {
                   backgroundColor: Colors.blue[100],
                   title: Text('Item Details',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                  trailing: Icon(Icons.arrow_drop_down_circle),
+                         const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                  trailing:const Icon(Icons.arrow_drop_down_circle),
                   children: [
                     divider,
                     listTile('Buyer: ', modelData.itemBuyer),

@@ -29,7 +29,7 @@ class TasksProv with ChangeNotifier {
         builder: (ctx) {
           return AlertDialog(
             title: Text('Error Occured,' + text),
-            content: Text('Check Your connection or contact developer.'),
+            content:const Text('Check Your connection or contact developer.'),
             actions: [
               RaisedButton(
                 onPressed: () {

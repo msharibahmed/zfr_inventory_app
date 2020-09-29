@@ -37,11 +37,11 @@ class _TaskScreenState extends State<TaskScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
+                               const Icon(
                                   Icons.hot_tub,
                                   size: 100,
                                 ),
-                                Text(
+                              const  Text(
                                     "Zero Tasks!"),
                                     
                               ],
@@ -78,7 +78,7 @@ class _TaskScreenState extends State<TaskScreen> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(40),
                                   ),
-                                  prefixIcon: Icon(Icons.assignment_turned_in),
+                                  prefixIcon:const Icon(Icons.assignment_turned_in),
                                 ),
                               ),
                             ),
@@ -88,7 +88,7 @@ class _TaskScreenState extends State<TaskScreen> {
                                   height: 50,
                                   width: 50,
                                   child: IconButton(
-                                      icon: Icon(
+                                      icon:const Icon(
                                         Icons.send,
                                         size: 40,
                                       ),

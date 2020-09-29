@@ -16,16 +16,16 @@ class Splash1 extends StatelessWidget {
             width: sze.width,
           ),
         ),
-        SizedBox(
+      const  SizedBox(
           height: 20,
         ),
         CircularProgressIndicator(
           strokeWidth: 2,
           backgroundColor: Colors.black,
-        ), SizedBox(
+        ),const SizedBox(
           height: 20,
         ),
-        Text('Loading...',style: TextStyle(fontWeight: FontWeight.bold))
+       const Text('Loading...',style: TextStyle(fontWeight: FontWeight.bold))
       ],
     ));
   }

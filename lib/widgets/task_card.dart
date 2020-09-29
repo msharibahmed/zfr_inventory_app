@@ -27,7 +27,7 @@ class TaskCard extends StatelessWidget {
                 color: Colors.red,
                 child: Padding(
                   padding: const EdgeInsets.only(right: 5.0),
-                  child: Icon(Icons.delete, size: 30),
+                  child:const Icon(Icons.delete, size: 30),
                 ),
                 alignment: Alignment.centerRight),
             child: TaskCard1(data: data, index: index),
@@ -65,7 +65,7 @@ class TaskCard1 extends StatelessWidget {
               DateFormat('dd MMM').format(data.tasks[index].time) +
                   ',' +
                   DateFormat('jm').format(data.tasks[index].time),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 11,
               )),
           onChanged: (_) {

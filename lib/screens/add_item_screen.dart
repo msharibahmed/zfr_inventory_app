@@ -156,7 +156,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                                   color: Colors.black,
                                 )),
                             labelText: 'Item Name',
-                            prefixIcon: Icon(Icons.person)),
+                            prefixIcon:const Icon(Icons.person)),
                       ),
                       const SizedBox(
                         height: 5,
@@ -186,7 +186,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         textInputAction: TextInputAction.next,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.person),
+                          prefixIcon:const Icon(Icons.person),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15.0),
                               borderSide: BorderSide(
@@ -227,7 +227,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         textInputAction: TextInputAction.next,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.person),
+                          prefixIcon:const Icon(Icons.person),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15.0),
                               borderSide: BorderSide(
@@ -348,14 +348,14 @@ class _AddItemScreenState extends State<AddItemScreen> {
                                         : DateFormat('dd MMM, yyyy')
                                             .format(_editProduct.itemDate),
                                     style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
+                                       const TextStyle(fontWeight: FontWeight.bold)),
                               )),
                           Card(
                             elevation: 5,
                             shadowColor: Colors.purple,
                             color: Colors.yellow[100],
                             child: IconButton(
-                                icon: Icon(
+                                icon:const Icon(
                                   Icons.event,
                                   size: 40,
                                   color: Colors.purple,
@@ -480,7 +480,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                       // ),
                       RaisedButton(
                           color: Colors.deepOrangeAccent[100],
-                          child: Text('Save Item',
+                          child:const Text('Save Item',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                           onPressed: () {
                             if (_editProduct.itemDate == null) {

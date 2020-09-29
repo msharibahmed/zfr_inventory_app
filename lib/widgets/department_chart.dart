@@ -59,7 +59,7 @@ class _DepartmentChartState extends State<DepartmentChart> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(
+         const Text(
             'Cost Analysis',
             style: TextStyle(
                 color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
@@ -68,7 +68,7 @@ class _DepartmentChartState extends State<DepartmentChart> {
             color: Colors.black,
             endIndent: 210,
           ),
-          Text('Department Wise',
+         const Text('Department Wise',
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -147,7 +147,7 @@ class _DepartmentChartState extends State<DepartmentChart> {
             }
             return BarTooltipItem(
                 department + '\n' + '\₹${(rod.y - 500).toStringAsFixed(2)}',
-                TextStyle(color: Colors.black, fontWeight: FontWeight.bold));
+               const TextStyle(color: Colors.black, fontWeight: FontWeight.bold));
           },
         ),
         touchCallback: (barTouchResponse) {
@@ -169,7 +169,7 @@ class _DepartmentChartState extends State<DepartmentChart> {
       bottomTitles: SideTitles(
         showTitles: true,
         reservedSize: 15,
-        textStyle: TextStyle(
+        textStyle:const TextStyle(
             color: Colors.black, fontWeight: FontWeight.bold, fontSize: 14),
         margin: 10,
         getTitles: (value) {
@@ -197,7 +197,7 @@ class _DepartmentChartState extends State<DepartmentChart> {
       leftTitles: SideTitles(
         showTitles: true,
         reservedSize: 40,
-        textStyle: TextStyle(
+        textStyle:const TextStyle(
             color: Colors.black, fontWeight: FontWeight.bold, fontSize: 14),
         margin: 15,
         getTitles: (value) {

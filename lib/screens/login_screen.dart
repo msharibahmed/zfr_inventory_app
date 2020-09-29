@@ -46,14 +46,10 @@ class _AuthScreenState extends State<AuthScreen> {
   void _flrAnim(FocusNode name) {
     final teddy = Provider.of<Teddy>(context, listen: false);
 
-    if(name.hasFocus){
-          teddy.changeMode('test');
-
-
+    if (name.hasFocus) {
+      teddy.changeMode('test');
+    }
   }
-  }
-  
-
 
   final GlobalKey<FormState> _formKey = GlobalKey();
   Map<String, String> _authData = {
@@ -172,7 +168,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 ],
                 builder: (BuildContext context, bool isWarm) {
                   return !isWarm
-                      ? Container(child: Text("Loading..."))
+                      ?  Container(child:const Text("Loading..."))
                       : FlareActor(
                           "assets/images/flareintro.flr",
                           alignment: Alignment.topCenter,
@@ -186,7 +182,7 @@ class _AuthScreenState extends State<AuthScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+            const  SizedBox(
                 height: 120,
               ),
               Center(
@@ -204,23 +200,23 @@ class _AuthScreenState extends State<AuthScreen> {
                           border: Border.all(color: Colors.black),
                           borderRadius: BorderRadius.circular(10.0)),
                       height: 260,
-                      constraints: BoxConstraints(minHeight: 260),
+                      constraints:const BoxConstraints(minHeight: 260),
                       width: deviceSize.width * 0.75,
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Form(
                         key: _formKey,
                         child: SingleChildScrollView(
                           child: Column(
                             children: <Widget>[
-                              SizedBox(
+                             const SizedBox(
                                 height: 15,
                               ),
                               TextFormField(
                                 focusNode: _fnum,
-                                initialValue: '@zfr.com',
+                                initialValue: '@gmail.com',
 
                                 decoration: InputDecoration(
-                                  prefixIcon: Icon(
+                                  prefixIcon:const Icon(
                                     Icons.account_circle,
                                     color: Colors.black,
                                   ),
@@ -248,13 +244,13 @@ class _AuthScreenState extends State<AuthScreen> {
                                   _authData['email'] = value;
                                 },
                               ),
-                              SizedBox(
+                             const SizedBox(
                                 height: 15,
                               ),
                               TextFormField(
                                 focusNode: _pass,
                                 decoration: InputDecoration(
-                                  prefixIcon: Icon(
+                                  prefixIcon:const Icon(
                                     Icons.lock,
                                     color: Colors.black,
                                   ),
@@ -283,14 +279,14 @@ class _AuthScreenState extends State<AuthScreen> {
                                   _authData['password'] = value;
                                 },
                               ),
-                              SizedBox(
+                             const SizedBox(
                                 height: 20,
                               ),
                               if (_isLoading)
-                                CircularProgressIndicator()
+                              const  CircularProgressIndicator()
                               else
                                 RaisedButton(
-                                  child: Text('LOGIN'),
+                                  child:const Text('LOGIN'),
                                   onPressed: () {
                                     FocusScope.of(context).unfocus();
                                     _submit();
@@ -301,7 +297,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30),
                                   ),
-                                  padding: EdgeInsets.symmetric(
+                                  padding:const EdgeInsets.symmetric(
                                       horizontal: 30.0, vertical: 8.0),
                                   color: Theme.of(context).primaryColor,
                                   textColor: Theme.of(context)
@@ -317,51 +313,51 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Flex(
                 direction: Axis.horizontal,
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   OutlineButton(
                       onPressed: () {
                         _launchURL(context,
                             'mailto:msharibahmed@gmail.com?subject=Regarding%20a%20new%20email%20request&body=Please%20write%20your%20Faculty%20Number%20and%20Name.');
                       },
                       child: Row(children: [
-                        Text('Request  E-mail',
+                        const Text('Request  E-mail',
                             style:
                                 TextStyle(fontSize: 15, color: Colors.black)),
                         Icon(Icons.mail, color: Colors.red)
                       ])),
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Flex(
                 direction: Axis.horizontal,
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   RaisedButton(
                       color: Colors.blue,
                       onPressed: () {
                         guestSubmit();
                       },
                       child: _guestLoading
-                          ? CircularProgressIndicator(
+                          ? const CircularProgressIndicator(
                               backgroundColor: Colors.white,
                               strokeWidth: 1,
                             )
                           : Row(children: [
-                              Text('Continue as Guest',
+                              const Text('Continue as Guest',
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.white)),
-                              Icon(Icons.account_box, color: Colors.white)
+                              const Icon(Icons.account_box, color: Colors.white)
                             ])),
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
             ],
@@ -378,14 +374,15 @@ class _AuthScreenState extends State<AuthScreen> {
       await showCupertinoDialog(
           context: context,
           builder: (ctx) => CupertinoAlertDialog(
-                title: Text('Error Occured!'),
-                content: Text('Couln\'t send mail'),
+                title: const Text('Error Occured!'),
+                content: const Text('Couln\'t send mail'),
                 actions: [
                   FlatButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text('OKAY', style: TextStyle(color: Colors.black)),
+                    child: const Text('OKAY',
+                        style: TextStyle(color: Colors.black)),
                   )
                 ],
               ));

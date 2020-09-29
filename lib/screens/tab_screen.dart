@@ -32,14 +32,14 @@ class _TabScreenState extends State<TabScreen> {
           centerTitle: true,
           actions: [
             selectedIndex > 0
-                ? Text('')
+                ?const Text('')
                 : IconButton(
                     icon: button
-                        ? Icon(
+                        ?  Icon(
                             Icons.ac_unit,
                             color: Colors.blue[200],
                           )
-                        : Icon(Icons.ac_unit),
+                        :const Icon(Icons.ac_unit),
                     onPressed: () {
                       setState(() {
                         button = !button;
@@ -53,28 +53,28 @@ class _TabScreenState extends State<TabScreen> {
           items: [
             BottomNavyBarItem(
                 activeColor: Colors.red,
-                icon: Icon(Icons.home),
-                title: Text('Home',
-                    style: TextStyle(
+                icon:const Icon(Icons.home),
+                title:const Text('Home',
+                    style:const TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold))),
             BottomNavyBarItem(
                 activeColor: Colors.purpleAccent,
-                icon: Icon(Icons.domain),
-                title: Text(
+                icon:const Icon(Icons.domain),
+                title:const Text(
                   'Department',
-                  style: TextStyle(
+                  style:const TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 )),
             BottomNavyBarItem(
                 activeColor: Colors.blue,
                 icon: Consumer<TasksProv>(
                   builder: (context, data, child) => Badge(
-                      child: Icon(Icons.assignment),
+                      child:const Icon(Icons.assignment),
                       value: data.checkedLength.toString()),
                 ),
-                title: Text(
+                title:const Text(
                   'Tasks',
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ))
           ],

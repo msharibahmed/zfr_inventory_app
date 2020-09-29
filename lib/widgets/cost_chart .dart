@@ -30,9 +30,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
           padding: const EdgeInsets.only(top: 5.0),
           child: RotatedBox(
               quarterTurns: 3,
-              child: Text(
+              child:const Text(
                 "Cost Analysis" + "\n" + "       Monthwise",
-                style: TextStyle(color: Colors.white, fontSize: 18),
+                style:const TextStyle(color: Colors.white, fontSize: 18),
               )),
         )
       ],

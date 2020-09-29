@@ -86,9 +86,9 @@ class DepartmentCard extends StatelessWidget {
               'This has ' + subDepartmentNumber[index] + ' Sub Departments'),
           title: Text(
             departmentNames.keys.toList()[index],
-            style: TextStyle(fontSize: 25),
+            style:const TextStyle(fontSize: 25),
           ),
-          trailing: Icon(Icons.arrow_drop_down_circle),
+          trailing:const Icon(Icons.arrow_drop_down_circle),
           children: [
             ...(departmentNames.values.toList()[index]).map((e) {
               DepartmentModel value =
@@ -125,14 +125,14 @@ class DepartmentCard extends StatelessWidget {
                       elevation: 5,
                       shadowColor: Colors.amber,
                       label: Text('\₹' + value.total,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600)),
                     ),
                     onTap: () {
                       Navigator.pushNamed(context, value.routeName);
                     },
-                    title: Text(e, style: TextStyle(fontSize: 20)),
+                    title: Text(e, style:const TextStyle(fontSize: 20)),
                   ));
             })
           ]),

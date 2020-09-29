@@ -65,14 +65,14 @@ class DepartmentProgress extends StatelessWidget {
           Stack(
             children: [
               Container(
-                  margin: EdgeInsets.all(10),
+                  margin:const EdgeInsets.all(10),
                   width: wdth,
                   height: 10,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       color: Colors.white)),
               Container(
-                  margin: EdgeInsets.all(10),
+                  margin:const EdgeInsets.all(10),
                   width: (totalCost) < budget
                       ? ((totalCost) / budget) * wdth
                       : wdth,
@@ -84,7 +84,7 @@ class DepartmentProgress extends StatelessWidget {
           ),
           Text('\(${totalCost.toInt()}/${budget.toInt()})',
               textAlign: TextAlign.end,
-              style: TextStyle(
+              style:const TextStyle(
                   color: Colors.amber,
                   fontSize: 10,
                   fontWeight: FontWeight.bold))
@@ -98,12 +98,12 @@ class DepartmentProgress extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
-            child: Text(
+            child: const Text(
               'Department Progress',
               style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18),
             ),
           ),
-          Divider(
+        const  Divider(
             color: Colors.black,
             height: 3,
             thickness: 1,
@@ -111,23 +111,23 @@ class DepartmentProgress extends StatelessWidget {
             endIndent: 200,
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            Icon(
+           const Icon(
               Icons.brightness_1,
               color: Colors.green,
             ),
-            Text(
+           const Text(
               'Less than Budget',
               style: TextStyle(fontWeight: FontWeight.w600),
             ),
             Icon(Icons.brightness_1, color: Colors.red),
-            Text(
+         const   Text(
               'Exceeded Budget',
               style: TextStyle(fontWeight: FontWeight.w600),
             ),
           Consumer<Auth>(builder: (ctx,auth,_)=> auth.email!=null?FlatButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
-                padding: EdgeInsets.all(0.0),
+                padding:const EdgeInsets.all(0.0),
                 color: Color(0xff232d37),
                 onPressed: () {
                   showModalBottomSheet(
@@ -136,7 +136,7 @@ class DepartmentProgress extends StatelessWidget {
                         return HomeModalSheet();
                       });
                 },
-                child: Text('Add Budget', style: TextStyle(color: Colors.white))):Text(''),)
+                child:const Text('Add Budget', style: TextStyle(color: Colors.white))):Text(''),)
           ]),
           
           Container(
