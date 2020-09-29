@@ -68,6 +68,7 @@ class DeveloperScreen extends StatelessWidget {
                 Column(
                   children: [
                     Container(
+                        color: Colors.black,
                         width: double.infinity,
                         height: 250,
                         child: FlareActor(
@@ -153,41 +154,36 @@ class DeveloperScreen extends StatelessWidget {
                 ),
                 Positioned(
                   top: 200,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(children: [
-                        gd(
-                            context,
-                            'https://www.linkedin.com/in/sharib-ahmed-b3b930174/',
-                            'assets/images/linkedin.png'),
-                        sb(0, 7),
-                        gd(context, 'https://www.instagram.com/i._.m._.sharib/',
-                            'assets/images/instagram.png'),
-                        sb(0, 5),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: Container(
-                            color: Colors.black,
-                            child: Image.asset(
-                              'assets/images/s.jpg',
-                              fit: BoxFit.contain,
-                              width: 150,
-                              height: 150,
-                            ),
-                          ),
+                  left:16,
+                  child: Row(children: [
+                    gd(
+                        context,
+                        'https://www.linkedin.com/in/sharib-ahmed-b3b930174/',
+                        'assets/images/linkedin.png'),
+                    sb(0, 7),
+                    gd(context, 'https://www.instagram.com/i._.m._.sharib/',
+                        'assets/images/instagram.png'),
+                    sb(0, 5),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Container(
+                        color: Colors.black,
+                        child: Image.asset(
+                          'assets/images/s.jpg',
+                          fit: BoxFit.contain,
+                          width: 150,
+                          height: 150,
                         ),
-                        sb(0, 5),
-                        gd(context, 'https://www.facebook.com/MSharib786',
-                            'assets/images/facebook.png'),
-                        sb(0, 7),
-                        gd(context, 'https://github.com/msharibahmed',
-                            'assets/images/github.png')
-                      ]),
+                      ),
                     ),
-                  ),
-                )
+                    sb(0, 5),
+                    gd(context, 'https://www.facebook.com/MSharib786',
+                        'assets/images/facebook.png'),
+                    sb(0, 7),
+                    gd(context, 'https://github.com/msharibahmed',
+                        'assets/images/github.png')
+                  ]),
+                ),
               ],
             ),
           ),

@@ -1,6 +1,4 @@
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:flare_flutter/flare_cache_builder.dart';
-import 'package:flare_flutter/provider/asset_flare.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,42 +13,6 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  final _fnum = FocusNode();
-  final _pass = FocusNode();
-  @override
-  void initState() {
-    _fnum.addListener(() {
-      _flrAnim(_fnum);
-    });
-    _pass.addListener(() {
-      _flrAnim(_pass);
-    });
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _fnum.removeListener(() {
-      _flrAnim(_fnum);
-    });
-    _pass.removeListener(() {
-      _flrAnim(_pass);
-    });
-    _fnum.dispose();
-    _pass.dispose();
-
-    super.dispose();
-  }
-
-  void _flrAnim(FocusNode name) {
-    final teddy = Provider.of<Teddy>(context, listen: false);
-
-    if (name.hasFocus) {
-      teddy.changeMode('test');
-    }
-  }
-
   final GlobalKey<FormState> _formKey = GlobalKey();
   Map<String, String> _authData = {
     'email': '',
@@ -160,29 +122,18 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: FlareCacheBuilder(
-                [
-                  AssetFlare(
-                      bundle: rootBundle, name: "assets/images/flareintro.flr")
-                ],
-                builder: (BuildContext context, bool isWarm) {
-                  return !isWarm
-                      ?  Container(child:const Text("Loading..."))
-                      : FlareActor(
-                          "assets/images/flareintro.flr",
-                          alignment: Alignment.topCenter,
-                          fit: BoxFit.contain,
-                          animation: teddy.anim,
-                        );
-                },
-              ),
-            ),
+                padding: const EdgeInsets.only(top: 20.0),
+                child: FlareActor(
+                  "assets/images/flareintro.flr",
+                  alignment: Alignment.topCenter,
+                  fit: BoxFit.contain,
+                  animation: teddy.anim,
+                )),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-            const  SizedBox(
+              const SizedBox(
                 height: 120,
               ),
               Center(
@@ -200,7 +151,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           border: Border.all(color: Colors.black),
                           borderRadius: BorderRadius.circular(10.0)),
                       height: 260,
-                      constraints:const BoxConstraints(minHeight: 260),
+                      constraints: const BoxConstraints(minHeight: 260),
                       width: deviceSize.width * 0.75,
                       padding: const EdgeInsets.all(16.0),
                       child: Form(
@@ -208,15 +159,14 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: SingleChildScrollView(
                           child: Column(
                             children: <Widget>[
-                             const SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
                               TextFormField(
-                                focusNode: _fnum,
                                 initialValue: '@gmail.com',
 
                                 decoration: InputDecoration(
-                                  prefixIcon:const Icon(
+                                  prefixIcon: const Icon(
                                     Icons.account_circle,
                                     color: Colors.black,
                                   ),
@@ -236,7 +186,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 // ignore: missing_return
                                 validator: (value) {
                                   if ((value.isEmpty) ||
-                                      !(value.contains('@zfr.com'))) {
+                                      !(value.contains('@'))||!(value.contains('.'))) {
                                     return 'Enter valid E-mail!';
                                   }
                                 },
@@ -244,13 +194,12 @@ class _AuthScreenState extends State<AuthScreen> {
                                   _authData['email'] = value;
                                 },
                               ),
-                             const SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
                               TextFormField(
-                                focusNode: _pass,
                                 decoration: InputDecoration(
-                                  prefixIcon:const Icon(
+                                  prefixIcon: const Icon(
                                     Icons.lock,
                                     color: Colors.black,
                                   ),
@@ -279,14 +228,14 @@ class _AuthScreenState extends State<AuthScreen> {
                                   _authData['password'] = value;
                                 },
                               ),
-                             const SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               if (_isLoading)
-                              const  CircularProgressIndicator()
+                                const CircularProgressIndicator()
                               else
                                 RaisedButton(
-                                  child:const Text('LOGIN'),
+                                  child: const Text('LOGIN'),
                                   onPressed: () {
                                     FocusScope.of(context).unfocus();
                                     _submit();
@@ -297,7 +246,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30),
                                   ),
-                                  padding:const EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 30.0, vertical: 8.0),
                                   color: Theme.of(context).primaryColor,
                                   textColor: Theme.of(context)
