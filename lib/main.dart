@@ -1,6 +1,13 @@
+import 'package:flutter/services.dart';
+
 import 'main_imports.dart';
+import 'provider/other/teddy.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
   runApp(MyApp());
 }
 
@@ -10,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<Auth>(create: (_) => Auth()),
+          ChangeNotifierProvider<Teddy>(create: (_) => Teddy()),
           ChangeNotifierProvider<ThemeProv>(create: (_) => ThemeProv()),
           ChangeNotifierProxyProvider<Auth, SuspensionProvider>(
               create: null,
@@ -68,7 +76,9 @@ class MyApp extends StatelessWidget {
         ],
         child: Consumer<Auth>(
           builder: (ctx, auth, _) => MaterialApp(
-            theme: ThemeData(fontFamily: 'Lato',),
+            theme: ThemeData(
+              fontFamily: 'Lato',
+            ),
             debugShowCheckedModeBanner: false,
             routes: {
               DepartmentScreen.routeName: (contex) => DepartmentScreen(),

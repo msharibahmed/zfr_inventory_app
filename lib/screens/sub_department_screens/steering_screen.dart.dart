@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../main_imports.dart';
 import '../../provider/departments_provider/steering.dart';
 import '../../widgets/item_card.dart';
 import '../add_item_screen.dart';
@@ -39,7 +40,9 @@ class _SteeringItemListScreenState extends State<SteeringItemListScreen> {
   Widget build(BuildContext context) {
     final itemData = Provider.of<SteeringProvider>(context);
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton:Provider.of<Auth>(context, listen: false).email == null
+              ? null
+              :  FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (ctx) => AddItemScreen(itemData.addItem)));

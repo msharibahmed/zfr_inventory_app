@@ -39,102 +39,102 @@ class DeveloperScreen extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(7),color: Colors.blue[100],),
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            child: Card(
-              elevation: 30,
-              shadowColor: Colors.amber,
-              color: Colors.blue[100],
-              child: Stack(
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                          width: double.infinity,
-                          height: 250,
-                          child: FlareActor(
-                            'assets/images/hello.flr',
-                            animation: 'idle',
-                            fit: BoxFit.contain,
-                          )),
-                      Divider(
-                        height: 110,
-                        color: Colors.blue[100],
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    Container(
+                        width: double.infinity,
+                        height: 250,
+                        child: FlareActor(
+                          'assets/images/hello.flr',
+                          animation: 'idle',
+                          fit: BoxFit.contain,
+                        )),
+                    Divider(
+                      height: 120,
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          'Sharib Ahmed',
+                          style: GoogleFonts.anton(
+                              textStyle: TextStyle(fontSize: 25)),
+                        )),
+                    Text(
+                        'B.Tech  Electrical  Engineering \'22' +
+                            '\n' +
+                            'ZHCET, Aligarh Muslim University',
+                        style: GoogleFonts.openSans(
+                            textStyle: TextStyle(fontWeight: FontWeight.w500))),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40.0),
+                      child: CupertinoButton.filled(
+                        child: Text('Developer Request'),
+                        onPressed: () {
+                          showCupertinoDialog(
+                              context: context,
+                              builder: (ctx) => CupertinoAlertDialog(
+                                    actions: [
+                                      FlatButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text('Close',
+                                            style:
+                                                TextStyle(color: Colors.red)),
+                                      ),
+                                      FlatButton(
+                                        onPressed: () {
+                                          _launchURL(context,
+                                              'https://www.linkedin.com/in/sharib-ahmed-b3b930174/');
+                                        },
+                                        child: Text('Open Linkedin',
+                                            style:
+                                                TextStyle(color: Colors.blue)),
+                                      )
+                                    ],
+                                    content: Text(
+                                        'If You Like This App Then Endorse The Developer on Linked In.'),
+                                  ));
+                        },
                       ),
-                      Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: Text(
-                            'Sharib Ahmed',
-                            style: GoogleFonts.anton(
-                                textStyle: TextStyle(fontSize: 25)),
-                          )),
-                      Text(
-                          'B.Tech  Electrical  Engineering \'22' +
-                              '\n' +
-                              'ZHCET, Aligarh Muslim University',
-                          style: GoogleFonts.openSans(
-                              textStyle:
-                                  TextStyle(fontWeight: FontWeight.w500))),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 40.0),
-                        child: CupertinoButton.filled(
-                          child: Text('Developer Request'),
-                          onPressed: () {
-                            showCupertinoDialog(
-                                context: context,
-                                builder: (ctx) => CupertinoAlertDialog(
-                                      actions: [
-                                        FlatButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text('Close',style:TextStyle(color: Colors.red)),
-                                        ),
-                                        FlatButton(
-                                          onPressed: () {
-                                            _launchURL(context,
-                                                'https://www.linkedin.com/in/sharib-ahmed-b3b930174/');
-                                          },
-                                          child: Text('Open Linkedin',style:TextStyle(color: Colors.blue)),
-                                        )
-                                      ],
-                                      content: Text(
-                                          'If You Like This App Then Endorse The Developer on Linked In.'),
-                                    ));
-                          },
-                        ),
+                    ),
+                    Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text('Mail for any queries related to app:',
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w500)),
+                          GestureDetector(
+                            onTap: () {
+                              _launchURL(context,
+                                  'mailto:msharibahmed@gmail.com?subject=Regarding%20a%20query%20in%20zfr%20inventory%20app.&body=Please%20write%20the%20query.');
+                            },
+                            child: CircleAvatar(
+                                child: Image.asset(
+                                  'assets/images/gmail.png',
+                                  fit: BoxFit.contain,
+                                ),
+                                backgroundColor: Colors.blue[100]),
+                          )
+                        ],
                       ),
-                      Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text('Mail for any queries related to app:',
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w500)),
-                            GestureDetector(
-                              onTap: () {
-                                _launchURL(context,
-                                    'mailto:msharibahmed@gmail.com?subject=Regarding%20a%20query%20in%20zfr%20inventory%20app.&body=Please%20write%20the%20query.');
-                              },
-                              child: CircleAvatar(
-                                  child: Image.asset(
-                                    'assets/images/gmail.png',
-                                    fit: BoxFit.contain,
-                                  ),
-                                  backgroundColor: Colors.blue[100]),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Positioned(
-                    left: 15,
-                    top: 200,
+                    ),
+                  ],
+                ),
+                Positioned(
+                  top: 200,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       child: Row(children: [
@@ -212,9 +212,9 @@ class DeveloperScreen extends StatelessWidget {
                         ),
                       ]),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
         ));

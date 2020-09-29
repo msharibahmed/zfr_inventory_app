@@ -57,7 +57,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 Padding(
                   padding: const EdgeInsets.only(top: 7.0, left: 8.0),
                   child: Consumer<Auth>(
-                    builder: (context, value, child) => Text(value.email,
+                    builder: (context, value, child) => Text(value.email==null?'Anonymous Login':value.email,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ),

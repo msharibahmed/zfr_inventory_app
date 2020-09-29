@@ -41,10 +41,40 @@ class Auth with ChangeNotifier {
             'returnSecureToken': true
           }));
       final postResponse = jsonDecode(response.body);
-      print(postResponse);
+      // print(postResponse);
       if (postResponse['error'] != null) {
         throw HttpException(postResponse['error']['message']);
       }
+      _token = postResponse['idToken'];
+      _expiry = DateTime.now()
+          .add(Duration(seconds: int.parse(postResponse['expiresIn'])));
+      _userId = postResponse['localId'];
+      _email = postResponse['email'];
+      autoLogout();
+      notifyListeners();
+      final prefs = await SharedPreferences.getInstance();
+      final userData = jsonEncode({
+        'token': _token,
+        'userId': _userId,
+        'expiry': _expiry.toIso8601String(),
+        'email': _email
+      });
+      prefs.setString('userData1', userData);
+    } catch (error) {
+      throw error;
+    }
+  }
+Future<void> guestLogin() async {
+    const url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAQ-MLKYlewuPkQas_zMhUqvIqNQtTlTNc';
+    try {
+      final response = await http.post(url,
+          body: jsonEncode({
+            'returnSecureToken': true
+          }));
+      final postResponse = jsonDecode(response.body);
+      print(postResponse);
+    
       _token = postResponse['idToken'];
       _expiry = DateTime.now()
           .add(Duration(seconds: int.parse(postResponse['expiresIn'])));
@@ -75,7 +105,7 @@ class Auth with ChangeNotifier {
     if (DateTime.parse(userData['expiry']).isBefore(DateTime.now())) {
       return false;
     }
-    print(userData['expiry']);
+    // print(userData['expiry']);
     _token = userData['token'];
     _expiry = DateTime.parse(userData['expiry']);
     _userId = userData['userId'];

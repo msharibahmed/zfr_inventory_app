@@ -92,80 +92,80 @@ class DepartmentProgress extends StatelessWidget {
       );
     }
 
-    return Expanded(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Text(
-            'Department Progress',
-            style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18),
+    return SingleChildScrollView(
+          child:  Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Text(
+              'Department Progress',
+              style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18),
+            ),
           ),
-        ),
-        Divider(
-          color: Colors.black,
-          height: 3,
-          thickness: 1,
-          indent: 5,
-          endIndent: 200,
-        ),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Icon(
-            Icons.brightness_1,
-            color: Colors.green,
+          Divider(
+            color: Colors.black,
+            height: 3,
+            thickness: 1,
+            indent: 5,
+            endIndent: 200,
           ),
-          Text(
-            'Less than Budget',
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-          Icon(Icons.brightness_1, color: Colors.red),
-          Text(
-            'Exceeded Budget',
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-        Consumer<Auth>(builder: (ctx,auth,_)=> auth.userId=='kknzmBDLNzVhZffDtibSBwuGvGe2' ?FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              padding: EdgeInsets.all(0.0),
-              color: Color(0xff232d37),
-              onPressed: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (context) {
-                      return HomeModalSheet();
-                    });
-              },
-              child: Text('Add Budget', style: TextStyle(color: Colors.white))):Text(''),)
-        ]),
-        Expanded(
-          child: Container(
-              margin: EdgeInsets.all(5),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 2),
-                  borderRadius: BorderRadius.circular(5),
-                  color: Color(0xff232d37)),
-              child: SingleChildScrollView(
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Icon(
+              Icons.brightness_1,
+              color: Colors.green,
+            ),
+            Text(
+              'Less than Budget',
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+            Icon(Icons.brightness_1, color: Colors.red),
+            Text(
+              'Exceeded Budget',
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+          Consumer<Auth>(builder: (ctx,auth,_)=> auth.userId=='kknzmBDLNzVhZffDtibSBwuGvGe2' ?FlatButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                padding: EdgeInsets.all(0.0),
+                color: Color(0xff232d37),
+                onPressed: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return HomeModalSheet();
+                      });
+                },
+                child: Text('Add Budget', style: TextStyle(color: Colors.white))):Text(''),)
+          ]),
+          
+          Container(
+                // margin: EdgeInsets.all(5),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    // border: Border.all(width: 2),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color(0xff232d37)),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    clmn('Vehicle Dynamics', totalCost1, budget1),
-                    dv,
-                    clmn('Power Train', totalCost2, budget2),
-                    dv,
-                    clmn('Brakes', totalCost3, budget3),
-                    dv,
-                    clmn('Chassis', totalCost4, budget4),
-                    dv,
-                    clmn('Electronics', totalCost5, budget5),
-                    dv,
-                    clmn('Miscellaneous', totalCost6, budget6),
-                  ],
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      clmn('Vehicle Dynamics', totalCost1, budget1),
+                      dv,
+                      clmn('Power Train', totalCost2, budget2),
+                      dv,
+                      clmn('Brakes', totalCost3, budget3),
+                      dv,
+                      clmn('Chassis', totalCost4, budget4),
+                      dv,
+                      clmn('Electronics', totalCost5, budget5),
+                      dv,
+                      clmn('Miscellaneous', totalCost6, budget6),
+                    ],
+                  ),
                 ),
-              )),
-        ),
-      ],
-    ));
+          
+        ],
+      ),
+    );
   }
 }

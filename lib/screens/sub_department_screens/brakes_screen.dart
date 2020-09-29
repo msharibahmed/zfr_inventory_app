@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zfr_inventory_app/screens/add_item_screen.dart';
 
+import '../../main_imports.dart';
 import '../../provider/departments_provider/brakes.dart';
 import '../../widgets/item_card.dart';
 
@@ -41,13 +42,16 @@ class _BrakesItemListScreenState extends State<BrakesItemListScreen> {
     final itemData = Provider.of<BrakesProvider>(context, listen: false);
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (ctx) => AddItemScreen(itemData.addItem)));
-        },
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton:
+          Provider.of<Auth>(context, listen: false).email == null
+              ? null
+              : FloatingActionButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (ctx) => AddItemScreen(itemData.addItem)));
+                  },
+                  child: Icon(Icons.add),
+                ),
       appBar: AppBar(
         title: Text('Items'),
         actions: [

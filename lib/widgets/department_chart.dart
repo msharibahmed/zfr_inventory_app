@@ -146,7 +146,7 @@ class _DepartmentChartState extends State<DepartmentChart> {
                 break;
             }
             return BarTooltipItem(
-                department + '\n' + '\$${(rod.y - 500).toStringAsFixed(2)}',
+                department + '\n' + '\₹${(rod.y - 500).toStringAsFixed(2)}',
                 TextStyle(color: Colors.black, fontWeight: FontWeight.bold));
           },
         ),

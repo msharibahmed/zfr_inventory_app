@@ -93,36 +93,36 @@ class AboutUs extends StatelessWidget {
                 ],
               ),
               Divider(
-                height: 15,
+                height: 20,
               ),
-              heading('Our Team'),
-              Divider(
-                color: Colors.black,
-                thickness: 2,
-                endIndent: 150,
-                indent: 150,
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Person('assets/images/boyracer.png', 'Zakir',
-                      'Marketing Leader'),
-                  Person('assets/images/boyracer.png', 'Nadeem', 'Treasurer'),
-                  Person('assets/images/g.jpg', 'Gauhar', 'Electronics Lead')
-                ],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Person('assets/images/r.jpg', 'Rehan', 'Brakes Lead'),
-                  Person('assets/images/k.jpg', 'Kamran', 'Designer'),
-                  Person('assets/images/boyracer.png', 'Anas', 'Member')
-                ],
-              ),
+              // heading('Our Team'),
+              // Divider(
+              //   color: Colors.black,
+              //   thickness: 2,
+              //   endIndent: 150,
+              //   indent: 150,
+              //   height: 15,
+              // ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: [
+              //     Person('assets/images/boyracer.png', 'Zakir',
+              //         'Marketing Leader'),
+              //     Person('assets/images/boyracer.png', 'Nadeem', 'Treasurer'),
+              //     Person('assets/images/g.jpg', 'Gauhar', 'Electronics Lead')
+              //   ],
+              // ),
+              // SizedBox(
+              //   height: 15,
+              // ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: [
+              //     Person('assets/images/r.jpg', 'Rehan', 'Brakes Lead'),
+              //     Person('assets/images/k.jpg', 'Kamran', 'Designer'),
+              //     Person('assets/images/boyracer.png', 'Anas', 'Member')
+              //   ],
+              // ),
               SizedBox(
                 height: 20,
               ),

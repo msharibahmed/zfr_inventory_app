@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../main_imports.dart';
 import '../../provider/departments_provider/intake.dart';
 import '../../widgets/item_card.dart';
 import '../add_item_screen.dart';
@@ -42,13 +43,16 @@ class _IntakeItemListScreenState extends State<IntakeItemListScreen> {
       context,
     );
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (ctx) => AddItemScreen(itemData.addItem)));
-        },
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton:
+          Provider.of<Auth>(context, listen: false).email == null
+              ? null
+              : FloatingActionButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (ctx) => AddItemScreen(itemData.addItem)));
+                  },
+                  child: Icon(Icons.add),
+                ),
       appBar: AppBar(
         title: Text('Items'),
         actions: [

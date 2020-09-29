@@ -7,31 +7,32 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<TasksProv>(context);
-    final auth = Provider.of<Auth>(context,listen: false);
+    final auth = Provider.of<Auth>(context, listen: false);
 
-    return auth.userId=='kknzmBDLNzVhZffDtibSBwuGvGe2'? Dismissible(
-      key: ValueKey(data.tasks[index].id),
-       onDismissed: (direction) async {
-        await data.dismissFunction(data.tasks[index].id,context);
-        
-        Scaffold.of(context).showSnackBar(SnackBar(
-           
-            elevation: 5,
-            backgroundColor: Colors.blue[50],
-            content: Text('Item Removed!',
-                style: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold))));
-      },
-      direction: DismissDirection.endToStart,
-      background: Container(
-          color: Colors.red,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 5.0),
-            child: Icon(Icons.delete, size: 30),
-          ),
-          alignment: Alignment.centerRight),
-      child: TaskCard1(data: data, index: index),
-    ):TaskCard1(data: data, index: index);
+    return auth.userId == 'kknzmBDLNzVhZffDtibSBwuGvGe2'
+        ? Dismissible(
+            key: ValueKey(data.tasks[index].id),
+            onDismissed: (direction) async {
+              await data.dismissFunction(data.tasks[index].id, context);
+
+              Scaffold.of(context).showSnackBar(SnackBar(
+                  elevation: 5,
+                  backgroundColor: Colors.blue[50],
+                  content: Text('Item Removed!',
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold))));
+            },
+            direction: DismissDirection.endToStart,
+            background: Container(
+                color: Colors.red,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 5.0),
+                  child: Icon(Icons.delete, size: 30),
+                ),
+                alignment: Alignment.centerRight),
+            child: TaskCard1(data: data, index: index),
+          )
+        : TaskCard1(data: data, index: index);
   }
 }
 
@@ -68,7 +69,10 @@ class TaskCard1 extends StatelessWidget {
                 fontSize: 11,
               )),
           onChanged: (_) {
-            data.checkChange(data.tasks[index].id, context);
+            if (Provider.of<Auth>(context, listen: false).userId ==
+                'kknzmBDLNzVhZffDtibSBwuGvGe2') {
+              data.checkChange(data.tasks[index].id, context);
+            }
           }),
     );
   }

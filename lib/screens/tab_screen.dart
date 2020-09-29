@@ -1,4 +1,5 @@
 import 'package:backdrop/backdrop.dart';
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import '../main_imports.dart';
 
 class TabScreen extends StatefulWidget {
@@ -47,40 +48,42 @@ class _TabScreenState extends State<TabScreen> {
                     })
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-            items: [
-              BottomNavigationBarItem(
-                  backgroundColor: Colors.blue[100],
-                  icon: Icon(Icons.home),
-                  title: Text('Home',
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold))),
-              BottomNavigationBarItem(
-                  backgroundColor: Colors.blue[200],
-                  icon: Icon(Icons.domain),
-                  title: Text(
-                    'Department',
+        bottomNavigationBar: BottomNavyBar(
+          backgroundColor: Colors.blue[100],
+          items: [
+            BottomNavyBarItem(
+                activeColor: Colors.red,
+                icon: Icon(Icons.home),
+                title: Text('Home',
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
-                  )),
-              BottomNavigationBarItem(
-                  backgroundColor: Colors.blue[300],
-                  icon: Consumer<TasksProv>(
-                    builder: (context, data, child) =>
-                        Badge(child: Icon(Icons.assignment), value: data.checkedLength.toString()),
-                  ),
-                  title: Text(
-                    'Tasks',
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
-                  ))
-            ],
-            currentIndex: selectedIndex,
-            onTap: onItemTapped,
-            unselectedItemColor: Colors.deepOrange,
-            type: BottomNavigationBarType.shifting,
-            selectedItemColor: Colors.blue,
-            backgroundColor: Colors.white),
+                        color: Colors.black, fontWeight: FontWeight.bold))),
+            BottomNavyBarItem(
+                activeColor: Colors.purpleAccent,
+                icon: Icon(Icons.domain),
+                title: Text(
+                  'Department',
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                )),
+            BottomNavyBarItem(
+                activeColor: Colors.blue,
+                icon: Consumer<TasksProv>(
+                  builder: (context, data, child) => Badge(
+                      child: Icon(Icons.assignment),
+                      value: data.checkedLength.toString()),
+                ),
+                title: Text(
+                  'Tasks',
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                ))
+          ],
+          selectedIndex: selectedIndex,
+          onItemSelected: onItemTapped,
+          
+          // type: BottomNavigationBarType.shifting,
+          // selectedItemColor: Colors.blue,
+        ),
         backLayer: DrawerWidget(),
         frontLayer: widgetOptions[selectedIndex]);
   }

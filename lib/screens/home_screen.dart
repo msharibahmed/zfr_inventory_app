@@ -46,12 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body:Column(
-                  children: [
-                    widget.button ? DepartmentChart() : LineChartSample2(),
-                    DepartmentProgress()
-                  ],
-                ));
+        body:SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      widget.button ? DepartmentChart() : LineChartSample2(),
+                      DepartmentProgress()
+                    ],
+                  ),
+        ));
   }
 }
 //  FutureBuilder(

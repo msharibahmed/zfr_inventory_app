@@ -1,3 +1,5 @@
+import 'package:google_fonts/google_fonts.dart';
+
 import '../main_imports.dart';
 
 class Splash extends StatefulWidget {
@@ -56,7 +58,7 @@ class _SplashState extends State<Splash> {
                       children: [
                         Image.asset('assets/images/splash.gif'),
                         SizedBox(
-                          height: 100,
+                          height: 170,
                         ),
                         Text(
                           'Z       F       R',
@@ -65,7 +67,12 @@ class _SplashState extends State<Splash> {
                         SizedBox(
                           height: 15,
                         ),
-                        CircularProgressIndicator()
+                        CircularProgressIndicator(),
+                        SizedBox(height:100),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Align(alignment:Alignment.bottomRight,child: Text('Created By: Sharib Ahmed',style: GoogleFonts.raleway(textStyle:TextStyle(color: Colors.white, fontSize: 15)))),
+                        )
                       ],
                     ),
                   ));

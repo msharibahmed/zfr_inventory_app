@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../main_imports.dart';
 import '../../provider/departments_provider/electronics.dart';
 import '../../widgets/item_card.dart';
 import '../add_item_screen.dart';
@@ -43,7 +44,9 @@ class _ElectronicsItemListScreenState extends State<ElectronicsItemListScreen> {
       context,
     );
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton:Provider.of<Auth>(context, listen: false).email == null
+              ? null
+              :  FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (ctx) => AddItemScreen(itemData.addItem)));

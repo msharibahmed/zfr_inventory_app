@@ -1,9 +1,11 @@
 import 'package:flare_flutter/flare_actor.dart';
+import 'package:flare_flutter/flare_cache_builder.dart';
+import 'package:flare_flutter/provider/asset_flare.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:zfr_inventory_app/provider/other/teddy.dart';
 import '../main_imports.dart';
-
-
 
 class AuthScreen extends StatefulWidget {
   static const routeName = '/auth';
@@ -13,7 +15,6 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  String anim = 'idle';
   final _fnum = FocusNode();
   final _pass = FocusNode();
   @override
@@ -43,12 +44,16 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   void _flrAnim(FocusNode name) {
-    if (name.hasFocus) {
-      setState(() {
-        anim = 'test';
-      });
-    }
+    final teddy = Provider.of<Teddy>(context, listen: false);
+
+    if(name.hasFocus){
+          teddy.changeMode('test');
+
+
   }
+  }
+  
+
 
   final GlobalKey<FormState> _formKey = GlobalKey();
   Map<String, String> _authData = {
@@ -56,6 +61,7 @@ class _AuthScreenState extends State<AuthScreen> {
     'password': '',
   };
   var _isLoading = false;
+  var _guestLoading = false;
   final _passwordController = TextEditingController();
   void _error(String message) async {
     await showDialog(
@@ -68,24 +74,22 @@ class _AuthScreenState extends State<AuthScreen> {
               actions: [
                 FlatButton(
                     onPressed: () => Navigator.pop(ctx),
-                    child: Text('OKAY',
+                    child: Text('Close',
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.red,
                         )))
               ],
             ));
   }
 
   Future<void> _submit() async {
+    final teddy = Provider.of<Teddy>(context, listen: false);
+
     if (!_formKey.currentState.validate()) {
-      setState(() {
-        anim = 'fail';
-      });
+      teddy.changeMode('fail');
       return;
     }
-    setState(() {
-      anim = 'success';
-    });
+    teddy.changeMode('success');
 
     _formKey.currentState.save();
     setState(() {
@@ -116,9 +120,31 @@ class _AuthScreenState extends State<AuthScreen> {
     }
   }
 
+  Future<void> guestSubmit() async {
+    final teddy = Provider.of<Teddy>(context, listen: false);
+
+    teddy.changeMode('success');
+
+    setState(() {
+      _guestLoading = true;
+    });
+
+    try {
+      await Provider.of<Auth>(context, listen: false).guestLogin();
+    } catch (error) {
+      const errorMessage = 'Please check your connecton and try later';
+      _error(errorMessage);
+      print(error);
+    }
+    setState(() {
+      _guestLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
+    final teddy = Provider.of<Teddy>(context, listen: false);
     // final transformConfig = Matrix4.rotationZ(-8 * pi / 180);
     // transformConfig.translate(-10.0);
     return Scaffold(
@@ -139,10 +165,21 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
             child: Padding(
               padding: const EdgeInsets.only(top: 20.0),
-              child: FlareActor(
-                'assets/images/flareintro.flr',
-                animation: anim,
-                alignment: Alignment.topCenter,
+              child: FlareCacheBuilder(
+                [
+                  AssetFlare(
+                      bundle: rootBundle, name: "assets/images/flareintro.flr")
+                ],
+                builder: (BuildContext context, bool isWarm) {
+                  return !isWarm
+                      ? Container(child: Text("Loading..."))
+                      : FlareActor(
+                          "assets/images/flareintro.flr",
+                          alignment: Alignment.topCenter,
+                          fit: BoxFit.contain,
+                          animation: teddy.anim,
+                        );
+                },
               ),
             ),
           ),
@@ -150,7 +187,7 @@ class _AuthScreenState extends State<AuthScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 60,
+                height: 120,
               ),
               Center(
                 child: Container(
@@ -183,6 +220,10 @@ class _AuthScreenState extends State<AuthScreen> {
                                 initialValue: '@zfr.com',
 
                                 decoration: InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.account_circle,
+                                    color: Colors.black,
+                                  ),
                                   labelText: 'E-mail',
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15.0),
@@ -213,6 +254,10 @@ class _AuthScreenState extends State<AuthScreen> {
                               TextFormField(
                                 focusNode: _pass,
                                 decoration: InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.lock,
+                                    color: Colors.black,
+                                  ),
                                   labelText: 'Password',
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15.0),
@@ -249,6 +294,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                   onPressed: () {
                                     FocusScope.of(context).unfocus();
                                     _submit();
+                                    setState(() {
+                                      _isLoading = false;
+                                    });
                                   },
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30),
@@ -270,17 +318,52 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
-              OutlineButton(
-                  onPressed: () {
-                    _launchURL(context,
-                        'mailto:msharibahmed@gmail.com?subject=Regarding%20a%20new%20email%20request&body=Please%20write%your%20Faculty%20Number%20and%20Name.');
-                  },
-                  child: Text('Request E-mail',
-                      style: TextStyle(
-                        color: Colors.black,
-                      )))
+              Flex(
+                direction: Axis.horizontal,
+                children: [
+                  Spacer(),
+                  OutlineButton(
+                      onPressed: () {
+                        _launchURL(context,
+                            'mailto:msharibahmed@gmail.com?subject=Regarding%20a%20new%20email%20request&body=Please%20write%20your%20Faculty%20Number%20and%20Name.');
+                      },
+                      child: Row(children: [
+                        Text('Request  E-mail',
+                            style:
+                                TextStyle(fontSize: 15, color: Colors.black)),
+                        Icon(Icons.mail, color: Colors.red)
+                      ])),
+                  Spacer(),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Flex(
+                direction: Axis.horizontal,
+                children: [
+                  Spacer(),
+                  RaisedButton(
+                      color: Colors.blue,
+                      onPressed: () {
+                        guestSubmit();
+                      },
+                      child: _guestLoading
+                          ? CircularProgressIndicator(
+                              backgroundColor: Colors.white,
+                              strokeWidth: 1,
+                            )
+                          : Row(children: [
+                              Text('Continue as Guest',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white)),
+                              Icon(Icons.account_box, color: Colors.white)
+                            ])),
+                  Spacer(),
+                ],
+              ),
             ],
           )
         ],
