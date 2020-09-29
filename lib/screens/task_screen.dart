@@ -57,7 +57,7 @@ class _TaskScreenState extends State<TaskScreen> {
                         ),
                       ),
                    
-                      if(auth.userId=='kknzmBDLNzVhZffDtibSBwuGvGe2')
+                      if(auth.email!=null)
                       Row(
                         children: [
                           Expanded(

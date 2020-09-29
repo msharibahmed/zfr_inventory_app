@@ -9,7 +9,7 @@ class TaskCard extends StatelessWidget {
     final data = Provider.of<TasksProv>(context);
     final auth = Provider.of<Auth>(context, listen: false);
 
-    return auth.userId == 'kknzmBDLNzVhZffDtibSBwuGvGe2'
+    return auth.email != null
         ? Dismissible(
             key: ValueKey(data.tasks[index].id),
             onDismissed: (direction) async {
@@ -69,8 +69,7 @@ class TaskCard1 extends StatelessWidget {
                 fontSize: 11,
               )),
           onChanged: (_) {
-            if (Provider.of<Auth>(context, listen: false).userId ==
-                'kknzmBDLNzVhZffDtibSBwuGvGe2') {
+            if (Provider.of<Auth>(context, listen: false).email != null) {
               data.checkChange(data.tasks[index].id, context);
             }
           }),

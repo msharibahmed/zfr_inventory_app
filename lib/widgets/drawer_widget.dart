@@ -1,4 +1,6 @@
-import 'package:flare_flutter/flare_actor.dart';
+// import 'package:flare_flutter/flare_actor.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../main_imports.dart';
 
 
@@ -10,7 +12,7 @@ class DrawerWidget extends StatefulWidget {
 class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
-    final mode = Provider.of<ThemeProv>(context);
+    // final mode = Provider.of<ThemeProv>(context);
     ListTile drawerList(
         String title, IconData iconData, String screenName, Color color) {
       return ListTile(
@@ -24,7 +26,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         ),
         title: Text(
           title,
-          style: TextStyle(fontSize: 20),
+          style: GoogleFonts.openSans(textStyle:TextStyle(fontSize: 20)),
         ),
       );
     }
@@ -112,13 +114,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               color: Colors.blue,
               child: ListView(
                 children: [
-                  drawerList('Settings', Icons.settings,
-                      SettingScreen.routeName, Colors.brown),
-                  Divider(
-                    height: 10,
-                  ),
+                 
                   drawerList('About Developer', Icons.perm_contact_calendar,
-                      DeveloperScreen.routeName, Colors.green[300]),
+                      DeveloperScreen.routeName, Colors.green[400]),
                   Divider(
                     height: 10,
                   ),
@@ -133,25 +131,25 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         auth.logout();
                       },
                       leading: Icon(Icons.settings_power,
-                          size: 40, color: Colors.deepOrange),
+                          size: 40, color: Colors.indigo[200]),
                       title: Text(
                         'Logout',
                         style: TextStyle(fontSize: 20),
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: mode.changeMode,
-                    child: Container(
-                      alignment: Alignment.bottomRight,
-                      height: 50,
-                      width: 50,
-                      child: FlareActor('assets/images/switch_daytime.flr',
-                          alignment: Alignment.bottomRight,
-                          fit: BoxFit.contain,
-                          animation: mode.mode ? "day_idle" : "night_idle"),
-                    ),
-                  )
+                  // GestureDetector(
+                  //   onTap: mode.changeMode,
+                  //   child: Container(
+                  //     alignment: Alignment.bottomRight,
+                  //     height: 50,
+                  //     width: 50,
+                  //     child: FlareActor('assets/images/switch_daytime.flr',
+                  //         alignment: Alignment.bottomRight,
+                  //         fit: BoxFit.contain,
+                  //         animation: mode.mode ? "day_idle" : "night_idle"),
+                  //   ),
+                  // )
                 ],
               )),
         ),

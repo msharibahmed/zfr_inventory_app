@@ -124,7 +124,7 @@ class DepartmentProgress extends StatelessWidget {
               'Exceeded Budget',
               style: TextStyle(fontWeight: FontWeight.w600),
             ),
-          Consumer<Auth>(builder: (ctx,auth,_)=> auth.userId=='kknzmBDLNzVhZffDtibSBwuGvGe2' ?FlatButton(
+          Consumer<Auth>(builder: (ctx,auth,_)=> auth.email!=null?FlatButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 padding: EdgeInsets.all(0.0),
