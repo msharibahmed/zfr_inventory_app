@@ -70,7 +70,7 @@ class DeveloperScreen extends StatelessWidget {
                     Container(
                         color: Colors.black,
                         width: double.infinity,
-                        height: 250,
+                        height: MediaQuery.of(context).size.height*0.275,
                         child: FlareActor(
                           'assets/images/hello.flr',
                           animation: 'idle',
