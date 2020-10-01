@@ -43,8 +43,10 @@ class _ElectronicsItemListScreenState extends State<ElectronicsItemListScreen> {
     final itemData = Provider.of<ElectronicsProvider>(
       context,
     );
+        final auth = Provider.of<Auth>(context, listen: false).email;
+
     return Scaffold(
-      floatingActionButton:Provider.of<Auth>(context, listen: false).email == null
+      floatingActionButton:auth == null
               ? null
               :  FloatingActionButton(
         onPressed: () {
@@ -56,7 +58,7 @@ class _ElectronicsItemListScreenState extends State<ElectronicsItemListScreen> {
       appBar: AppBar(
         title: const Text('Items'),
         actions: [
-          Chip(
+        auth!=null?  Chip(
               elevation: 10,
               shadowColor: Colors.amber,
               backgroundColor: Colors.blue[900],
@@ -64,7 +66,7 @@ class _ElectronicsItemListScreenState extends State<ElectronicsItemListScreen> {
                 builder: (context, data, _) => Text(
                     '\₹' + itemData.totalItemCost.toStringAsFixed(2),
                     style:const TextStyle(color: Colors.white)),
-              ))
+              )):Text('')
         ],
       ),
       body: Consumer<ElectronicsProvider>(
@@ -83,9 +85,9 @@ class _ElectronicsItemListScreenState extends State<ElectronicsItemListScreen> {
                                   Icons.hot_tub,
                                   size: 100,
                                 ),
-                               const Text(
-                                    "Empty here, click on '+' button to add items")
-                              ],
+                              auth!=null? Text(
+                                    "Empty here, click on '+' button to add items"):Text(
+                                    "Empty here.")   ],
                             ),
                           )
                         : ListView.builder(

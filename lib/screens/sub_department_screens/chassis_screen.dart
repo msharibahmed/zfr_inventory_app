@@ -40,9 +40,11 @@ class _ChassisItemListScreenState extends State<ChassisItemListScreen> {
   @override
   Widget build(BuildContext context) {
     final itemData = Provider.of<ChassisProvider>(context);
+        final auth = Provider.of<Auth>(context, listen: false).email;
+
     return Scaffold(
       floatingActionButton:
-          Provider.of<Auth>(context, listen: false).email == null
+          auth == null
               ? null
               : FloatingActionButton(
                   onPressed: () {
@@ -54,7 +56,7 @@ class _ChassisItemListScreenState extends State<ChassisItemListScreen> {
       appBar: AppBar(
         title:const Text('Items'),
         actions: [
-          Chip(
+         auth!=null? Chip(
               elevation: 10,
               shadowColor: Colors.amber,
               backgroundColor: Colors.blue[900],
@@ -62,7 +64,7 @@ class _ChassisItemListScreenState extends State<ChassisItemListScreen> {
                 builder: (context, data, _) => Text(
                     '\₹' + itemData.totalItemCost.toStringAsFixed(2),
                     style:const TextStyle(color: Colors.white)),
-              ))
+              )):Text('')
         ],
       ),
       body: Consumer<ChassisProvider>(
@@ -81,9 +83,9 @@ class _ChassisItemListScreenState extends State<ChassisItemListScreen> {
                                   Icons.hot_tub,
                                   size: 100,
                                 ),
-                               const Text(
-                                    "Empty here, click on '+' button to add items")
-                              ],
+                               auth!=null? Text(
+                                    "Empty here, click on '+' button to add items"):Text(
+                                    "Empty here.") ],
                             ),
                           )
                         : ListView.builder(

@@ -43,9 +43,11 @@ class _DriveTrainItemListScreenState extends State<DriveTrainItemListScreen> {
     final itemData = Provider.of<DriveTrainProvider>(
       context,
     );
+        final auth = Provider.of<Auth>(context, listen: false).email;
+
     return Scaffold(
       floatingActionButton:
-          Provider.of<Auth>(context, listen: false).email == null
+         auth == null
               ? null
               : FloatingActionButton(
                   onPressed: () {
@@ -57,7 +59,7 @@ class _DriveTrainItemListScreenState extends State<DriveTrainItemListScreen> {
       appBar: AppBar(
         title: const Text('Items'),
         actions: [
-          Chip(
+        auth!=null?  Chip(
               elevation: 10,
               shadowColor: Colors.amber,
               backgroundColor: Colors.blue[900],
@@ -65,7 +67,7 @@ class _DriveTrainItemListScreenState extends State<DriveTrainItemListScreen> {
                 builder: (context, data, _) => Text(
                     '\₹' + itemData.totalItemCost.toStringAsFixed(2),
                     style:const TextStyle(color: Colors.white)),
-              ))
+              )):Text('')
         ],
       ),
       body: Consumer<DriveTrainProvider>(
@@ -84,8 +86,9 @@ class _DriveTrainItemListScreenState extends State<DriveTrainItemListScreen> {
                                   Icons.hot_tub,
                                   size: 100,
                                 ),
-                              const  Text(
-                                    "Empty here, click on '+' button to add items")
+                               auth!=null? Text(
+                                    "Empty here, click on '+' button to add items"):Text(
+                                    "Empty here.")
                               ],
                             ),
                           )

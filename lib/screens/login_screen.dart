@@ -272,7 +272,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   OutlineButton(
                       onPressed: () {
                         _launchURL(context,
-                            'mailto:msharibahmed@gmail.com?subject=Regarding%20a%20new%20email%20request&body=Please%20write%20your%20Faculty%20Number%20and%20Name.');
+                            'mailto:msharibahmed@gmail.com?subject=Regarding%20a%20new%20email%20request&body=Please%20write%20your%20Faculty%20Number%20,%20Name%20and%20the%20email%20address%20you%20want%20to%20assosciate%20with%20this%20app.');
                       },
                       child: Row(children: [
                         const Text('Request  E-mail',

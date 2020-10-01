@@ -13,7 +13,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     const Divider divider = Divider();
 
-    final auth = Provider.of<Auth>(context).email;
+    final auth = Provider.of<Auth>(context,listen: false).email;
     return auth == null
         ? ItemCardWidget(modelData: modelData, divider: divider)
         : Dismissible(
@@ -58,6 +58,8 @@ class ItemCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        final auth = Provider.of<Auth>(context,listen: false).email;
+
     ListTile listTile(String message1, String message2) {
       return ListTile(
           title: RichText(
@@ -113,17 +115,17 @@ class ItemCardWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        'Total Cost: ',
+                        auth!=null?'Total Cost: ':'Total Quantity:',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
-                      Chip(
+                     auth!=null? Chip(
                           backgroundColor: Colors.green,
                           elevation: 10.0,
                           shadowColor: Colors.amber,
                           label: Text(
                               '\₹${(modelData.itemCost * modelData.itemQuantity).toStringAsFixed(2)}',
-                              style: TextStyle(fontSize: 20))),
+                              style: TextStyle(fontSize: 20))):Text(''),
                     const  Spacer(),
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0),

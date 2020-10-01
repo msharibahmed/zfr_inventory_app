@@ -1,12 +1,13 @@
 import '../main_imports.dart';
 
-
 class DepartmentCard extends StatelessWidget {
   final int index;
 
   DepartmentCard(this.index);
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<Auth>(context,listen: false);
+
     final steeringData = Provider.of<SteeringProvider>(context);
     final suspensionData = Provider.of<SuspensionProvider>(context);
     final coolingData = Provider.of<CoolingProvider>(context);
@@ -86,9 +87,9 @@ class DepartmentCard extends StatelessWidget {
               'This has ' + subDepartmentNumber[index] + ' Sub Departments'),
           title: Text(
             departmentNames.keys.toList()[index],
-            style:const TextStyle(fontSize: 25),
+            style: const TextStyle(fontSize: 25),
           ),
-          trailing:const Icon(Icons.arrow_drop_down_circle),
+          trailing: const Icon(Icons.arrow_drop_down_circle),
           children: [
             ...(departmentNames.values.toList()[index]).map((e) {
               DepartmentModel value =
@@ -120,7 +121,7 @@ class DepartmentCard extends StatelessWidget {
                       width: 40,
                       height: 40,
                     ),
-                    trailing: Chip(
+                    trailing: auth.email!=null? Chip(
                       backgroundColor: Colors.blue,
                       elevation: 5,
                       shadowColor: Colors.amber,
@@ -128,11 +129,11 @@ class DepartmentCard extends StatelessWidget {
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600)),
-                    ),
+                    ):null,
                     onTap: () {
                       Navigator.pushNamed(context, value.routeName);
                     },
-                    title: Text(e, style:const TextStyle(fontSize: 20)),
+                    title: Text(e, style: const TextStyle(fontSize: 20)),
                   ));
             })
           ]),

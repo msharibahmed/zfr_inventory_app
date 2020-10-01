@@ -42,9 +42,10 @@ class _SuspensionItemListScreenState extends State<SuspensionItemListScreen> {
     final itemData = Provider.of<SuspensionProvider>(
       context,
     );
+    final auth = Provider.of<Auth>(context, listen: false).email;
     return Scaffold(
       floatingActionButton:
-          Provider.of<Auth>(context, listen: false).email == null
+          auth== null
               ? null
               : FloatingActionButton(
                   onPressed: () {
@@ -54,17 +55,17 @@ class _SuspensionItemListScreenState extends State<SuspensionItemListScreen> {
                   child: Icon(Icons.add),
                 ),
       appBar: AppBar(
-        title:const Text('Items'),
+        title: const Text('Items'),
         actions: [
-          Chip(
+         auth!=null? Chip(
               elevation: 10,
               shadowColor: Colors.amber,
               backgroundColor: Colors.blue[900],
               label: Consumer<SuspensionProvider>(
                 builder: (context, data, _) => Text(
                     '\₹' + itemData.totalItemCost.toStringAsFixed(2),
-                    style:const TextStyle(color: Colors.white)),
-              ))
+                    style: const TextStyle(color: Colors.white)),
+              )):Text('')
         ],
       ),
       body: Consumer<SuspensionProvider>(
@@ -73,19 +74,19 @@ class _SuspensionItemListScreenState extends State<SuspensionItemListScreen> {
                 child: _boolCheck
                     ? Align(
                         alignment: Alignment.topCenter,
-                        child:const CircularProgressIndicator())
+                        child: const CircularProgressIndicator())
                     : value.items.length == 0
                         ? Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                               const Icon(
+                                const Icon(
                                   Icons.hot_tub,
                                   size: 100,
                                 ),
-                               const Text(
-                                    "Empty here, click on '+' button to add items")
-                              ],
+                              auth!=null? Text(
+                                    "Empty here, click on '+' button to add items"):Text(
+                                    "Empty here.")   ],
                             ),
                           )
                         : ListView.builder(

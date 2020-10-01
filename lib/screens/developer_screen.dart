@@ -155,7 +155,9 @@ class DeveloperScreen extends StatelessWidget {
                 Positioned(
                   top: 200,
                   left:16,
-                  child: Row(children: [
+                  child: Row(
+                    
+                    children: [
                     gd(
                         context,
                         'https://www.linkedin.com/in/sharib-ahmed-b3b930174/',
