@@ -153,38 +153,34 @@ class DeveloperScreen extends StatelessWidget {
                   ],
                 ),
                 Positioned(
+                  width: MediaQuery.of(context).size.width-32,
                   top: 200,
-                  left:16,
                   child: Row(
-                    
-                    children: [
-                    gd(
-                        context,
-                        'https://www.linkedin.com/in/sharib-ahmed-b3b930174/',
-                        'assets/images/linkedin.png'),
-                    sb(0, 7),
-                    gd(context, 'https://www.instagram.com/i._.m._.sharib/',
-                        'assets/images/instagram.png'),
-                    sb(0, 5),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Container(
-                        color: Colors.black,
-                        child: Image.asset(
-                          'assets/images/s.jpg',
-                          fit: BoxFit.contain,
-                          width: 150,
-                          height: 150,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        gd(
+                            context,
+                            'https://www.linkedin.com/in/sharib-ahmed-b3b930174/',
+                            'assets/images/linkedin.png'),
+                        gd(context, 'https://www.instagram.com/i._.m._.sharib/',
+                            'assets/images/instagram.png'),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Container(
+                            color: Colors.black,
+                            child: Image.asset(
+                              'assets/images/s.jpg',
+                              fit: BoxFit.contain,
+                              width: 150,
+                              height: 150,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    sb(0, 5),
-                    gd(context, 'https://www.facebook.com/MSharib786',
-                        'assets/images/facebook.png'),
-                    sb(0, 7),
-                    gd(context, 'https://github.com/msharibahmed',
-                        'assets/images/github.png')
-                  ]),
+                        gd(context, 'https://www.facebook.com/MSharib786',
+                            'assets/images/facebook.png'),
+                        gd(context, 'https://github.com/msharibahmed',
+                            'assets/images/github.png')
+                      ]),
                 ),
               ],
             ),
