@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../main_imports.dart';
 import '../../provider/departments_provider/suspension.dart';
@@ -44,28 +45,29 @@ class _SuspensionItemListScreenState extends State<SuspensionItemListScreen> {
     );
     final auth = Provider.of<Auth>(context, listen: false).email;
     return Scaffold(
-      floatingActionButton:
-          auth== null
-              ? null
-              : FloatingActionButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) => AddItemScreen(itemData.addItem)));
-                  },
-                  child: Icon(Icons.add),
-                ),
+      floatingActionButton: auth == null
+          ? null
+          : FloatingActionButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (ctx) => AddItemScreen(itemData.addItem)));
+              },
+              child: Icon(Icons.add),
+            ),
       appBar: AppBar(
-        title: const Text('Items'),
+        title:  Text('ITEMS',style:GoogleFonts.montserrat()),
         actions: [
-         auth!=null? Chip(
-              elevation: 10,
-              shadowColor: Colors.amber,
-              backgroundColor: Colors.blue[900],
-              label: Consumer<SuspensionProvider>(
-                builder: (context, data, _) => Text(
-                    '\₹' + itemData.totalItemCost.toStringAsFixed(2),
-                    style: const TextStyle(color: Colors.white)),
-              )):Text('')
+          auth != null
+              ? Chip(
+                  elevation: 10,
+                  shadowColor: Colors.amber,
+                  backgroundColor: Colors.blue[900],
+                  label: Consumer<SuspensionProvider>(
+                    builder: (context, data, _) => Text(
+                        '\₹' + itemData.totalItemCost.toStringAsFixed(2),
+                        style: const TextStyle(color: Colors.white)),
+                  ))
+              : Text('')
         ],
       ),
       body: Consumer<SuspensionProvider>(
@@ -74,7 +76,7 @@ class _SuspensionItemListScreenState extends State<SuspensionItemListScreen> {
                 child: _boolCheck
                     ? Align(
                         alignment: Alignment.topCenter,
-                        child: const CircularProgressIndicator())
+                        child: Center(child: const CircularProgressIndicator()))
                     : value.items.length == 0
                         ? Center(
                             child: Column(
@@ -84,9 +86,11 @@ class _SuspensionItemListScreenState extends State<SuspensionItemListScreen> {
                                   Icons.hot_tub,
                                   size: 100,
                                 ),
-                              auth!=null? Text(
-                                    "Empty here, click on '+' button to add items"):Text(
-                                    "Empty here.")   ],
+                                auth != null
+                                    ? Text(
+                                        "Empty here, click on '+' button to add items")
+                                    : Text("Empty here.")
+                              ],
                             ),
                           )
                         : ListView.builder(

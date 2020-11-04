@@ -67,7 +67,6 @@ class _SplashState extends State<Splash> {
                        const SizedBox(
                           height: 15,
                         ),
-                        CircularProgressIndicator(),
                        const SizedBox(height:100),
                         Padding(
                           padding: const EdgeInsets.all(16.0),

@@ -1,5 +1,5 @@
 // import 'package:flare_flutter/flare_actor.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 import '../main_imports.dart';
 
@@ -12,30 +12,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
     // final mode = Provider.of<ThemeProv>(context);
-    ListTile drawerList(
-        String title, IconData iconData, String screenName, Color color) {
-      return ListTile(
-        onTap: () {
-          Navigator.pushNamed(context, screenName);
-        },
-        leading: Icon(
-          iconData,
-          size: 40,
-          color: color,
-        ),
-        title: Text(
-          title,
-          style: GoogleFonts.openSans(textStyle: const TextStyle(fontSize: 20)),
-        ),
-      );
-    }
 
     return Container(
       child: Column(children: [
         Container(
           width: double.infinity,
           height: 100,
-          color: Colors.blue[700],
+          color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.only(top: 2.0, left: 8.0),
             child: Row(
@@ -86,13 +69,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             ),
           ),
         ),
-       const Divider(),
+        const Divider(),
         ExpansionTile(
-          subtitle:const Text(
+          backgroundColor: Colors.white,
+          subtitle: const Text(
             'Click to see the note!',
-            style:const TextStyle(fontSize: 12, color: Colors.red),
+            style: const TextStyle(fontSize: 12, color: Colors.red),
           ),
-          title:const Text(
+          title: const Text(
             'Note from the Developer',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
@@ -103,25 +87,28 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   'If the App crashes or show pop-up dialog saying error occured then please, check your Internet connection. If the problem still persists, try contacting the developer.'),
             )
           ],
-          trailing:const Icon(
+          trailing: const Icon(
             Icons.info,
             color: Colors.black,
           ),
         ),
-      const  Divider(),
+        const Divider(),
         Expanded(
           child: Container(
-              color: Colors.blue,
+              color: Colors.white,
               child: ListView(
                 children: [
-                  drawerList('About Developer', Icons.perm_contact_calendar,
-                      DeveloperScreen.routeName, Colors.green[400]),
-                 const Divider(
+                  DrawerListTile('About Developer', FontAwesomeIcons.addressCard,
+                      DeveloperScreen.routeName),
+                  const Divider(
                     height: 10,
                   ),
-                  drawerList('About Us', Icons.account_box, AboutUs.routeName,
-                      Colors.amber[700]),
-                const  Divider(
+                  DrawerListTile(
+                    'About Us',
+                    Icons.account_box,
+                    AboutUs.routeName,
+                  ),
+                  const Divider(
                     height: 10,
                   ),
                   Consumer<Auth>(
@@ -129,10 +116,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       onTap: () {
                         auth.logout();
                       },
-                      leading: Icon(Icons.settings_power,
-                          size: 40, color: Colors.indigo[200]),
-                      title:const Text(
-                        'Logout',
+                      leading: FaIcon(FontAwesomeIcons.signOutAlt, size: 40,color: Colors.black),
+                      title: const Text(
+                        'Log Out',
                         style: TextStyle(fontSize: 20),
                       ),
                     ),

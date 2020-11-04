@@ -1,8 +1,6 @@
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:zfr_inventory_app/provider/other/teddy.dart';
 import '../main_imports.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -41,19 +39,15 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   Future<void> _submit() async {
-    final teddy = Provider.of<Teddy>(context, listen: false);
-
     if (!_formKey.currentState.validate()) {
-      teddy.changeMode('fail');
       return;
     }
-    teddy.changeMode('success');
 
-    _formKey.currentState.save();
-    setState(() {
-      _isLoading = true;
-    });
     try {
+      setState(() {
+        _isLoading = true;
+      });
+      _formKey.currentState.save();
       await Provider.of<Auth>(context, listen: false).login(
         _authData['email'],
         _authData['password'],
@@ -76,13 +70,13 @@ class _AuthScreenState extends State<AuthScreen> {
       _error(errorMessage);
       print(error);
     }
+    print(_isLoading);
+     setState(() {
+        _isLoading = false;
+      });
   }
 
   Future<void> guestSubmit() async {
-    final teddy = Provider.of<Teddy>(context, listen: false);
-
-    teddy.changeMode('success');
-
     setState(() {
       _guestLoading = true;
     });
@@ -102,33 +96,20 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    final teddy = Provider.of<Teddy>(context, listen: false);
-    // final transformConfig = Matrix4.rotationZ(-8 * pi / 180);
-    // transformConfig.translate(-10.0);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromRGBO(115, 117, 255, 1).withOpacity(0.5),
-                  Color.fromRGBO(155, 188, 117, 1).withOpacity(0.9),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                stops: [0, 1],
+            height: MediaQuery.of(context).size.height,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child:
+                    Image.asset("assets/images/logo_zfr.png", fit: BoxFit.fill),
               ),
             ),
-            child: Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: FlareActor(
-                  "assets/images/flareintro.flr",
-                  alignment: Alignment.topCenter,
-                  fit: BoxFit.contain,
-                  animation: teddy.anim,
-                )),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -138,14 +119,15 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               Center(
                 child: Container(
-                  height: deviceSize.height * 0.4,
+                  height: deviceSize.height * 0.42,
                   width: deviceSize.width * 0.9,
                   child: Card(
-                    color: Colors.white,
+                    color: Colors.grey[100],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    elevation: 8.0,
+                    elevation: 10.0,
+                    shadowColor: Colors.black,
                     child: Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black),
@@ -186,7 +168,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                 // ignore: missing_return
                                 validator: (value) {
                                   if ((value.isEmpty) ||
-                                      !(value.contains('@'))||!(value.contains('.'))) {
+                                      !(value.contains('@')) ||
+                                      !(value.contains('.'))) {
                                     return 'Enter valid E-mail!';
                                   }
                                 },
@@ -231,29 +214,26 @@ class _AuthScreenState extends State<AuthScreen> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              if (_isLoading)
-                                const CircularProgressIndicator()
-                              else
-                                RaisedButton(
-                                  child: const Text('LOGIN'),
-                                  onPressed: () {
-                                    FocusScope.of(context).unfocus();
-                                    _submit();
-                                    setState(() {
-                                      _isLoading = false;
-                                    });
-                                  },
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 30.0, vertical: 8.0),
-                                  color: Theme.of(context).primaryColor,
-                                  textColor: Theme.of(context)
-                                      .primaryTextTheme
-                                      .button
-                                      .color,
-                                ),
+                              _isLoading
+                                  ? const CircularProgressIndicator()
+                                  : RaisedButton(
+                                      child: const Text('LOGIN'),
+                                      onPressed: () {
+                                        FocusScope.of(context).unfocus();
+                                        _submit();
+                                      
+                                      },
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 30.0, vertical: 8.0),
+                                      color: Theme.of(context).primaryColor,
+                                      textColor: Theme.of(context)
+                                          .primaryTextTheme
+                                          .button
+                                          .color,
+                                    ),
                             ],
                           ),
                         ),
@@ -269,7 +249,10 @@ class _AuthScreenState extends State<AuthScreen> {
                 direction: Axis.horizontal,
                 children: [
                   const Spacer(),
-                  OutlineButton(
+                  FlatButton(
+                      color: Colors.black38,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadiusDirectional.circular(15)),
                       onPressed: () {
                         _launchURL(context,
                             'mailto:msharibahmed@gmail.com?subject=Regarding%20a%20new%20email%20request&body=Please%20write%20your%20Faculty%20Number%20,%20Name%20and%20the%20email%20address%20you%20want%20to%20assosciate%20with%20this%20app.');
@@ -290,8 +273,10 @@ class _AuthScreenState extends State<AuthScreen> {
                 direction: Axis.horizontal,
                 children: [
                   const Spacer(),
-                  RaisedButton(
-                      color: Colors.blue,
+                  FlatButton(
+                      color: Colors.blue[900],
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadiusDirectional.circular(20)),
                       onPressed: () {
                         guestSubmit();
                       },

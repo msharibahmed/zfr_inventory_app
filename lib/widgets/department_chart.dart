@@ -49,39 +49,44 @@ class _DepartmentChartState extends State<DepartmentChart> {
   int touchedIndex;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 320,
-      padding: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: Color(0xff81e5cd),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-         const Text(
-            'Cost Analysis',
-            style: TextStyle(
-                color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+elevation: 5,shadowColor: Colors.black,          child: Container(
+          height: 320,
+          padding: const EdgeInsets.all(15),
+          decoration: BoxDecoration(
+            color: Color(0xff81e5cd),
           ),
-          const Divider(
-            color: Colors.black,
-            endIndent: 210,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+             const Text(
+                'Cost Analysis',
+                style: TextStyle(
+                    color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              const Divider(
+                color: Colors.black,
+                endIndent: 210,
+              ),
+             const Text('Department Wise',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500)),
+              const SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                  child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: BarChart(mainBarData()),
+              ))
+            ],
           ),
-         const Text('Department Wise',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500)),
-          const SizedBox(
-            height: 20,
-          ),
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: BarChart(mainBarData()),
-          ))
-        ],
+        ),
       ),
     );
   }

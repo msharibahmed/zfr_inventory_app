@@ -8,90 +8,76 @@ class TaskScreen extends StatefulWidget {
 class _TaskScreenState extends State<TaskScreen> {
   final ctr = TextEditingController();
 
-  // var _dependencyCheck = true;
   @override
   void dispose() {
     ctr.dispose();
     super.dispose();
   }
 
-  // Future<void> fetch() async {
-  //   // await Provider.of<TasksProv>(context, listen: false).fetch(context);
-  // }
+  
 
   var _boolcheck1 = true;
+
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<TasksProv>(context);
-        final auth = Provider.of<Auth>(context,listen: false);
-
-
+    final auth = Provider.of<Auth>(context, listen: false);
 
     return Scaffold(
-        // backgroundColor: Colors.blue[50],
-
-        body: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                     data.tasks.length==0? Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                               const Icon(
-                                  Icons.hot_tub,
-                                  size: 100,
-                                ),
-                              const  Text(
-                                    "Zero Tasks!"),
-                                    
-                              ],
-                            ),
-                          ): Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: ListView.builder(
-                            reverse: true,
-                            itemBuilder: (context, index) => TaskCard(index),
-                            itemCount: data.tasks.length,
-                          ),
+      floatingActionButton: auth.email != null
+          ? FloatingActionButton.extended(
+              icon: Icon(Icons.add),
+              elevation: 5,
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                      title: Row(children: [
+                        const Icon(
+                          Icons.assignment_turned_in,
+                          size: 40,
                         ),
-                      ),
-                   
-                      if(auth.email!=null)
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 8.0, bottom: 2),
-                              child: TextField(
-                                cursorColor: Colors.deepOrange,
-                                cursorRadius: Radius.circular(5.0),
-                                cursorWidth: 2.0,
-                                controller: ctr,
-                                textCapitalization:
-                                    TextCapitalization.sentences,
-                                keyboardType: TextInputType.multiline,
-                                decoration: InputDecoration(
-                                  fillColor: Colors.amber,
-                                  hintText: 'Send Task',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(40),
+                        Text(
+                          'Add New Task',
+                          style: const TextStyle(fontSize: 15),
+                        )
+                      ]),
+                      content:  Container(
+                        height: 150,
+                          child: Flex(
+                            direction: Axis.vertical,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 8.0, bottom: 2),
+                                child: TextField(
+                                  cursorColor: Colors.deepOrange,
+                                  cursorRadius: Radius.circular(5.0),
+                                  cursorWidth: 2.0,
+                                  controller: ctr,
+                                  textCapitalization:
+                                      TextCapitalization.sentences,
+                                  maxLines: 3,
+                                  keyboardType: TextInputType.multiline,
+                                  decoration: InputDecoration(
+                                    fillColor: Colors.amber,
+                                    hintText: 'Send Task',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
                                   ),
-                                  prefixIcon:const Icon(Icons.assignment_turned_in),
                                 ),
                               ),
-                            ),
-                          ),
-                          _boolcheck1
-                              ? Container(
-                                  height: 50,
-                                  width: 50,
-                                  child: IconButton(
-                                      icon:const Icon(
-                                        Icons.send,
-                                        size: 40,
-                                      ),
+                              _boolcheck1
+                                  ? FlatButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadiusDirectional.circular(
+                                                  10)),
+                                      color: Colors.black,
+                                      child: const Text('ADD TASK',
+                                          style: const TextStyle(
+                                              color: Colors.white)),
                                       onPressed: () async {
                                         if (ctr.text.isNotEmpty) {
                                           setState(() {
@@ -110,16 +96,43 @@ class _TaskScreenState extends State<TaskScreen> {
                                           return;
                                         }
                                         FocusScope.of(context).unfocus();
-                                      }),
-                                )
-                              : Image.asset(
-                                  'assets/images/task.gif',
-                                  height: 50,
-                                  width: 50,
-                                )
-                        ],
-                      )
-                    ],
-                  ));
+                                      })
+                                  : Image.asset(
+                                      'assets/images/task.gif',
+                                      height: 50,
+                                      width: 50,
+                                    )
+                            ],
+                          ),
+                        ),
+                      ),
+                );
+              },
+              label: Text('Add Task'))
+          : null,
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
+      body: data.tasks.length == 0
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.hot_tub,
+                    size: 100,
+                  ),
+                  const Text("Zero Tasks!"),
+                ],
+              ),
+            )
+          : Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: ListView.builder(
+                reverse: true,
+                itemBuilder: (context, index) => TaskCard(index),
+                itemCount: data.tasks.length,
+              ),
+            ),
+    );
   }
 }

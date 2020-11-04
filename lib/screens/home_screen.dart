@@ -56,19 +56,3 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 }
-//  FutureBuilder(
-//             future: fetch(),
-//             builder: (ctx, snap) {
-//               if (snap.connectionState == ConnectionState.done) {
-//                 return Column(
-//                   children: [
-//                     widget.button ? DepartmentChart() : LineChartSample2(),
-//                     DepartmentProgress()
-//                   ],
-//                 );
-//               } else {
-//                 return Center(
-//                   child: CircularProgressIndicator(),
-//                 );
-//               }
-//             })

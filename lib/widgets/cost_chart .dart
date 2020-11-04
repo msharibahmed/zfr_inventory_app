@@ -1,4 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../main_imports.dart';
 
 class LineChartSample2 extends StatefulWidget {
@@ -8,34 +9,44 @@ class LineChartSample2 extends StatefulWidget {
 
 class _LineChartSample2State extends State<LineChartSample2> {
   List<Color> gradientColors = [
-    const Color(0xff23b6e6),
+    const Color(0xff0288d1),
     const Color(0xff02d39a),
   ];
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.centerLeft,
-      children: [
-        Container(
-            height: 320,
-            width: double.infinity,
-            decoration: const BoxDecoration(color: Color(0xff232d37)),
-            child: Padding(
-                padding: const EdgeInsets.only(
-                    right: 18.0, left: 12.0, top: 24, bottom: 12),
-                child: LineChart(
-                  mainData(),
-                ))),
-        Padding(
-          padding: const EdgeInsets.only(top: 5.0),
-          child: RotatedBox(
-              quarterTurns: 3,
-              child:const Text(
-                "Cost Analysis" + "\n" + "       Monthwise",
-                style:const TextStyle(color: Colors.white, fontSize: 18),
-              )),
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        elevation: 5,
+        shadowColor: Colors.black,
+            child: 
+            Container(
+                height: 320,
+                width: MediaQuery.of
+                
+                (
+                  context
+                ).size.width-16,
+                decoration: const BoxDecoration(color: Colors.white),
+                child:Row(children:[RotatedBox(
+                  quarterTurns: 3,
+                  child:  Text(
+                    "Cost Analysis" + "\n" + "       Monthwise",
+                    style: GoogleFonts.anton(textStyle: TextStyle(color: Colors.black, fontSize: 18))
+                  )),LineChart(
+                      mainData(),
+                    )
+                ])
+            //      Padding(
+            //         padding: const EdgeInsets.only(  
+            //             right: 18.0, left: 12.0, top: 24, bottom: 12),
+            //         child: ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 5.0),
+            //   child: ,)
+        
+        ),
+      ),
     );
   }
 
@@ -201,13 +212,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
         drawVerticalLine: true,
         getDrawingHorizontalLine: (value) {
           return FlLine(
-            color: const Color(0xff37434d),
+            color:  Colors.black,
             strokeWidth: 0,
           );
         },
         getDrawingVerticalLine: (value) {
           return FlLine(
-            color: const Color(0xff37434d),
+            color:  Colors.black,
             strokeWidth: 0,
           );
         },
@@ -218,8 +229,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
           showTitles: true,
           reservedSize: 15,
           textStyle: const TextStyle(
-              color: const Color(0xff68737d),
-              fontWeight: FontWeight.normal,
+              color:  Colors.black,
+              fontWeight: FontWeight.w600,
               fontSize: 12),
           getTitles: (value) {
             switch (value.toInt()) {
@@ -256,7 +267,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         leftTitles: SideTitles(
           showTitles: true,
           textStyle: const TextStyle(
-            color: Color(0xff67727d),
+            color:  Colors.black,
             fontWeight: FontWeight.w600,
             fontSize: 12,
           ),
@@ -269,7 +280,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
       ),
       borderData: FlBorderData(
           show: true,
-          border: Border.all(color: const Color(0xff37434d), width: 0.5)),
+          border: Border.all(color:  Colors.black, width: 0.5)),
       minX: 0,
       maxX: 11,
       minY: 0,

@@ -1,3 +1,5 @@
+import 'package:google_fonts/google_fonts.dart';
+
 import '../main_imports.dart';
 import 'package:intl/intl.dart';
 
@@ -105,7 +107,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Add new ')),
+      appBar: AppBar(title: Text('Add New ',style:GoogleFonts.montserrat())),
       body: _boolCheck
           ? Center(child: CircularProgressIndicator())
           : Container(

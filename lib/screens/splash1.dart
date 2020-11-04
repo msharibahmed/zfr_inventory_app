@@ -5,13 +5,14 @@ class Splash1 extends StatelessWidget {
   Widget build(BuildContext context) {
     final sze = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.black,
         body: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Center(
           child: Image.asset(
-            'assets/images/logo.jpeg',
+            'assets/images/logo_zfr.png',
             fit: BoxFit.contain,
             width: sze.width,
           ),

@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import '../main_imports.dart';
 
@@ -68,7 +69,7 @@ class ItemCardWidget extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 20,
                       color: Colors.black,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.w700),
                   children: [
             TextSpan(
                 text: message2,
@@ -79,7 +80,7 @@ class ItemCardWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Card(
-          color: Colors.blue[50],
+          color: Colors.grey[50],
           elevation: 10,
           shadowColor: Colors.black,
           child: Padding(
@@ -91,20 +92,20 @@ class ItemCardWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       Text('Item: ',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20)),
+                          style: GoogleFonts.nunitoSans(textStyle:const TextStyle(
+                             fontSize: 20,fontWeight: FontWeight.w700))),
                       Expanded(
                         child: Text(modelData.itemName,
                             overflow: TextOverflow.ellipsis,
                             softWrap: false,
-                            style: const TextStyle(fontSize: 20)),
+                            style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w200)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0),
                         child: Text(
                             DateFormat('dd MMM').format(modelData.itemDate),
                             style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20)),
+                                fontWeight: FontWeight.w700, fontSize: 20)),
                       ),
                     ],
                   ),
@@ -116,8 +117,8 @@ class ItemCardWidget extends StatelessWidget {
                     children: [
                       Text(
                         auth!=null?'Total Cost: ':'Total Quantity:',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
+                        style:  GoogleFonts.nunitoSans(textStyle:const TextStyle(
+                             fontSize: 20,fontWeight: FontWeight.w700)),
                       ),
                      auth!=null? Chip(
                           backgroundColor: Colors.green,
@@ -140,10 +141,10 @@ class ItemCardWidget extends StatelessWidget {
                 ),
                 divider,
                 ExpansionTile(
-                  backgroundColor: Colors.blue[100],
+                  backgroundColor: Colors.grey[200],
                   title: Text('Item Details',
-                      style:
-                         const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                      style: GoogleFonts.nunitoSans(textStyle:const TextStyle(
+                             fontSize: 20,fontWeight: FontWeight.w700))),
                   trailing:const Icon(Icons.arrow_drop_down_circle),
                   children: [
                     divider,

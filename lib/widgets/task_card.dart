@@ -49,7 +49,7 @@ class TaskCard1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.blue[50],
+      color: Colors.grey[50],
       elevation: 5,
       child: CheckboxListTile(
           title: Text(

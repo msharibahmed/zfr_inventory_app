@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../main_imports.dart';
@@ -56,7 +57,7 @@ class _IntakeItemListScreenState extends State<IntakeItemListScreen> {
                   child: Icon(Icons.add),
                 ),
       appBar: AppBar(
-        title:const Text('Items'),
+        title: Text('ITEMS',style:GoogleFonts.montserrat()),
         actions: [
         auth!=null?  Chip(
               elevation: 10,
@@ -75,7 +76,7 @@ class _IntakeItemListScreenState extends State<IntakeItemListScreen> {
                 child: _boolCheck
                     ? Align(
                         alignment: Alignment.topCenter,
-                        child:const CircularProgressIndicator())
+                        child:Center(child: const CircularProgressIndicator()))
                     : value.items.length == 0
                         ? Center(
                             child: Column(

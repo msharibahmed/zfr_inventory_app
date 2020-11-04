@@ -78,65 +78,68 @@ class DepartmentCard extends StatelessWidget {
       'electronics',
       'miscellaneous'
     ];
-    return Card(
-      color: Colors.blue[50],
-      elevation: 10,
-      child: ExpansionTile(
-          leading: Image.asset('assets/images/${images[index]}.png'),
-          subtitle: Text(
-              'This has ' + subDepartmentNumber[index] + ' Sub Departments'),
-          title: Text(
-            departmentNames.keys.toList()[index],
-            style: const TextStyle(fontSize: 25),
-          ),
-          trailing: const Icon(Icons.arrow_drop_down_circle),
-          children: [
-            ...(departmentNames.values.toList()[index]).map((e) {
-              DepartmentModel value =
-                  modelData.firstWhere((element) => e == element.name);
-              const photo = {
-                'Steering': 'steering',
-                'Suspension': 'suspension',
-                'Cooling': 'cooling',
-                'Drive Train': 'drive_train',
-                'Exhaust': 'exhaust',
-                'Intake': 'intake',
-                'Cost of Brakes': 'null',
-                'Cost of Chassis': 'null',
-                'Cost of Electronics': 'null',
-                'Cost of Miscellaneous': 'null'
-              };
-              String cc;
-              photo.forEach((key, value) {
-                if (key == e) {
-                  cc = value;
-                }
-              });
-              return Card(
-                  elevation: 3,
-                  color: Colors.blue[100],
-                  child: ListTile(
-                    leading: Image.asset(
-                      'assets/images/$cc.png',
-                      width: 40,
-                      height: 40,
-                    ),
-                    trailing: auth.email!=null? Chip(
-                      backgroundColor: Colors.blue,
-                      elevation: 5,
-                      shadowColor: Colors.amber,
-                      label: Text('\₹' + value.total,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600)),
-                    ):null,
-                    onTap: () {
-                      Navigator.pushNamed(context, value.routeName);
-                    },
-                    title: Text(e, style: const TextStyle(fontSize: 20)),
-                  ));
-            })
-          ]),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        color: Colors.grey[50],
+        elevation: 10,
+        child: ExpansionTile(
+            leading: Image.asset('assets/images/${images[index]}.png'),
+            subtitle: Text(
+                'This has ' + subDepartmentNumber[index] + ' Sub Departments'),
+            title: Text(
+              departmentNames.keys.toList()[index],
+              style: const TextStyle(fontSize: 25),
+            ),
+            trailing: const Icon(Icons.arrow_drop_down_circle),
+            children: [
+              ...(departmentNames.values.toList()[index]).map((e) {
+                DepartmentModel value =
+                    modelData.firstWhere((element) => e == element.name);
+                const photo = {
+                  'Steering': 'steering',
+                  'Suspension': 'suspension',
+                  'Cooling': 'cooling',
+                  'Drive Train': 'drive_train',
+                  'Exhaust': 'exhaust',
+                  'Intake': 'intake',
+                  'Cost of Brakes': 'null',
+                  'Cost of Chassis': 'null',
+                  'Cost of Electronics': 'null',
+                  'Cost of Miscellaneous': 'null'
+                };
+                String cc;
+                photo.forEach((key, value) {
+                  if (key == e) {
+                    cc = value;
+                  }
+                });
+                return Card(
+                    elevation: 3,
+                    color: Colors.grey[200],
+                    child: ListTile(
+                      leading: Image.asset(
+                        'assets/images/$cc.png',
+                        width: 40,
+                        height: 40,
+                      ),
+                      trailing: auth.email!=null? Chip(
+                        backgroundColor: Colors.blue,
+                        elevation: 5,
+                        shadowColor: Colors.amber,
+                        label: Text('\₹' + value.total,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600)),
+                      ):null,
+                      onTap: () {
+                        Navigator.pushNamed(context, value.routeName);
+                      },
+                      title: Text(e, style: const TextStyle(fontSize: 20)),
+                    ));
+              })
+            ]),
+      ),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 
 import 'main_imports.dart';
-import 'provider/other/teddy.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +16,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<Auth>(create: (_) => Auth()),
-          ChangeNotifierProvider<Teddy>(create: (_) => Teddy()),
           ChangeNotifierProvider<ThemeProv>(create: (_) => ThemeProv()),
           ChangeNotifierProxyProvider<Auth, SuspensionProvider>(
               create: null,
@@ -77,6 +75,9 @@ class MyApp extends StatelessWidget {
         child: Consumer<Auth>(
           builder: (ctx, auth, _) => MaterialApp(
             theme: ThemeData(
+              accentColor: Colors.black,
+            primaryColor: Colors.black,
+            scaffoldBackgroundColor: Color(0xffeceff1),
               fontFamily: 'Lato',
             ),
             debugShowCheckedModeBanner: false,
@@ -107,7 +108,7 @@ class MyApp extends StatelessWidget {
               DeveloperScreen.routeName: (contex) => DeveloperScreen(),
             },
             home: auth.isAuth
-                ? Splash()
+                ? TabScreen()
                 : FutureBuilder(
                     future: auth.tryAutoLogin(),
                     builder: (ctx, snapshot) =>

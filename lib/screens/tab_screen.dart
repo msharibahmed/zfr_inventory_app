@@ -1,5 +1,6 @@
 import 'package:backdrop/backdrop.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../main_imports.dart';
 
 class TabScreen extends StatefulWidget {
@@ -27,8 +28,10 @@ class _TabScreenState extends State<TabScreen> {
       TaskScreen()
     ];
     return BackdropScaffold(
+      headerHeight: 100,
+      // backgroundColor: Colors.black,
         appBar: BackdropAppBar(
-          title: Text(names[selectedIndex]),
+          title: Text(names[selectedIndex],style:GoogleFonts.montserrat()),
           centerTitle: true,
           actions: [
             selectedIndex > 0
@@ -37,7 +40,7 @@ class _TabScreenState extends State<TabScreen> {
                     icon: button
                         ?  Icon(
                             Icons.ac_unit,
-                            color: Colors.blue[200],
+                            color: Colors.blue[100],
                           )
                         :const Icon(Icons.ac_unit),
                     onPressed: () {
@@ -49,7 +52,7 @@ class _TabScreenState extends State<TabScreen> {
           ],
         ),
         bottomNavigationBar: BottomNavyBar(
-          backgroundColor: Colors.blue[100],
+          backgroundColor: Colors.grey[300],
           items: [
             BottomNavyBarItem(
                 activeColor: Colors.red,

@@ -81,7 +81,7 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
                 Container(
                     alignment: Alignment.centerRight,
                     child: FlatButton(
-                      color: Colors.blue,
+                      color: Colors.black,
                       onPressed: () async {
                         if (_value == 1 || textCtrl.text.isEmpty) {
                           Navigator.pop(context);
@@ -107,8 +107,8 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
                         }
                       },
                       child: _boolCheck
-                          ? Text('Add',
-                              style:const TextStyle(fontWeight: FontWeight.bold))
+                          ? Text('ADD',
+                              style:const TextStyle(fontWeight: FontWeight.bold,color: Colors.white))
                           : CircularProgressIndicator(
                               strokeWidth: 2,
                               backgroundColor: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:zfr_inventory_app/screens/add_item_screen.dart';
 
@@ -54,7 +55,7 @@ class _BrakesItemListScreenState extends State<BrakesItemListScreen> {
                   child:const Icon(Icons.add),
                 ),
       appBar: AppBar(
-        title: const Text('Items'),
+        title:  Text('ITEMS',style:GoogleFonts.montserrat()),
         actions: [
         auth!=null?  Chip(
               elevation: 10,
@@ -73,7 +74,7 @@ class _BrakesItemListScreenState extends State<BrakesItemListScreen> {
                 child: _boolCheck
                     ? Align(
                         alignment: Alignment.topCenter,
-                        child:const CircularProgressIndicator())
+                        child:Center(child: const CircularProgressIndicator()))
                     : value.items.length == 0
                         ? Center(
                             child: Column(
