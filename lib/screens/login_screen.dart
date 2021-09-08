@@ -119,7 +119,7 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               Center(
                 child: Container(
-                  height: deviceSize.height * 0.42,
+                //  height: deviceSize.height * 0.42,
                   width: deviceSize.width * 0.9,
                   child: Card(
                     color: Colors.grey[100],
@@ -132,7 +132,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black),
                           borderRadius: BorderRadius.circular(10.0)),
-                      height: 260,
+                     // height: 260,
                       constraints: const BoxConstraints(minHeight: 260),
                       width: deviceSize.width * 0.75,
                       padding: const EdgeInsets.all(16.0),
@@ -140,6 +140,8 @@ class _AuthScreenState extends State<AuthScreen> {
                         key: _formKey,
                         child: SingleChildScrollView(
                           child: Column(
+                            
+                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               const SizedBox(
                                 height: 15,
@@ -280,7 +282,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   const Spacer(),
                   TextButton(
                       style: TextButton.styleFrom(
-                        primary: Colors.blue[900],
+                        backgroundColor:Colors.blue[900] ,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadiusDirectional.circular(20)),
                       ),

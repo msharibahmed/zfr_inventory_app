@@ -50,6 +50,7 @@ class AboutUs extends StatelessWidget {
         backgroundColor: Colors.black,
       ), preferredSize: Size.fromHeight(MediaQuery.of(context).size.height*0.05)),
       body: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
           Stack(
             children: [
@@ -94,10 +95,10 @@ class AboutUs extends StatelessWidget {
                   ))
             ],
           ),
-        
           Container(
-            height: MediaQuery.of(context).size.height*.57,
+         //  height: MediaQuery.of(context).size.height*.50,
             child: Card(
+              
               elevation: 5,
               shadowColor: Colors.black,
               margin: EdgeInsets.all(12),

@@ -81,7 +81,7 @@ class _HomeModalSheetState extends State<HomeModalSheet> {
                 Container(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      style:TextButton.styleFrom(primary:Colors.black),
+                      style:TextButton.styleFrom(backgroundColor:Colors.black),
                       onPressed: () async {
                         if (_value == 1 || textCtrl.text.isEmpty) {
                           Navigator.pop(context);

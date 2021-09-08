@@ -130,7 +130,7 @@ class DepartmentProgress extends StatelessWidget {
             builder: (ctx, auth, _) => auth.email != null
                 ? TextButton(
                     style: TextButton.styleFrom(
-                        primary: Colors.black,
+                        backgroundColor: Colors.black,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () {

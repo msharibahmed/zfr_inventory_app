@@ -367,7 +367,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                                           context: context,
                                           initialDate: DateTime.now(),
                                           firstDate: DateTime(2020),
-                                          lastDate: DateTime(2021))
+                                          lastDate: DateTime(2023))
                                       .then((value) {
                                     setState(() {
                                       _editProduct = ItemModel(

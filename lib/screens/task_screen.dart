@@ -72,7 +72,7 @@ class _TaskScreenState extends State<TaskScreen> {
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 10)),
-                                    primary: Colors.black,
+                                    backgroundColor: Colors.black,
                                   ),
                                   child: const Text('ADD TASK',
                                       style:
