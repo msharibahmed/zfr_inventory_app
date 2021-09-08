@@ -480,8 +480,8 @@ class _AddItemScreenState extends State<AddItemScreen> {
                       //   ],
                       //   // https://flutter.dev/assets/homepage/carousel/phone_bezel-467ab8d838e5e2d2d3f347f766173ccc365220223692215416e4ce7342f2212f.png
                       // ),
-                      RaisedButton(
-                          color: Colors.deepOrangeAccent[100],
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary:Colors.deepOrangeAccent[100], ),
                           child:const Text('Save Item',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                           onPressed: () {

@@ -22,7 +22,7 @@ class ItemCard extends StatelessWidget {
             onDismissed: (direction) async {
               await dismissFunction(modelData.itemId, context);
               // print(modelData.itemId);
-              Scaffold.of(context).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   action: SnackBarAction(
                       label: 'Undo',
                       onPressed: () {

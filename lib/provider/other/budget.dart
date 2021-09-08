@@ -33,7 +33,7 @@ class BudgetProv with ChangeNotifier {
               content:
                   Text('Couldn\'t Add Budget, Please Check Your Connection.'),
               actions: [
-                RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     Navigator.pop(ctx);
                   },

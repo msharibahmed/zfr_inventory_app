@@ -67,7 +67,7 @@ class ElectronicsProvider with ChangeNotifier {
               title: Text('Error Occured!'),
               content: Text('Check Your connection or contact developer.'),
               actions: [
-                RaisedButton(
+                ElevatedButton(
                   onPressed: () {
                     Navigator.pop(ctx);
                   },

@@ -54,7 +54,10 @@ class DepartmentProgress extends StatelessWidget {
             padding: const EdgeInsets.only(left: 5.0, top: 5, right: 5),
             child: Row(
               children: [
-                Text(name, style:  GoogleFonts.roboto(textStyle:TextStyle(color: Colors.black,fontWeight: FontWeight.w400))),
+                Text(name,
+                    style: GoogleFonts.roboto(
+                        textStyle: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w400))),
                 Spacer(),
                 Text('Budget: \₹$budget', style: TextStyle(color: Colors.black))
               ],
@@ -77,8 +80,9 @@ class DepartmentProgress extends StatelessWidget {
                   height: 10,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: totalCost < budget ?Color(0xff00e676) :
-                       Color(0xfff44336)))
+                      color: totalCost < budget
+                          ? Color(0xff00e676)
+                          : Color(0xfff44336)))
             ],
           ),
           Text('\(${totalCost.toInt()}/${budget.toInt()})',
@@ -96,11 +100,11 @@ class DepartmentProgress extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child:  Text(
-            'Department Progress',
-            style: GoogleFonts.openSans(textStyle:TextStyle(fontWeight: FontWeight.w600, fontSize: 18))
-          
-        ),),
+          child: Text('Department Progress',
+              style: GoogleFonts.openSans(
+                  textStyle:
+                      TextStyle(fontWeight: FontWeight.w600, fontSize: 18))),
+        ),
         const Divider(
           color: Colors.black,
           height: 3,
@@ -124,11 +128,11 @@ class DepartmentProgress extends StatelessWidget {
           ),
           Consumer<Auth>(
             builder: (ctx, auth, _) => auth.email != null
-                ? FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    padding: const EdgeInsets.all(0.0),
-                    color: Colors.black,
+                ? TextButton(
+                    style: TextButton.styleFrom(
+                        primary: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10))),
                     onPressed: () {
                       showModalBottomSheet(
                           context: context,
@@ -146,14 +150,14 @@ class DepartmentProgress extends StatelessWidget {
           child: Card(
             elevation: 10,
             shadowColor: Colors.black,
-                    child: Container(
+            child: Container(
               // margin: EdgeInsets.all(5),
               width: double.infinity,
               decoration: BoxDecoration(
                   // border: Border.all(width: 2),
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white)
-,          child: Column(
+                  color: Colors.white),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   clmn('Vehicle Dynamics', totalCost1, budget1),

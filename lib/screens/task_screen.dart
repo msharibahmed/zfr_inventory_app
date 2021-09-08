@@ -14,8 +14,6 @@ class _TaskScreenState extends State<TaskScreen> {
     super.dispose();
   }
 
-  
-
   var _boolcheck1 = true;
 
   @override
@@ -32,80 +30,81 @@ class _TaskScreenState extends State<TaskScreen> {
                 showDialog(
                   context: context,
                   builder: (ctx) => AlertDialog(
-                      title: Row(children: [
-                        const Icon(
-                          Icons.assignment_turned_in,
-                          size: 40,
-                        ),
-                        Text(
-                          'Add New Task',
-                          style: const TextStyle(fontSize: 15),
-                        )
-                      ]),
-                      content:  Container(
-                        height: 150,
-                          child: Flex(
-                            direction: Axis.vertical,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 8.0, bottom: 2),
-                                child: TextField(
-                                  cursorColor: Colors.deepOrange,
-                                  cursorRadius: Radius.circular(5.0),
-                                  cursorWidth: 2.0,
-                                  controller: ctr,
-                                  textCapitalization:
-                                      TextCapitalization.sentences,
-                                  maxLines: 3,
-                                  keyboardType: TextInputType.multiline,
-                                  decoration: InputDecoration(
-                                    fillColor: Colors.amber,
-                                    hintText: 'Send Task',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                  ),
+                    title: Row(children: [
+                      const Icon(
+                        Icons.assignment_turned_in,
+                        size: 40,
+                      ),
+                      Text(
+                        'Add New Task',
+                        style: const TextStyle(fontSize: 15),
+                      )
+                    ]),
+                    content: Container(
+                      height: 150,
+                      child: Flex(
+                        direction: Axis.vertical,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 8.0, bottom: 2),
+                            child: TextField(
+                              cursorColor: Colors.deepOrange,
+                              cursorRadius: Radius.circular(5.0),
+                              cursorWidth: 2.0,
+                              controller: ctr,
+                              textCapitalization: TextCapitalization.sentences,
+                              maxLines: 3,
+                              keyboardType: TextInputType.multiline,
+                              decoration: InputDecoration(
+                                fillColor: Colors.amber,
+                                hintText: 'Send Task',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
                               ),
-                              _boolcheck1
-                                  ? FlatButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadiusDirectional.circular(
-                                                  10)),
-                                      color: Colors.black,
-                                      child: const Text('ADD TASK',
-                                          style: const TextStyle(
-                                              color: Colors.white)),
-                                      onPressed: () async {
-                                        if (ctr.text.isNotEmpty) {
-                                          setState(() {
-                                            _boolcheck1 = false;
-                                          });
-                                          await data
-                                              .addTask(ctr.text, context)
-                                              .then((_) {
-                                            setState(() {
-                                              _boolcheck1 = true;
-                                            });
-                                          });
-                                          ctr.clear();
-                                        } else {
-                                          FocusScope.of(context).unfocus();
-                                          return;
-                                        }
-                                        FocusScope.of(context).unfocus();
-                                      })
-                                  : Image.asset(
-                                      'assets/images/task.gif',
-                                      height: 50,
-                                      width: 50,
-                                    )
-                            ],
+                            ),
                           ),
-                        ),
+                          _boolcheck1
+                              ? TextButton(
+                                  style: TextButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                10)),
+                                    primary: Colors.black,
+                                  ),
+                                  child: const Text('ADD TASK',
+                                      style:
+                                          const TextStyle(color: Colors.white)),
+                                  onPressed: () async {
+                                    if (ctr.text.isNotEmpty) {
+                                      setState(() {
+                                        _boolcheck1 = false;
+                                      });
+                                      await data
+                                          .addTask(ctr.text, context)
+                                          .then((_) {
+                                        setState(() {
+                                          _boolcheck1 = true;
+                                        });
+                                      });
+                                      ctr.clear();
+                                    } else {
+                                      FocusScope.of(context).unfocus();
+                                      return;
+                                    }
+                                    FocusScope.of(context).unfocus();
+                                  })
+                              : Image.asset(
+                                  'assets/images/task.gif',
+                                  height: 50,
+                                  width: 50,
+                                )
+                        ],
                       ),
+                    ),
+                  ),
                 );
               },
               label: Text('Add Task'))

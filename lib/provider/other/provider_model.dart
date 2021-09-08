@@ -50,7 +50,7 @@ class ProviderModel with ChangeNotifier {
               title: Text('Couldn\'t Delete!'),
               content: Text('Check Your connection or contact developer.'),
               actions: [
-                RaisedButton(
+                ElevatedButton(
                   onPressed: () {
                     Navigator.pop(ctx);
                   },
@@ -104,7 +104,7 @@ class ProviderModel with ChangeNotifier {
               title: Text('Connection Error!'),
               content: Text('Couldn\'t Undo, Please Check Your Connection.'),
               actions: [
-                RaisedButton(
+                ElevatedButton(
                   onPressed: () {
                     Navigator.pop(ctx);
                   },
@@ -166,7 +166,7 @@ class ProviderModel with ChangeNotifier {
               title: Text('Error Occured!'),
               content: Text('Check Your connection or contact developer.'),
               actions: [
-                RaisedButton(
+                ElevatedButton(
                   onPressed: () {
                     Navigator.pop(ctx);
                   },

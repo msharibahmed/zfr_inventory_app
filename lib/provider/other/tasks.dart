@@ -31,7 +31,7 @@ class TasksProv with ChangeNotifier {
             title: Text('Error Occured,' + text),
             content:const Text('Check Your connection or contact developer.'),
             actions: [
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   Navigator.pop(ctx);
                 },
@@ -127,7 +127,7 @@ class TasksProv with ChangeNotifier {
               title: Text('Couldn\'t Delete!'),
               content: Text('Check Your connection or contact developer.'),
               actions: [
-                RaisedButton(
+                ElevatedButton(
                   onPressed: () {
                     Navigator.pop(ctx);
                   },

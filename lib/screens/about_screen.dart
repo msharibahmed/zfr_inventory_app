@@ -24,7 +24,7 @@ class AboutUs extends StatelessWidget {
                 title: const Text('Error Occured!'),
                 content: const Text('Couln\'t Launch The URL'),
                 actions: [
-                  FlatButton(
+                  ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -85,8 +85,8 @@ class AboutUs extends StatelessWidget {
               Positioned(
                   bottom: 0,
                   right: 45,
-                  child: RaisedButton(
-                    color: Colors.blue,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(primary: Colors.blue),
                     onPressed: () async {
                       _launchURL(context);
                     },
@@ -120,7 +120,7 @@ class AboutUs extends StatelessWidget {
                       'The sole puprpose of this app is to keep track of the vehicle parts bought.',style:GoogleFonts.roboto()),
                 ),
                 const SizedBox(
-                  height: 70,
+                  height: 20,
                 ),
                 heading('About Z F R'),
                 const Divider(

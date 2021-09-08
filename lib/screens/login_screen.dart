@@ -28,7 +28,7 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               content: Text(message),
               actions: [
-                FlatButton(
+                TextButton(
                     onPressed: () => Navigator.pop(ctx),
                     child: Text('Close',
                         style: TextStyle(
@@ -71,9 +71,9 @@ class _AuthScreenState extends State<AuthScreen> {
       print(error);
     }
     print(_isLoading);
-     setState(() {
-        _isLoading = false;
-      });
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   Future<void> guestSubmit() async {
@@ -216,23 +216,26 @@ class _AuthScreenState extends State<AuthScreen> {
                               ),
                               _isLoading
                                   ? const CircularProgressIndicator()
-                                  : RaisedButton(
+                                  : ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Theme.of(context).primaryColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 30.0, vertical: 8.0),
+
+                                        // textColor: Theme.of(context)
+                                        //     .primaryTextTheme
+                                        //     .button
+                                        //     .color,
+                                      ),
                                       child: const Text('LOGIN'),
                                       onPressed: () {
                                         FocusScope.of(context).unfocus();
                                         _submit();
-                                      
                                       },
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 30.0, vertical: 8.0),
-                                      color: Theme.of(context).primaryColor,
-                                      textColor: Theme.of(context)
-                                          .primaryTextTheme
-                                          .button
-                                          .color,
                                     ),
                             ],
                           ),
@@ -249,10 +252,12 @@ class _AuthScreenState extends State<AuthScreen> {
                 direction: Axis.horizontal,
                 children: [
                   const Spacer(),
-                  FlatButton(
-                      color: Colors.black38,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadiusDirectional.circular(15)),
+                  TextButton(
+                      style: TextButton.styleFrom(
+                          primary: Colors.black38,
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadiusDirectional.circular(15))),
                       onPressed: () {
                         _launchURL(context,
                             'mailto:msharibahmed@gmail.com?subject=Regarding%20a%20new%20email%20request&body=Please%20write%20your%20Faculty%20Number%20,%20Name%20and%20the%20email%20address%20you%20want%20to%20assosciate%20with%20this%20app.');
@@ -273,10 +278,12 @@ class _AuthScreenState extends State<AuthScreen> {
                 direction: Axis.horizontal,
                 children: [
                   const Spacer(),
-                  FlatButton(
-                      color: Colors.blue[900],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadiusDirectional.circular(20)),
+                  TextButton(
+                      style: TextButton.styleFrom(
+                        primary: Colors.blue[900],
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadiusDirectional.circular(20)),
+                      ),
                       onPressed: () {
                         guestSubmit();
                       },
@@ -311,7 +318,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 title: const Text('Error Occured!'),
                 content: const Text('Couln\'t send mail'),
                 actions: [
-                  FlatButton(
+                  TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },

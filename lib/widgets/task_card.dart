@@ -15,7 +15,7 @@ class TaskCard extends StatelessWidget {
             onDismissed: (direction) async {
               await data.dismissFunction(data.tasks[index].id, context);
 
-              Scaffold.of(context).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   elevation: 5,
                   backgroundColor: Colors.blue[50],
                   content: Text('Item Removed!',
